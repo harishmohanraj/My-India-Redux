@@ -8,10 +8,10 @@ export const COUNTER_DOUBLE_ASYNC = 'COUNTER_DOUBLE_ASYNC'
 // Actions
 // ------------------------------------
 export function increment (value = 1) {
-  return fetchSecretSauce().then(
-      sauce => console.info(sauce.json()),
-      error => console.info('error')
-    );
+  return {
+    type    : COUNTER_INCREMENT,
+    payload : value
+  }
 }
 
 /*  This is a thunk, meaning it is a function that immediately
