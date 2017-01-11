@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
-import AppContainer from './containers/AppContainer'
+import AppContainer from './containers/AppContainer';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 // ========================================================
 // Store Instantiation
@@ -15,10 +16,18 @@ const store = createStore(initialState)
 const MOUNT_NODE = document.getElementById('root')
 
 let render = () => {
-  const routes = require('./routes/index').default(store)
+  const routes = require('./routes/index').default(store);
+
+  const App = () => {
+    return (
+      <MuiThemeProvider>
+        <AppContainer store={store} routes={routes} />
+      </MuiThemeProvider>
+    )
+  }
 
   ReactDOM.render(
-    <AppContainer store={store} routes={routes} />,
+    <App />,
     MOUNT_NODE
   )
 }
