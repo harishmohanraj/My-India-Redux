@@ -8,10 +8,10 @@ export const COUNTER_DOUBLE_ASYNC = 'COUNTER_DOUBLE_ASYNC'
 // Actions
 // ------------------------------------
 export function increment (value = 1) {
-  return {
-    type    : COUNTER_INCREMENT,
-    payload : value
-  }
+  return fetchSecretSauce().then(
+      sauce => console.info(sauce.json()),
+      error => console.info('error')
+    );
 }
 
 /*  This is a thunk, meaning it is a function that immediately
@@ -20,16 +20,24 @@ export function increment (value = 1) {
 
 export const doubleAsync = () => {
   return (dispatch, getState) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        dispatch({
-          type    : COUNTER_DOUBLE_ASYNC,
-          payload : getState().counter
-        })
-        resolve()
-      }, 200)
-    })
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     dispatch({
+    //       type    : COUNTER_DOUBLE_ASYNC,
+    //       payload : getState().counter
+    //     })
+    //     resolve()
+    //   }, 200)
+    // })
+    return fetchSecretSauce().then(
+      sauce => console.info(sauce.json()),
+      error => console.info('error')
+    );
   }
+}
+
+function fetchSecretSauce() {
+  return fetch('https://data.gov.in/node/336961/datastore/export/json');
 }
 
 export const actions = {
@@ -42,7 +50,7 @@ export const actions = {
 // ------------------------------------
 const ACTION_HANDLERS = {
   [COUNTER_INCREMENT]    : (state, action) => state + action.payload,
-  [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2
+  [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2 // write a util to fetch the data and return it.
 }
 
 // ------------------------------------
