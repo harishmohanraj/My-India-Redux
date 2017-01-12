@@ -19,24 +19,38 @@ export function increment (value = 1) {
     creating async actions, especially when combined with redux-thunk! */
 
 export const doubleAsync = () => {
-  return (dispatch, getState) => {
+  //return (dispatch, getState) => {
+  return (dispatch) => {
     // return new Promise((resolve) => {
     //   setTimeout(() => {
-    //     dispatch({
-    //       type    : COUNTER_DOUBLE_ASYNC,
-    //       payload : getState().counter
-    //     })
+        // dispatch({
+        //   type    : COUNTER_DOUBLE_ASYNC,
+        //   payload : getState().counter
+        // })
+    //     fetchSecretSauce()
+    //     .then(response => response.json())
+    //     .then(data => console.log(data))
     //     resolve()
-    //   }, 200)
+    //   }, 0)
     // })
-    return fetchSecretSauce().then(
-      sauce => console.info(sauce.json()),
-      error => console.info('error')
-    );
+    return new Promise((resolve) => {
+      return fetchData()
+      .then(response => response.json())
+      .then(data => {
+        dispatch({
+          type    : COUNTER_DOUBLE_ASYNC,
+          payload : data
+        })
+      })  
+    }
+    // .then(
+    //   sauce => console.info(sauce.json()),
+    //   error => console.info('error')
+    // );
   }
 }
 
-function fetchSecretSauce() {
+function fetchData() {
   return fetch('https://data.gov.in/node/336961/datastore/export/json');
 }
 
@@ -50,7 +64,7 @@ export const actions = {
 // ------------------------------------
 const ACTION_HANDLERS = {
   [COUNTER_INCREMENT]    : (state, action) => state + action.payload,
-  [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2 // write a util to fetch the data and return it.
+  [COUNTER_DOUBLE_ASYNC] : (state, action) => console.info(state,action.payload)//state * 2 // write a util to fetch the data and return it.
 }
 
 // ------------------------------------
