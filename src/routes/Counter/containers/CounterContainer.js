@@ -17,9 +17,9 @@ const mapDispatchToProps = {
   doubleAsync
 }
 
-const mapStateToProps = (state) => ({
-  counter : state.counter
-})
+// const mapStateToProps = (state) => ({
+//   counter : state.counter
+// })
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:
 
@@ -35,4 +35,4 @@ const mapStateToProps = (state) => ({
     Selectors are composable. They can be used as input to other selectors.
     https://github.com/reactjs/reselect    */
 
-export default connect(mapStateToProps, mapDispatchToProps)(Counter)
+export default connect(mapDispatchToProps)(Counter)

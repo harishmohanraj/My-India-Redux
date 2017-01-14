@@ -32,6 +32,11 @@ export const doubleAsync = () => {
   }
 }
 
+
+function fetchData() {
+  return fetch('https://data.gov.in/node/336961/datastore/export/json');
+}
+
 export const actions = {
   increment,
   doubleAsync
@@ -42,7 +47,7 @@ export const actions = {
 // ------------------------------------
 const ACTION_HANDLERS = {
   [COUNTER_INCREMENT]    : (state, action) => state + action.payload,
-  [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2
+  [COUNTER_DOUBLE_ASYNC] : (state, action) => console.info(state,action.payload)//state * 2 // write a util to fetch the data and return it.
 }
 
 // ------------------------------------

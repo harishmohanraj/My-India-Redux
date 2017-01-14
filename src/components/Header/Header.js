@@ -1,18 +1,48 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
 import './Header.scss'
+import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
 
-export const Header = () => (
-  <div>
-    <h1>React Redux Starter Kit</h1>
-    <IndexLink to='/' activeClassName='route--active'>
-      Home
-    </IndexLink>
-    {' · '}
-    <Link to='/counter' activeClassName='route--active'>
-      Counter
-    </Link>
-  </div>
-)
 
-export default Header
+export default class Header extends React.Component { 
+  constructor(props) {
+    super(props);
+    this.state = {open: false};
+    this.handleToggle = this.handleToggle.bind(this);
+  }
+  
+  handleToggle = () => this.setState({open: !this.state.open});
+
+  handleClose = () => this.setState({open: false});
+
+  render() {
+    return (
+      <header className="bs-docs-nav navbar navbar-static-top">
+        <AppBar
+          title="My India Report Card"
+          onLeftIconButtonTouchTap= {this.handleToggle}
+        />  
+        <Drawer
+          docked={false}
+          width={200}
+          open={this.state.open}
+          onRequestChange={(open) => this.setState({open})}
+        >
+          <MenuItem onTouchTap={this.handleClose}>
+            <IndexLink to='/' activeClassName='route--active'>
+              Home
+            </IndexLink>
+          </MenuItem>
+          <MenuItem onTouchTap={this.handleClose}>
+            <Link to='/counter' activeClassName='route--active'>
+              Counter
+            </Link>
+          </MenuItem>
+        </Drawer>
+      </header>
+    );
+  }
+  
+}
