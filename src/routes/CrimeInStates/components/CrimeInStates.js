@@ -1,9 +1,19 @@
 import React from 'react'
 
-export const CrimeInStates = (props) => (
-  <div style={{ margin: '0 auto' }} >
-    <p>Hello!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-  </div>
-)
+export default class CrimeInStates extends React.Component {
+  constructor(props) {
+    super(props)
+  }
 
-export default CrimeInStates
+  componentDidMount() {
+    this.props.requestData()
+  }
+
+  render() {
+    return (<p>Check!!!!!!!!!!!</p>)
+  }
+}
+
+CrimeInStates.propTypes = {
+  requestData   : React.PropTypes.func.isRequired
+}

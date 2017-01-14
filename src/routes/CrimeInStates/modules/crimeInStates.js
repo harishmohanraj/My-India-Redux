@@ -1,60 +1,77 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const COUNTER_INCREMENT = 'COUNTER_INCREMENT'
-export const COUNTER_DOUBLE_ASYNC = 'COUNTER_DOUBLE_ASYNC'
+export const RECEIVE_DATA = 'RECEIVE_DATA';
+export const SHOW_LOADER = 'SHOW_LOADER';
 
+const stateTreeKey = 'crimeInStates';
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function increment (value = 1) {
+const showLoader = getState => {
   return {
-    type    : COUNTER_INCREMENT,
-    payload : value
+    type: SHOW_LOADER,
+    payload: getState()[stateTreeKey].isFetching
   }
 }
 
-/*  This is a thunk, meaning it is a function that immediately
-    returns a function for lazy evaluation. It is incredibly useful for
-    creating async actions, especially when combined with redux-thunk! */
+const receiveData = (json) => {
+  return {
+    type: RECEIVE_DATA,
+    payload: json
+  } 
+}
+const callAPI = APIName => fetch(APIName);
 
-export const doubleAsync = () => {
-  return (dispatch, getState) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        dispatch({
-          type    : COUNTER_DOUBLE_ASYNC,
-          payload : getState().counter
-        })
-        resolve()
-      }, 200)
-    })
-  }
+const fetchData = APIName => (dispatch, getState) => {
+  dispatch(showLoader(getState))
+  return callAPI(APIName)
+  .then(response => response.json())
+  .then(json => dispatch(receiveData(json)))
 }
 
-
-function fetchData() {
-  return fetch('https://data.gov.in/node/336961/datastore/export/json');
+export const requestData = APIName => (dispatch, getState) => {
+  return dispatch(fetchData(APIName))
 }
 
 export const actions = {
-  increment,
-  doubleAsync
+  requestData
+}
+
+const callReducer = (state , action) => {
+  switch(action.type) {
+    case RECEIVE_DATA:
+      return {
+        ...state,
+        items: action.payload
+      }
+    case SHOW_LOADER:
+      return {
+        ...state,
+        isFetching: !action.payload
+      }
+    
+    default:
+      return state
+  }
 }
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [COUNTER_INCREMENT]    : (state, action) => state + action.payload,
-  [COUNTER_DOUBLE_ASYNC] : (state, action) => console.info(state,action.payload)//state * 2 // write a util to fetch the data and return it.
+  [RECEIVE_DATA]: (state, action) => callReducer(state, action),
+  [SHOW_LOADER]: (state, action) => callReducer(state, action)
 }
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = 0
-export default function counterReducer (state = initialState, action) {
+const initialBaseState = {
+  isFetching: false,
+  items: []
+}
+export default function crimeInStates (state = initialBaseState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state
