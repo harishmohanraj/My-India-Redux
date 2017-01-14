@@ -2,18 +2,18 @@
 // Constants
 // ------------------------------------
 export const RECEIVE_DATA = 'RECEIVE_DATA';
-export const SHOW_LOADER = 'SHOW_LOADER';
+//export const SHOW_LOADER = 'SHOW_LOADER';
 
 const stateTreeKey = 'crimeInStates';
 // ------------------------------------
 // Actions
 // ------------------------------------
-const showLoader = getState => {
-  return {
-    type: SHOW_LOADER,
-    payload: getState()[stateTreeKey].isFetching
-  }
-}
+// const showLoader = getState => {
+//   return {
+//     type: SHOW_LOADER,
+//     payload: getState()[stateTreeKey].isFetching
+//   }
+// }
 
 const receiveData = (json) => {
   return {
@@ -24,7 +24,7 @@ const receiveData = (json) => {
 const callAPI = APIName => fetch(APIName);
 
 const fetchData = APIName => (dispatch, getState) => {
-  dispatch(showLoader(getState))
+  //dispatch(showLoader(getState))
   return callAPI(APIName)
   .then(response => response.json())
   .then(json => dispatch(receiveData(json)))
@@ -45,11 +45,11 @@ const callReducer = (state , action) => {
         ...state,
         items: action.payload
       }
-    case SHOW_LOADER:
-      return {
-        ...state,
-        isFetching: !action.payload
-      }
+    // case SHOW_LOADER:
+    //   return {
+    //     ...state,
+    //     isFetching: !action.payload
+    //   }
     
     default:
       return state
@@ -60,8 +60,8 @@ const callReducer = (state , action) => {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [RECEIVE_DATA]: (state, action) => callReducer(state, action),
-  [SHOW_LOADER]: (state, action) => callReducer(state, action)
+  [RECEIVE_DATA]: (state, action) => callReducer(state, action)//,
+  //[SHOW_LOADER]: (state, action) => callReducer(state, action)
 }
 
 // ------------------------------------

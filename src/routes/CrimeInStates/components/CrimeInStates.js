@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import CircularProgress from 'material-ui/CircularProgress';
 
 export default class CrimeInStates extends React.Component {
   constructor(props) {
@@ -9,8 +10,19 @@ export default class CrimeInStates extends React.Component {
     this.props.requestData()
   }
 
+  renderComponent() {
+    return (<p>Check</p>)
+  }
+
   render() {
-    return (<p>Check!!!!!!!!!!!</p>)
+    let chartData = this.props.crimeInStates.items.fields || [];
+    let content = chartData.length ? this.renderComponent() : <CircularProgress />;
+    
+    return (
+      <div>
+        {content}
+      </div>
+    );
   }
 }
 
