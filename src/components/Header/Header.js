@@ -36,8 +36,8 @@ export default class Header extends React.Component {
             </IndexLink>
           </MenuItem>
           <MenuItem onTouchTap={this.handleClose}>
-            <Link to='/counter' activeClassName='route--active'>
-              Counter
+            <Link to='/crime-in-states' activeClassName='route--active'>
+              Crime in States
             </Link>
           </MenuItem>
         </Drawer>

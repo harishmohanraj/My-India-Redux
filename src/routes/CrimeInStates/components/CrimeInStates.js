@@ -1,5 +1,7 @@
 import React from 'react';
 import CircularProgress from 'material-ui/CircularProgress';
+import formatChartData from '../../../utils/formatChartData.js';
+import Chart from '../../../components/Chart'
 
 export default class CrimeInStates extends React.Component {
   constructor(props) {
@@ -10,13 +12,22 @@ export default class CrimeInStates extends React.Component {
     this.props.requestData()
   }
 
-  renderComponent() {
-    return (<p>Check</p>)
+  renderComponent(formattedChartData) {
+    const chartData = {
+        labels: formattedChartData.itemName,
+        datasets: [
+            {
+              data: formattedChartData.itemValue,
+            }
+        ]
+    }
+    return (<Chart chartData= {chartData}/>)
   }
 
   render() {
-    let chartData = this.props.crimeInStates.items.fields || [];
-    let content = chartData.length ? this.renderComponent() : <CircularProgress />;
+    let chartData = this.props.crimeInStates.items.data || [];
+    const formattedChartData = chartData.length && formatChartData(chartData);
+    let content = formattedChartData ? this.renderComponent(formattedChartData) : <CircularProgress />;
     
     return (
       <div>
