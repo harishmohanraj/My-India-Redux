@@ -1,7 +1,8 @@
 import React from 'react';
 import CircularProgress from 'material-ui/CircularProgress';
 import formatChartData from '../../../utils/formatChartData.js';
-import Chart from '../../../components/Chart'
+import Chart from '../../../components/Chart';
+import Filter from '../../../components/Filter';
 
 export default class CrimeInStates extends React.Component {
   constructor(props) {
@@ -17,11 +18,20 @@ export default class CrimeInStates extends React.Component {
         labels: formattedChartData.itemName,
         datasets: [
             {
+              responsive: true,
               data: formattedChartData.itemValue,
             }
         ]
-    }
-    return (<Chart chartData= {chartData}/>)
+    };
+
+    const obj = {};
+    return ( 
+      <div>
+        <Filter handleChange = {this.props.handleChange} />
+        <Chart chartData= {chartData} />
+      </div>
+      
+      )
   }
 
   render() {

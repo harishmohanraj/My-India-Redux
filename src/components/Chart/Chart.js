@@ -4,7 +4,7 @@ import {Bar} from 'react-chartjs';
 
 
 export const Chart = ({chartData}) => (
-  	<Bar data={chartData} width="300" height="250"/>
+  	<Bar data={chartData} height="300"/>
 )
 
 // Chart.propTypes = {
