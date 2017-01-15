@@ -27,7 +27,10 @@ export default class CrimeInStates extends React.Component {
     const obj = {};
     return ( 
       <div>
-        <Filter handleChange = {this.props.handleChange} />
+        <Filter 
+          handleChange = {this.props.handleChange} 
+          value= {this.props.crimeInStates.activeFilter}
+        />
         <Chart chartData= {chartData} />
       </div>
       

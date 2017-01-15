@@ -1,27 +1,32 @@
 import React from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import config from '../../../config/api.config.js'
 
 
+let renderOptions = () => {
+  return config.crimeInStatesFilterMapping.map((obj, i) => {
+    return (
+      <MenuItem key={i} value={obj.value} primaryText={obj.label} />
+    )
+  });
+}
 
-export const Filter = ({handleChange}) => (
+export const Filter = ({handleChange, value}) => (
   	<div>
   		<SelectField
-          floatingLabelText="Frequency"
-          value="0"
+          floatingLabelText="Crime Type"
+          value={value || "RAPE (SECTION 376 IPC)"}
           onChange={handleChange}
         >
-          <MenuItem value={1} primaryText="Never" />
-          <MenuItem value={2} primaryText="Every Night" />
-          <MenuItem value={3} primaryText="Weeknights" />
-          <MenuItem value={4} primaryText="Weekends" />
-          <MenuItem value={5} primaryText="Weekly" />
+          {renderOptions()}
         </SelectField>
   	</div>
 )
 
 Filter.propTypes = {
-  handleChange : React.PropTypes.func.isRequired 
+  handleChange : React.PropTypes.func.isRequired,
+  value : React.PropTypes.string.isRequired  
 }
 
 export default Filter;
