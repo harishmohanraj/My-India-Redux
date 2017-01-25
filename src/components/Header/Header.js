@@ -32,12 +32,17 @@ export default class Header extends React.Component {
         >
           <MenuItem onTouchTap={this.handleClose}>
             <IndexLink to='/' activeClassName='route--active'>
-              Home
+              
             </IndexLink>
           </MenuItem>
           <MenuItem onTouchTap={this.handleClose}>
             <Link to='/crime-in-states' activeClassName='route--active'>
               Crime in States
+            </Link>
+          </MenuItem>
+          <MenuItem onTouchTap={this.handleClose}>
+            <Link to='/accident-in-states' activeClassName='route--active'>
+              Accident in States
             </Link>
           </MenuItem>
         </Drawer>
