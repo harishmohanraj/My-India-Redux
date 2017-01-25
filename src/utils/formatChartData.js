@@ -11,13 +11,13 @@ function filterListByDropDownSelection (list, inputToFormatData) {
   const { filterValue, filterLocation } = inputToFormatData
 
   return list.filter(
-        (item) => !(item[0].match(/total/i))
-            && item[filterLocation] === filterValue)
-    .slice(0, 10)
+    (item) => !(item[0].match(/total/i)) && item[filterLocation] === filterValue
+  ).slice(0, 10)
 }
 
 export default function formatChartData (inputToFormatData) {
-  let valueArray = [], nameArray = []
+  let valueArray = []
+  let nameArray = []
   const sortDataList = inputToFormatData.chartData.sort(sortList)
   const filteredList = filterListByDropDownSelection(sortDataList, inputToFormatData)
 

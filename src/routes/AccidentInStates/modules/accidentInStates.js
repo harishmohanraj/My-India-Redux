@@ -4,16 +4,9 @@
 export const RECEIVE_DATA_ACCIDENT = 'RECEIVE_DATA_ACCIDENT'
 export const CHANGE_FILTER_ACCIDENT = 'CHANGE_FILTER_ACCIDENT'
 
-const stateTreeKey = 'crimeInStates'
 // ------------------------------------
 // Actions
 // ------------------------------------
-// const showLoader = getState => {
-  // return {
-  //   type: SHOW_LOADER,
-  //   payload: getState()[stateTreeKey].isFetching
-  // }
-// }
 
 const receiveData = (json) => {
   return {

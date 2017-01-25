@@ -5,9 +5,6 @@ import Chart from '../../../components/Chart'
 import Filter from '../../../components/Filter'
 
 export default class CrimeInStates extends React.Component {
-  constructor (props) {
-    super(props)
-  }
 
   componentDidMount () {
     this.props.requestData()
@@ -26,7 +23,6 @@ export default class CrimeInStates extends React.Component {
 
     const activeFilter = this.props.crimeInStates.activeFilter || defaultFilterValue
 
-    const obj = {}
     return (
       <div>
         <Filter
