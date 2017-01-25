@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import config from '../../../../config/api.config.js';
-import { requestData } from '../modules/crimeInStates';
+import { requestData, changeFilter } from '../modules/crimeInStates';
 import CrimeInStates from '../components/CrimeInStates'
 
 const mapDispatchToProps = {
-  requestData : () => requestData(config.crimeInStates)
+  requestData : () => requestData(config.crimeInStates),
+  handleChange: (event, index, value) => changeFilter(value)
 }
 
 

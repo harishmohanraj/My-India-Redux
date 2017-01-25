@@ -2,17 +2,17 @@
 // Constants
 // ------------------------------------
 export const RECEIVE_DATA = 'RECEIVE_DATA';
-//export const SHOW_LOADER = 'SHOW_LOADER';
+export const CHANGE_FILTER = 'CHANGE_FILTER';
 
 const stateTreeKey = 'crimeInStates';
 // ------------------------------------
 // Actions
 // ------------------------------------
 // const showLoader = getState => {
-//   return {
-//     type: SHOW_LOADER,
-//     payload: getState()[stateTreeKey].isFetching
-//   }
+  // return {
+  //   type: SHOW_LOADER,
+  //   payload: getState()[stateTreeKey].isFetching
+  // }
 // }
 
 const receiveData = (json) => {
@@ -34,8 +34,16 @@ export const requestData = APIName => (dispatch, getState) => {
   return dispatch(fetchData(APIName))
 }
 
+export const changeFilter = value => {
+  return {
+    type: CHANGE_FILTER,
+    payload: value
+  }
+}
+
 export const actions = {
-  requestData
+  requestData,
+  changeFilter
 }
 
 const callReducer = (state , action) => {
@@ -45,11 +53,11 @@ const callReducer = (state , action) => {
         ...state,
         items: action.payload
       }
-    // case SHOW_LOADER:
-    //   return {
-    //     ...state,
-    //     isFetching: !action.payload
-    //   }
+    case CHANGE_FILTER:
+      return {
+        ...state,
+        activeFilter: action.payload
+      }
     
     default:
       return state
@@ -60,8 +68,8 @@ const callReducer = (state , action) => {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [RECEIVE_DATA]: (state, action) => callReducer(state, action)//,
-  //[SHOW_LOADER]: (state, action) => callReducer(state, action)
+  [RECEIVE_DATA]: (state, action) => callReducer(state, action),
+  [CHANGE_FILTER]: (state, action) => callReducer(state, action)
 }
 
 // ------------------------------------
@@ -69,7 +77,9 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 const initialBaseState = {
   isFetching: false,
-  items: []
+  items: [],
+  activeFilter: '',
+  defaultFilter: 'RAPE (SECTION 376 IPC)'
 }
 export default function crimeInStates (state = initialBaseState, action) {
   const handler = ACTION_HANDLERS[action.type]
