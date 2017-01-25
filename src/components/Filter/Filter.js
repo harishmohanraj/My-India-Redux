@@ -12,15 +12,26 @@ let renderOptions = (options) => {
 }
 
 export const Filter = ({ handleChange, value, options }) => (
+<<<<<<< HEAD
   	<div>
+=======
+  <div>
+>>>>>>> master
     <SelectField
       floatingLabelText='Category'
       value={value}
       onChange={handleChange}
+<<<<<<< HEAD
         >
       {renderOptions(options)}
     </SelectField>
   	</div>
+=======
+      >
+      {renderOptions(options)}
+    </SelectField>
+  </div>
+>>>>>>> master
 )
 
 Filter.propTypes = {

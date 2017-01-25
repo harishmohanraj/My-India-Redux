@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import React from 'react'
+>>>>>>> master
 import { connect } from 'react-redux'
 import config from '../../../../config/api.config.js'
 import { requestData, changeFilter } from '../modules/crimeInStates'

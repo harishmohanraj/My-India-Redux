@@ -4,6 +4,10 @@
 export const RECEIVE_DATA_ACCIDENT = 'RECEIVE_DATA_ACCIDENT'
 export const CHANGE_FILTER_ACCIDENT = 'CHANGE_FILTER_ACCIDENT'
 
+<<<<<<< HEAD
+=======
+const stateTreeKey = 'crimeInStates'
+>>>>>>> master
 // ------------------------------------
 // Actions
 // ------------------------------------

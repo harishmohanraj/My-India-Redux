@@ -5,6 +5,12 @@ import Chart from '../../../components/Chart'
 import Filter from '../../../components/Filter'
 
 export default class AccidentInStates extends React.Component {
+<<<<<<< HEAD
+=======
+  constructor (props) {
+    super(props)
+  }
+>>>>>>> master
 
   componentDidMount () {
     this.props.requestData()
@@ -23,6 +29,10 @@ export default class AccidentInStates extends React.Component {
 
     const activeFilter = this.props.accidentInStates.activeFilter || defaultFilterValue
 
+<<<<<<< HEAD
+=======
+    const obj = {}
+>>>>>>> master
     return (
       <div>
         <Filter
