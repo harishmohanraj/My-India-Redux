@@ -6,19 +6,22 @@ function sortList(a, b) {
   return sortItemInArray(b) - sortItemInArray(a)
 }
 
-function filterListByDropDownSelection(list, filterValue) {
+function filterListByDropDownSelection(list, inputToFormatData) {
+
+    const { filterValue, filterLocation } = inputToFormatData;
+    
 	return list.filter(
         (item) => item[0] !== "TOTAL (ALL-INDIA)" 
             && item[0] !== "TOTAL (STATES)" 
-            && item[1] === filterValue)
+            && item[filterLocation] === filterValue)
     .slice(0,10)
 }
 
-export default function formatChartData(chartDataList, filterValue){
+export default function formatChartData(inputToFormatData){
     
     let valueArray = [], nameArray = [];
-    const sortDataList = chartDataList.sort(sortList);
-    const filteredList = filterListByDropDownSelection(sortDataList, filterValue);
+    const sortDataList = inputToFormatData.chartData.sort(sortList);
+    const filteredList = filterListByDropDownSelection(sortDataList, inputToFormatData);
     
 
     filteredList.forEach((list) => valueArray.push(list[14]))

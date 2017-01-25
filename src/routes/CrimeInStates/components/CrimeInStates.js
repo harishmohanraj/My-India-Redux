@@ -43,8 +43,17 @@ export default class CrimeInStates extends React.Component {
     const defaultFilter = this.props.crimeInStates.defaultFilter;
     const activeFilter = this.props.crimeInStates.activeFilter;
     const filterValue = activeFilter || defaultFilter;
+    const filterLocation = '1';
     let chartData = this.props.crimeInStates.items.data || [];
-    const formattedChartData = chartData.length && formatChartData(chartData, filterValue);
+
+    const inputToFormatData = {
+      'chartData': chartData,
+      'filterValue': filterValue,
+      'filterLocation': filterLocation
+    }
+    
+    const formattedChartData = chartData.length && formatChartData(inputToFormatData);
+    
     let content = formattedChartData 
                   ? this.renderComponent(formattedChartData, defaultFilter) 
                   : <CircularProgress />;

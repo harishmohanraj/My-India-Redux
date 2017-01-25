@@ -32,5 +32,39 @@ export default {
 			label: "Total crimes against women",
 			value: "TOTAL CRIMES AGAINST WOMEN"
 		}
+	],
+	accidentsFilterMapping : [
+		{
+			label: "Truck",
+			value: "Truck/Lorry (Total)"
+		},
+		{
+			label: "Bus - Government",
+			value: "Bus - Government"
+		},
+		{
+			label: "Bus - Private",
+			value: "Bus - Private"
+		},
+		{
+			label: "SUV (7 & 8 Seater)",
+			value: "SUV (7 & 8 Seater)"
+		},
+		{
+			label: "Car (4 & 5 Seater)",
+			value: "Car (4 & 5 Seater)"
+		},
+		{
+			label: "Three Wheeler/Auto rickshaw",
+			value: "Three Wheeler/Auto rickshaw"
+		},
+		{
+			label: "Two Wheeler",
+			value: "Two Wheeler - Motor Cycle"
+		},
+		{
+			label: "Pedestrian",
+			value: "Pedestrian"
+		}
 	]
 }
