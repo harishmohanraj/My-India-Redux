@@ -1,69 +1,65 @@
-import React from 'react';
-import CircularProgress from 'material-ui/CircularProgress';
-import formatChartData from '../../../utils/formatChartData.js';
-import Chart from '../../../components/Chart';
-import Filter from '../../../components/Filter';
+import React from 'react'
+import CircularProgress from 'material-ui/CircularProgress'
+import formatChartData from '../../../utils/formatChartData.js'
+import Chart from '../../../components/Chart'
+import Filter from '../../../components/Filter'
 
 export default class AccidentInStates extends React.Component {
-  constructor(props) {
-    super(props)
-  }
 
-  componentDidMount() {
+  componentDidMount () {
     this.props.requestData()
   }
 
-  renderComponent(formattedChartData, defaultFilterValue) {
+  renderComponent (formattedChartData, defaultFilterValue) {
     const chartData = {
-        labels: formattedChartData.itemName,
-        datasets: [
-            {
-              responsive: true,
-              data: formattedChartData.itemValue,
-            }
-        ]
-    };
+      labels: formattedChartData.itemName,
+      datasets: [
+        {
+          responsive: true,
+          data: formattedChartData.itemValue
+        }
+      ]
+    }
 
-    const activeFilter = this.props.accidentInStates.activeFilter || defaultFilterValue;
+    const activeFilter = this.props.accidentInStates.activeFilter || defaultFilterValue
 
-    const obj = {};
-    return ( 
+    return (
       <div>
-        <Filter 
-          handleChange = {this.props.handleChange} 
-          value = {activeFilter}
-          options = 'accidentsFilterMapping'
+        <Filter
+          handleChange={this.props.handleChange}
+          value={activeFilter}
+          options='accidentsFilterMapping'
         />
-        <Chart chartData= {chartData} />
+        <Chart chartData={chartData} />
       </div>
-      
-      )
+
+    )
   }
 
-  render() {
-    const defaultFilter = this.props.accidentInStates.defaultFilter;
-    const activeFilter = this.props.accidentInStates.activeFilter;
-    const filterValue = activeFilter || defaultFilter;
-    const filterLocation = '2';
-    let chartData = this.props.accidentInStates.items.data || [];
+  render () {
+    const defaultFilter = this.props.accidentInStates.defaultFilter
+    const activeFilter = this.props.accidentInStates.activeFilter
+    const filterValue = activeFilter || defaultFilter
+    const filterLocation = '2'
+    let chartData = this.props.accidentInStates.items.data || []
 
     const inputToFormatData = {
       'chartData': chartData,
       'filterValue': filterValue,
       'filterLocation': filterLocation
     }
-    
-    const formattedChartData = chartData.length && formatChartData(inputToFormatData);
-    
-    let content = formattedChartData 
-                  ? this.renderComponent(formattedChartData, defaultFilter) 
-                  : <CircularProgress />;
-    
+
+    const formattedChartData = chartData.length && formatChartData(inputToFormatData)
+
+    let content = formattedChartData
+                  ? this.renderComponent(formattedChartData, defaultFilter)
+                  : <CircularProgress />
+
     return (
       <div>
         {content}
       </div>
-    );
+    )
   }
 }
 
