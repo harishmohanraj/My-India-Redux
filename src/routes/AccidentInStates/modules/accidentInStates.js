@@ -1,8 +1,8 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const RECEIVE_DATA = 'RECEIVE_DATA';
-export const CHANGE_FILTER = 'CHANGE_FILTER';
+export const RECEIVE_DATA_ACCIDENT = 'RECEIVE_DATA_ACCIDENT';
+export const CHANGE_FILTER_ACCIDENT = 'CHANGE_FILTER_ACCIDENT';
 
 const stateTreeKey = 'crimeInStates';
 // ------------------------------------
@@ -17,7 +17,7 @@ const stateTreeKey = 'crimeInStates';
 
 const receiveData = (json) => {
   return {
-    type: RECEIVE_DATA,
+    type: RECEIVE_DATA_ACCIDENT,
     payload: json
   } 
 }
@@ -36,7 +36,7 @@ export const requestData = APIName => (dispatch, getState) => {
 
 export const changeFilter = value => {
   return {
-    type: CHANGE_FILTER,
+    type: CHANGE_FILTER_ACCIDENT,
     payload: value
   }
 }
@@ -48,12 +48,12 @@ export const actions = {
 
 const callReducer = (state , action) => {
   switch(action.type) {
-    case RECEIVE_DATA:
+    case RECEIVE_DATA_ACCIDENT:
       return {
         ...state,
         items: action.payload
       }
-    case CHANGE_FILTER:
+    case CHANGE_FILTER_ACCIDENT:
       return {
         ...state,
         activeFilter: action.payload
@@ -68,8 +68,8 @@ const callReducer = (state , action) => {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [RECEIVE_DATA]: (state, action) => callReducer(state, action),
-  [CHANGE_FILTER]: (state, action) => callReducer(state, action)
+  [RECEIVE_DATA_ACCIDENT]: (state, action) => callReducer(state, action),
+  [CHANGE_FILTER_ACCIDENT]: (state, action) => callReducer(state, action)
 }
 
 // ------------------------------------

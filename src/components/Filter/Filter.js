@@ -14,7 +14,7 @@ let renderOptions = (options) => {
 export const Filter = ({handleChange, value, options}) => (
   	<div>
   		<SelectField
-          floatingLabelText="Crime Type"
+          floatingLabelText="Category"
           value={value}
           onChange={handleChange}
         >
