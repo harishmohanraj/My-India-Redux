@@ -3,7 +3,6 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import config from '../../../config/api.config.js'
 
-
 let renderOptions = () => {
   return config.crimeInStatesFilterMapping.map((obj, i) => {
     return (
@@ -16,7 +15,7 @@ export const Filter = ({handleChange, value}) => (
   	<div>
   		<SelectField
           floatingLabelText="Crime Type"
-          value={value || "RAPE (SECTION 376 IPC)"}
+          value={value}
           onChange={handleChange}
         >
           {renderOptions()}

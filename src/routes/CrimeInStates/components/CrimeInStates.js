@@ -13,7 +13,7 @@ export default class CrimeInStates extends React.Component {
     this.props.requestData()
   }
 
-  renderComponent(formattedChartData) {
+  renderComponent(formattedChartData, defaultFilterValue) {
     const chartData = {
         labels: formattedChartData.itemName,
         datasets: [
@@ -24,12 +24,14 @@ export default class CrimeInStates extends React.Component {
         ]
     };
 
+    const activeFilter = this.props.crimeInStates.activeFilter || defaultFilterValue;
+
     const obj = {};
     return ( 
       <div>
         <Filter 
           handleChange = {this.props.handleChange} 
-          value= {this.props.crimeInStates.activeFilter}
+          value= {activeFilter}
         />
         <Chart chartData= {chartData} />
       </div>
@@ -38,9 +40,14 @@ export default class CrimeInStates extends React.Component {
   }
 
   render() {
+    const defaultFilter = this.props.crimeInStates.defaultFilter;
+    const activeFilter = this.props.crimeInStates.activeFilter;
+    const filterValue = activeFilter || defaultFilter;
     let chartData = this.props.crimeInStates.items.data || [];
-    const formattedChartData = chartData.length && formatChartData(chartData);
-    let content = formattedChartData ? this.renderComponent(formattedChartData) : <CircularProgress />;
+    const formattedChartData = chartData.length && formatChartData(chartData, filterValue);
+    let content = formattedChartData 
+                  ? this.renderComponent(formattedChartData, defaultFilter) 
+                  : <CircularProgress />;
     
     return (
       <div>

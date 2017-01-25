@@ -78,7 +78,8 @@ const ACTION_HANDLERS = {
 const initialBaseState = {
   isFetching: false,
   items: [],
-  activeFilter: ""
+  activeFilter: '',
+  defaultFilter: 'RAPE (SECTION 376 IPC)'
 }
 export default function crimeInStates (state = initialBaseState, action) {
   const handler = ACTION_HANDLERS[action.type]
