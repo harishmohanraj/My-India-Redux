@@ -3,6 +3,7 @@ import CoreLayout from '../layouts/CoreLayout'
 import Home from './Home'
 import CounterRoute from './Counter'
 import CrimeInStates from './CrimeInStates'
+import AccidentInStates from './AccidentInStates'
 //import HomeView from './Home/components/HomeView'
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -15,7 +16,8 @@ export const createRoutes = (store) => ({
   childRoutes : [
     //{ path: 'home', component: HomeView },
     CounterRoute(store),
-    CrimeInStates(store)
+    CrimeInStates(store),
+    AccidentInStates(store)
   ]
 })
 

@@ -1,5 +1,5 @@
 export default {
-    vehecleWiseAccidents: 'https://data.gov.in/node/336961/datastore/export/json',
+    accidentInStates: 'https://data.gov.in/node/336961/datastore/export/json',
     rajyaSabhaAttendence: 'https://data.gov.in/node/982241/datastore/export/json',
     lokSabhaAttendence: 'https://data.gov.in/node/85987/datastore/export/json',
     crimeInStates:'https://data.gov.in/node/89971/datastore/export/json',
@@ -48,19 +48,19 @@ export default {
 		},
 		{
 			label: "SUV (7 & 8 Seater)",
-			value: "SUV (7 & 8 Seater)"
+			value: "SUV (7 & 8 Seater)/Station Wagon/etc. (Total)"
 		},
 		{
 			label: "Car (4 & 5 Seater)",
-			value: "Car (4 & 5 Seater)"
+			value: "Car (4 & 5 Seater) (Total)"
 		},
 		{
 			label: "Three Wheeler/Auto rickshaw",
-			value: "Three Wheeler/Auto rickshaw"
+			value: "Three Wheeler/Auto rickshaw (Total)"
 		},
 		{
 			label: "Two Wheeler",
-			value: "Two Wheeler - Motor Cycle"
+			value: "Two Wheeler (Total)"
 		},
 		{
 			label: "Pedestrian",
