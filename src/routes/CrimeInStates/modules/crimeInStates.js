@@ -4,16 +4,9 @@
 export const RECEIVE_DATA_CRIME = 'RECEIVE_DATA_CRIME'
 export const CHANGE_FILTER_CRIME = 'CHANGE_FILTER_CRIME'
 
-const stateTreeKey = 'crimeInStates'
 // ------------------------------------
 // Actions
 // ------------------------------------
-// const showLoader = getState => {
-  // return {
-  //   type: SHOW_LOADER,
-  //   payload: getState()[stateTreeKey].isFetching
-  // }
-// }
 
 const receiveData = (json) => {
   return {

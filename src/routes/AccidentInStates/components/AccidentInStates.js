@@ -5,9 +5,6 @@ import Chart from '../../../components/Chart'
 import Filter from '../../../components/Filter'
 
 export default class AccidentInStates extends React.Component {
-  constructor (props) {
-    super(props)
-  }
 
   componentDidMount () {
     this.props.requestData()
@@ -26,7 +23,6 @@ export default class AccidentInStates extends React.Component {
 
     const activeFilter = this.props.accidentInStates.activeFilter || defaultFilterValue
 
-    const obj = {}
     return (
       <div>
         <Filter
@@ -68,5 +64,7 @@ export default class AccidentInStates extends React.Component {
 }
 
 AccidentInStates.propTypes = {
-  requestData   : React.PropTypes.func.isRequired
+  requestData   : React.PropTypes.func.isRequired,
+  accidentInStates: React.PropTypes.object.isRequired,
+  handleChange: React.PropTypes.func.isRequired
 }

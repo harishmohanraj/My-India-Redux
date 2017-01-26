@@ -1,4 +1,3 @@
-import React from 'react'
 import { connect } from 'react-redux'
 import config from '../../../../config/api.config.js'
 import { requestData, changeFilter } from '../modules/accidentInStates'
