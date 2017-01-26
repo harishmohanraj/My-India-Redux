@@ -1,4 +1,46 @@
-webpackJsonp([2],{
+webpackJsonp([1],{
+
+/***/ 537:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(356);
+	
+	var _apiConfig = __webpack_require__(538);
+	
+	var _apiConfig2 = _interopRequireDefault(_apiConfig);
+	
+	var _crimeInStates = __webpack_require__(539);
+	
+	var _CrimeInStates = __webpack_require__(541);
+	
+	var _CrimeInStates2 = _interopRequireDefault(_CrimeInStates);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapDispatchToProps = {
+	  requestData: function requestData() {
+	    return (0, _crimeInStates.requestData)(_apiConfig2.default.crimeInStates);
+	  },
+	  handleChange: function handleChange(event, index, value) {
+	    return (0, _crimeInStates.changeFilter)(value);
+	  }
+	};
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    crimeInStates: state.crimeInStates
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_CrimeInStates2.default);
+
+/***/ },
 
 /***/ 538:
 /***/ function(module, exports) {
@@ -64,6 +106,124 @@ webpackJsonp([2],{
 
 /***/ },
 
+/***/ 539:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.actions = exports.changeFilter = exports.requestData = exports.CHANGE_FILTER_CRIME = exports.RECEIVE_DATA_CRIME = undefined;
+	
+	var _defineProperty2 = __webpack_require__(540);
+	
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+	
+	var _extends2 = __webpack_require__(280);
+	
+	var _extends3 = _interopRequireDefault(_extends2);
+	
+	var _ACTION_HANDLERS;
+	
+	exports.default = crimeInStates;
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// ------------------------------------
+	// Constants
+	// ------------------------------------
+	var RECEIVE_DATA_CRIME = exports.RECEIVE_DATA_CRIME = 'RECEIVE_DATA_CRIME';
+	var CHANGE_FILTER_CRIME = exports.CHANGE_FILTER_CRIME = 'CHANGE_FILTER_CRIME';
+	
+	// ------------------------------------
+	// Actions
+	// ------------------------------------
+	
+	var receiveData = function receiveData(json) {
+	  return {
+	    type: RECEIVE_DATA_CRIME,
+	    payload: json
+	  };
+	};
+	var callAPI = function callAPI(APIName) {
+	  return fetch(APIName);
+	};
+	
+	var fetchData = function fetchData(APIName) {
+	  return function (dispatch, getState) {
+	    // dispatch(showLoader(getState))
+	    return callAPI(APIName).then(function (response) {
+	      return response.json();
+	    }).then(function (json) {
+	      return dispatch(receiveData(json));
+	    });
+	  };
+	};
+	
+	var requestData = exports.requestData = function requestData(APIName) {
+	  return function (dispatch, getState) {
+	    return dispatch(fetchData(APIName));
+	  };
+	};
+	
+	var changeFilter = exports.changeFilter = function changeFilter(value) {
+	  return {
+	    type: CHANGE_FILTER_CRIME,
+	    payload: value
+	  };
+	};
+	
+	var actions = exports.actions = {
+	  requestData: requestData,
+	  changeFilter: changeFilter
+	};
+	
+	var callReducer = function callReducer(state, action) {
+	  switch (action.type) {
+	    case RECEIVE_DATA_CRIME:
+	      return (0, _extends3.default)({}, state, {
+	        items: action.payload
+	      });
+	    case CHANGE_FILTER_CRIME:
+	      return (0, _extends3.default)({}, state, {
+	        activeFilter: action.payload
+	      });
+	
+	    default:
+	      return state;
+	  }
+	};
+	
+	// ------------------------------------
+	// Action Handlers
+	// ------------------------------------
+	var ACTION_HANDLERS = (_ACTION_HANDLERS = {}, (0, _defineProperty3.default)(_ACTION_HANDLERS, RECEIVE_DATA_CRIME, function (state, action) {
+	  return callReducer(state, action);
+	}), (0, _defineProperty3.default)(_ACTION_HANDLERS, CHANGE_FILTER_CRIME, function (state, action) {
+	  return callReducer(state, action);
+	}), _ACTION_HANDLERS);
+	
+	// ------------------------------------
+	// Reducer
+	// ------------------------------------
+	var initialBaseState = {
+	  isFetching: false,
+	  items: [],
+	  activeFilter: '',
+	  defaultFilter: 'RAPE (SECTION 376 IPC)'
+	};
+	function crimeInStates() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialBaseState;
+	  var action = arguments[1];
+	
+	  var handler = ACTION_HANDLERS[action.type];
+	
+	  return handler ? handler(state, action) : state;
+	}
+
+/***/ },
+
 /***/ 540:
 /***/ function(module, exports, __webpack_require__) {
 
@@ -90,6 +250,134 @@ webpackJsonp([2],{
 	  }
 	
 	  return obj;
+	};
+
+/***/ },
+
+/***/ 541:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _getPrototypeOf = __webpack_require__(304);
+	
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+	
+	var _classCallCheck2 = __webpack_require__(309);
+	
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+	
+	var _createClass2 = __webpack_require__(310);
+	
+	var _createClass3 = _interopRequireDefault(_createClass2);
+	
+	var _possibleConstructorReturn2 = __webpack_require__(314);
+	
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+	
+	var _inherits2 = __webpack_require__(348);
+	
+	var _inherits3 = _interopRequireDefault(_inherits2);
+	
+	var _react = __webpack_require__(24);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _CircularProgress = __webpack_require__(542);
+	
+	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
+	
+	var _formatChartData = __webpack_require__(544);
+	
+	var _formatChartData2 = _interopRequireDefault(_formatChartData);
+	
+	var _Chart = __webpack_require__(545);
+	
+	var _Chart2 = _interopRequireDefault(_Chart);
+	
+	var _Filter = __webpack_require__(559);
+	
+	var _Filter2 = _interopRequireDefault(_Filter);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var CrimeInStates = function (_React$Component) {
+	  (0, _inherits3.default)(CrimeInStates, _React$Component);
+	
+	  function CrimeInStates() {
+	    (0, _classCallCheck3.default)(this, CrimeInStates);
+	    return (0, _possibleConstructorReturn3.default)(this, (CrimeInStates.__proto__ || (0, _getPrototypeOf2.default)(CrimeInStates)).apply(this, arguments));
+	  }
+	
+	  (0, _createClass3.default)(CrimeInStates, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.props.requestData();
+	    }
+	  }, {
+	    key: 'renderComponent',
+	    value: function renderComponent(formattedChartData, defaultFilterValue) {
+	      var chartData = {
+	        labels: formattedChartData.itemName,
+	        datasets: [{
+	          responsive: true,
+	          data: formattedChartData.itemValue
+	        }]
+	      };
+	
+	      var activeFilter = this.props.crimeInStates.activeFilter || defaultFilterValue;
+	
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_Filter2.default, {
+	          handleChange: this.props.handleChange,
+	          value: activeFilter,
+	          options: 'crimeInStatesFilterMapping'
+	        }),
+	        _react2.default.createElement(_Chart2.default, { chartData: chartData })
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var defaultFilter = this.props.crimeInStates.defaultFilter;
+	      var activeFilter = this.props.crimeInStates.activeFilter;
+	      var filterValue = activeFilter || defaultFilter;
+	      var filterLocation = '1';
+	      var chartData = this.props.crimeInStates.items.data || [];
+	
+	      var inputToFormatData = {
+	        'chartData': chartData,
+	        'filterValue': filterValue,
+	        'filterLocation': filterLocation
+	      };
+	
+	      var formattedChartData = chartData.length && (0, _formatChartData2.default)(inputToFormatData);
+	
+	      var content = formattedChartData ? this.renderComponent(formattedChartData, defaultFilter) : _react2.default.createElement(_CircularProgress2.default, null);
+	
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        content
+	      );
+	    }
+	  }]);
+	  return CrimeInStates;
+	}(_react2.default.Component);
+	
+	exports.default = CrimeInStates;
+	
+	
+	CrimeInStates.propTypes = {
+	  requestData: _react2.default.PropTypes.func.isRequired,
+	  crimeInStates: _react2.default.PropTypes.object.isRequired,
+	  handleChange: _react2.default.PropTypes.func.isRequired
 	};
 
 /***/ },
@@ -6973,295 +7261,7 @@ webpackJsonp([2],{
 	} : void 0;
 	exports.default = PopoverAnimationVertical;
 
-/***/ },
-
-/***/ 576:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _reactRedux = __webpack_require__(356);
-	
-	var _apiConfig = __webpack_require__(538);
-	
-	var _apiConfig2 = _interopRequireDefault(_apiConfig);
-	
-	var _accidentInStates = __webpack_require__(577);
-	
-	var _AccidentInStates = __webpack_require__(578);
-	
-	var _AccidentInStates2 = _interopRequireDefault(_AccidentInStates);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapDispatchToProps = {
-	  requestData: function requestData() {
-	    return (0, _accidentInStates.requestData)(_apiConfig2.default.accidentInStates);
-	  },
-	  handleChange: function handleChange(event, index, value) {
-	    return (0, _accidentInStates.changeFilter)(value);
-	  }
-	};
-	
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    accidentInStates: state.accidentInStates
-	  };
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_AccidentInStates2.default);
-
-/***/ },
-
-/***/ 577:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.actions = exports.changeFilter = exports.requestData = exports.CHANGE_FILTER_ACCIDENT = exports.RECEIVE_DATA_ACCIDENT = undefined;
-	
-	var _defineProperty2 = __webpack_require__(540);
-	
-	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-	
-	var _extends2 = __webpack_require__(280);
-	
-	var _extends3 = _interopRequireDefault(_extends2);
-	
-	var _ACTION_HANDLERS;
-	
-	exports.default = accidentInStates;
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	// ------------------------------------
-	// Constants
-	// ------------------------------------
-	var RECEIVE_DATA_ACCIDENT = exports.RECEIVE_DATA_ACCIDENT = 'RECEIVE_DATA_ACCIDENT';
-	var CHANGE_FILTER_ACCIDENT = exports.CHANGE_FILTER_ACCIDENT = 'CHANGE_FILTER_ACCIDENT';
-	
-	// ------------------------------------
-	// Actions
-	// ------------------------------------
-	
-	var receiveData = function receiveData(json) {
-	  return {
-	    type: RECEIVE_DATA_ACCIDENT,
-	    payload: json
-	  };
-	};
-	var callAPI = function callAPI(APIName) {
-	  return fetch(APIName);
-	};
-	
-	var fetchData = function fetchData(APIName) {
-	  return function (dispatch, getState) {
-	    // dispatch(showLoader(getState))
-	    return callAPI(APIName).then(function (response) {
-	      return response.json();
-	    }).then(function (json) {
-	      return dispatch(receiveData(json));
-	    });
-	  };
-	};
-	
-	var requestData = exports.requestData = function requestData(APIName) {
-	  return function (dispatch, getState) {
-	    return dispatch(fetchData(APIName));
-	  };
-	};
-	
-	var changeFilter = exports.changeFilter = function changeFilter(value) {
-	  return {
-	    type: CHANGE_FILTER_ACCIDENT,
-	    payload: value
-	  };
-	};
-	
-	var actions = exports.actions = {
-	  requestData: requestData,
-	  changeFilter: changeFilter
-	};
-	
-	var callReducer = function callReducer(state, action) {
-	  switch (action.type) {
-	    case RECEIVE_DATA_ACCIDENT:
-	      return (0, _extends3.default)({}, state, {
-	        items: action.payload
-	      });
-	    case CHANGE_FILTER_ACCIDENT:
-	      return (0, _extends3.default)({}, state, {
-	        activeFilter: action.payload
-	      });
-	
-	    default:
-	      return state;
-	  }
-	};
-	
-	// ------------------------------------
-	// Action Handlers
-	// ------------------------------------
-	var ACTION_HANDLERS = (_ACTION_HANDLERS = {}, (0, _defineProperty3.default)(_ACTION_HANDLERS, RECEIVE_DATA_ACCIDENT, function (state, action) {
-	  return callReducer(state, action);
-	}), (0, _defineProperty3.default)(_ACTION_HANDLERS, CHANGE_FILTER_ACCIDENT, function (state, action) {
-	  return callReducer(state, action);
-	}), _ACTION_HANDLERS);
-	
-	// ------------------------------------
-	// Reducer
-	// ------------------------------------
-	var initialBaseState = {
-	  isFetching: false,
-	  items: [],
-	  activeFilter: '',
-	  defaultFilter: 'Truck/Lorry (Total)'
-	};
-	function accidentInStates() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialBaseState;
-	  var action = arguments[1];
-	
-	  var handler = ACTION_HANDLERS[action.type];
-	
-	  return handler ? handler(state, action) : state;
-	}
-
-/***/ },
-
-/***/ 578:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _getPrototypeOf = __webpack_require__(304);
-	
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-	
-	var _classCallCheck2 = __webpack_require__(309);
-	
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-	
-	var _createClass2 = __webpack_require__(310);
-	
-	var _createClass3 = _interopRequireDefault(_createClass2);
-	
-	var _possibleConstructorReturn2 = __webpack_require__(314);
-	
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-	
-	var _inherits2 = __webpack_require__(348);
-	
-	var _inherits3 = _interopRequireDefault(_inherits2);
-	
-	var _react = __webpack_require__(24);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _CircularProgress = __webpack_require__(542);
-	
-	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
-	
-	var _formatChartData = __webpack_require__(544);
-	
-	var _formatChartData2 = _interopRequireDefault(_formatChartData);
-	
-	var _Chart = __webpack_require__(545);
-	
-	var _Chart2 = _interopRequireDefault(_Chart);
-	
-	var _Filter = __webpack_require__(559);
-	
-	var _Filter2 = _interopRequireDefault(_Filter);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var AccidentInStates = function (_React$Component) {
-	  (0, _inherits3.default)(AccidentInStates, _React$Component);
-	
-	  function AccidentInStates() {
-	    (0, _classCallCheck3.default)(this, AccidentInStates);
-	    return (0, _possibleConstructorReturn3.default)(this, (AccidentInStates.__proto__ || (0, _getPrototypeOf2.default)(AccidentInStates)).apply(this, arguments));
-	  }
-	
-	  (0, _createClass3.default)(AccidentInStates, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      this.props.requestData();
-	    }
-	  }, {
-	    key: 'renderComponent',
-	    value: function renderComponent(formattedChartData, defaultFilterValue) {
-	      var chartData = {
-	        labels: formattedChartData.itemName,
-	        datasets: [{
-	          responsive: true,
-	          data: formattedChartData.itemValue
-	        }]
-	      };
-	
-	      var activeFilter = this.props.accidentInStates.activeFilter || defaultFilterValue;
-	
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(_Filter2.default, {
-	          handleChange: this.props.handleChange,
-	          value: activeFilter,
-	          options: 'accidentsFilterMapping'
-	        }),
-	        _react2.default.createElement(_Chart2.default, { chartData: chartData })
-	      );
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var defaultFilter = this.props.accidentInStates.defaultFilter;
-	      var activeFilter = this.props.accidentInStates.activeFilter;
-	      var filterValue = activeFilter || defaultFilter;
-	      var filterLocation = '2';
-	      var chartData = this.props.accidentInStates.items.data || [];
-	
-	      var inputToFormatData = {
-	        'chartData': chartData,
-	        'filterValue': filterValue,
-	        'filterLocation': filterLocation
-	      };
-	
-	      var formattedChartData = chartData.length && (0, _formatChartData2.default)(inputToFormatData);
-	
-	      var content = formattedChartData ? this.renderComponent(formattedChartData, defaultFilter) : _react2.default.createElement(_CircularProgress2.default, null);
-	
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        content
-	      );
-	    }
-	  }]);
-	  return AccidentInStates;
-	}(_react2.default.Component);
-	
-	exports.default = AccidentInStates;
-	
-	
-	AccidentInStates.propTypes = {
-	  requestData: _react2.default.PropTypes.func.isRequired,
-	  accidentInStates: _react2.default.PropTypes.object.isRequired,
-	  handleChange: _react2.default.PropTypes.func.isRequired
-	};
-
 /***/ }
 
 });
-//# sourceMappingURL=2.accidentInStates.871246e26d65a3b4655d.js.map
+//# sourceMappingURL=1.crimeInStates.c17ace50e6b32168fce7.js.map

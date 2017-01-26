@@ -1,52 +1,10 @@
-webpackJsonp([1],{
-
-/***/ 537:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _reactRedux = __webpack_require__(356);
-
-	var _apiConfig = __webpack_require__(538);
-
-	var _apiConfig2 = _interopRequireDefault(_apiConfig);
-
-	var _crimeInStates = __webpack_require__(539);
-
-	var _CrimeInStates = __webpack_require__(541);
-
-	var _CrimeInStates2 = _interopRequireDefault(_CrimeInStates);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var mapDispatchToProps = {
-	  requestData: function requestData() {
-	    return (0, _crimeInStates.requestData)(_apiConfig2.default.crimeInStates);
-	  },
-	  handleChange: function handleChange(event, index, value) {
-	    return (0, _crimeInStates.changeFilter)(value);
-	  }
-	};
-
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    crimeInStates: state.crimeInStates
-	  };
-	};
-
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_CrimeInStates2.default);
-
-/***/ },
+webpackJsonp([2],{
 
 /***/ 538:
 /***/ function(module, exports) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
@@ -106,137 +64,19 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 539:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.actions = exports.changeFilter = exports.requestData = exports.CHANGE_FILTER_CRIME = exports.RECEIVE_DATA_CRIME = undefined;
-
-	var _defineProperty2 = __webpack_require__(540);
-
-	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-	var _extends2 = __webpack_require__(280);
-
-	var _extends3 = _interopRequireDefault(_extends2);
-
-	var _ACTION_HANDLERS;
-
-	exports.default = crimeInStates;
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// ------------------------------------
-	// Constants
-	// ------------------------------------
-	var RECEIVE_DATA_CRIME = exports.RECEIVE_DATA_CRIME = 'RECEIVE_DATA_CRIME';
-	var CHANGE_FILTER_CRIME = exports.CHANGE_FILTER_CRIME = 'CHANGE_FILTER_CRIME';
-
-	// ------------------------------------
-	// Actions
-	// ------------------------------------
-
-	var receiveData = function receiveData(json) {
-	  return {
-	    type: RECEIVE_DATA_CRIME,
-	    payload: json
-	  };
-	};
-	var callAPI = function callAPI(APIName) {
-	  return fetch(APIName);
-	};
-
-	var fetchData = function fetchData(APIName) {
-	  return function (dispatch, getState) {
-	    // dispatch(showLoader(getState))
-	    return callAPI(APIName).then(function (response) {
-	      return response.json();
-	    }).then(function (json) {
-	      return dispatch(receiveData(json));
-	    });
-	  };
-	};
-
-	var requestData = exports.requestData = function requestData(APIName) {
-	  return function (dispatch, getState) {
-	    return dispatch(fetchData(APIName));
-	  };
-	};
-
-	var changeFilter = exports.changeFilter = function changeFilter(value) {
-	  return {
-	    type: CHANGE_FILTER_CRIME,
-	    payload: value
-	  };
-	};
-
-	var actions = exports.actions = {
-	  requestData: requestData,
-	  changeFilter: changeFilter
-	};
-
-	var callReducer = function callReducer(state, action) {
-	  switch (action.type) {
-	    case RECEIVE_DATA_CRIME:
-	      return (0, _extends3.default)({}, state, {
-	        items: action.payload
-	      });
-	    case CHANGE_FILTER_CRIME:
-	      return (0, _extends3.default)({}, state, {
-	        activeFilter: action.payload
-	      });
-
-	    default:
-	      return state;
-	  }
-	};
-
-	// ------------------------------------
-	// Action Handlers
-	// ------------------------------------
-	var ACTION_HANDLERS = (_ACTION_HANDLERS = {}, (0, _defineProperty3.default)(_ACTION_HANDLERS, RECEIVE_DATA_CRIME, function (state, action) {
-	  return callReducer(state, action);
-	}), (0, _defineProperty3.default)(_ACTION_HANDLERS, CHANGE_FILTER_CRIME, function (state, action) {
-	  return callReducer(state, action);
-	}), _ACTION_HANDLERS);
-
-	// ------------------------------------
-	// Reducer
-	// ------------------------------------
-	var initialBaseState = {
-	  isFetching: false,
-	  items: [],
-	  activeFilter: '',
-	  defaultFilter: 'RAPE (SECTION 376 IPC)'
-	};
-	function crimeInStates() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialBaseState;
-	  var action = arguments[1];
-
-	  var handler = ACTION_HANDLERS[action.type];
-
-	  return handler ? handler(state, action) : state;
-	}
-
-/***/ },
-
 /***/ 540:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-
+	
 	exports.__esModule = true;
-
+	
 	var _defineProperty = __webpack_require__(311);
-
+	
 	var _defineProperty2 = _interopRequireDefault(_defineProperty);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	exports.default = function (obj, key, value) {
 	  if (key in obj) {
 	    (0, _defineProperty2.default)(obj, key, {
@@ -248,136 +88,8 @@ webpackJsonp([1],{
 	  } else {
 	    obj[key] = value;
 	  }
-
+	
 	  return obj;
-	};
-
-/***/ },
-
-/***/ 541:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _getPrototypeOf = __webpack_require__(304);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(309);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(310);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(314);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(348);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(24);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _CircularProgress = __webpack_require__(542);
-
-	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
-
-	var _formatChartData = __webpack_require__(544);
-
-	var _formatChartData2 = _interopRequireDefault(_formatChartData);
-
-	var _Chart = __webpack_require__(545);
-
-	var _Chart2 = _interopRequireDefault(_Chart);
-
-	var _Filter = __webpack_require__(559);
-
-	var _Filter2 = _interopRequireDefault(_Filter);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var CrimeInStates = function (_React$Component) {
-	  (0, _inherits3.default)(CrimeInStates, _React$Component);
-
-	  function CrimeInStates() {
-	    (0, _classCallCheck3.default)(this, CrimeInStates);
-	    return (0, _possibleConstructorReturn3.default)(this, (CrimeInStates.__proto__ || (0, _getPrototypeOf2.default)(CrimeInStates)).apply(this, arguments));
-	  }
-
-	  (0, _createClass3.default)(CrimeInStates, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      this.props.requestData();
-	    }
-	  }, {
-	    key: 'renderComponent',
-	    value: function renderComponent(formattedChartData, defaultFilterValue) {
-	      var chartData = {
-	        labels: formattedChartData.itemName,
-	        datasets: [{
-	          responsive: true,
-	          data: formattedChartData.itemValue
-	        }]
-	      };
-
-	      var activeFilter = this.props.crimeInStates.activeFilter || defaultFilterValue;
-
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(_Filter2.default, {
-	          handleChange: this.props.handleChange,
-	          value: activeFilter,
-	          options: 'crimeInStatesFilterMapping'
-	        }),
-	        _react2.default.createElement(_Chart2.default, { chartData: chartData })
-	      );
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var defaultFilter = this.props.crimeInStates.defaultFilter;
-	      var activeFilter = this.props.crimeInStates.activeFilter;
-	      var filterValue = activeFilter || defaultFilter;
-	      var filterLocation = '1';
-	      var chartData = this.props.crimeInStates.items.data || [];
-
-	      var inputToFormatData = {
-	        'chartData': chartData,
-	        'filterValue': filterValue,
-	        'filterLocation': filterLocation
-	      };
-
-	      var formattedChartData = chartData.length && (0, _formatChartData2.default)(inputToFormatData);
-
-	      var content = formattedChartData ? this.renderComponent(formattedChartData, defaultFilter) : _react2.default.createElement(_CircularProgress2.default, null);
-
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        content
-	      );
-	    }
-	  }]);
-	  return CrimeInStates;
-	}(_react2.default.Component);
-
-	exports.default = CrimeInStates;
-
-
-	CrimeInStates.propTypes = {
-	  requestData: _react2.default.PropTypes.func.isRequired,
-	  crimeInStates: _react2.default.PropTypes.object.isRequired,
-	  handleChange: _react2.default.PropTypes.func.isRequired
 	};
 
 /***/ },
@@ -386,18 +98,18 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	exports.default = undefined;
-
+	
 	var _CircularProgress = __webpack_require__(543);
-
+	
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	exports.default = _CircularProgress2.default;
 
 /***/ },
@@ -406,74 +118,74 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
+	
 	var _extends2 = __webpack_require__(280);
-
+	
 	var _extends3 = _interopRequireDefault(_extends2);
-
+	
 	var _objectWithoutProperties2 = __webpack_require__(459);
-
+	
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
+	
 	var _getPrototypeOf = __webpack_require__(304);
-
+	
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
+	
 	var _classCallCheck2 = __webpack_require__(309);
-
+	
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
+	
 	var _createClass2 = __webpack_require__(310);
-
+	
 	var _createClass3 = _interopRequireDefault(_createClass2);
-
+	
 	var _possibleConstructorReturn2 = __webpack_require__(314);
-
+	
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
+	
 	var _inherits2 = __webpack_require__(348);
-
+	
 	var _inherits3 = _interopRequireDefault(_inherits2);
-
+	
 	var _simpleAssign = __webpack_require__(460);
-
+	
 	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
+	
 	var _react = __webpack_require__(24);
-
+	
 	var _react2 = _interopRequireDefault(_react);
-
+	
 	var _autoPrefix = __webpack_require__(473);
-
+	
 	var _autoPrefix2 = _interopRequireDefault(_autoPrefix);
-
+	
 	var _transitions = __webpack_require__(463);
-
+	
 	var _transitions2 = _interopRequireDefault(_transitions);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	function getRelativeValue(value, min, max) {
 	  var clampedValue = Math.min(Math.max(min, value), max);
 	  return clampedValue / (max - min);
 	}
-
+	
 	function getArcLength(fraction, props) {
 	  return fraction * Math.PI * (props.size - props.thickness);
 	}
-
+	
 	function getStyles(props, context) {
 	  var max = props.max,
 	      min = props.min,
 	      size = props.size,
 	      value = props.value;
 	  var palette = context.muiTheme.baseTheme.palette;
-
-
+	
+	
 	  var styles = {
 	    root: {
 	      position: 'relative',
@@ -499,24 +211,24 @@ webpackJsonp([1],{
 	      transition: _transitions2.default.create('all', '1.5s', null, 'ease-in-out')
 	    }
 	  };
-
+	
 	  if (props.mode === 'determinate') {
 	    var relVal = getRelativeValue(value, min, max);
 	    styles.path.transition = _transitions2.default.create('all', '0.3s', null, 'linear');
 	    styles.path.strokeDasharray = getArcLength(relVal, props) + ', ' + getArcLength(1, props);
 	  }
-
+	
 	  return styles;
 	}
-
+	
 	var CircularProgress = function (_Component) {
 	  (0, _inherits3.default)(CircularProgress, _Component);
-
+	
 	  function CircularProgress() {
 	    (0, _classCallCheck3.default)(this, CircularProgress);
 	    return (0, _possibleConstructorReturn3.default)(this, (CircularProgress.__proto__ || (0, _getPrototypeOf2.default)(CircularProgress)).apply(this, arguments));
 	  }
-
+	
 	  (0, _createClass3.default)(CircularProgress, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
@@ -533,13 +245,13 @@ webpackJsonp([1],{
 	    key: 'scalePath',
 	    value: function scalePath(path) {
 	      var _this2 = this;
-
+	
 	      var step = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-
+	
 	      if (this.props.mode !== 'indeterminate') return;
-
+	
 	      step %= 3;
-
+	
 	      if (step === 0) {
 	        path.style.strokeDasharray = getArcLength(0, this.props) + ', ' + getArcLength(1, this.props);
 	        path.style.strokeDashoffset = 0;
@@ -553,7 +265,7 @@ webpackJsonp([1],{
 	        path.style.strokeDashoffset = getArcLength(-1, this.props);
 	        path.style.transitionDuration = '850ms';
 	      }
-
+	
 	      this.scalePathTimer = setTimeout(function () {
 	        return _this2.scalePath(path, step + 1);
 	      }, step ? 750 : 250);
@@ -562,18 +274,18 @@ webpackJsonp([1],{
 	    key: 'rotateWrapper',
 	    value: function rotateWrapper(wrapper) {
 	      var _this3 = this;
-
+	
 	      if (this.props.mode !== 'indeterminate') return;
-
+	
 	      _autoPrefix2.default.set(wrapper.style, 'transform', 'rotate(0deg)');
 	      _autoPrefix2.default.set(wrapper.style, 'transitionDuration', '0ms');
-
+	
 	      setTimeout(function () {
 	        _autoPrefix2.default.set(wrapper.style, 'transform', 'rotate(1800deg)');
 	        _autoPrefix2.default.set(wrapper.style, 'transitionDuration', '10s');
 	        _autoPrefix2.default.set(wrapper.style, 'transitionTimingFunction', 'linear');
 	      }, 50);
-
+	
 	      this.rotateWrapperTimer = setTimeout(function () {
 	        return _this3.rotateWrapper(wrapper);
 	      }, 10050);
@@ -588,9 +300,9 @@ webpackJsonp([1],{
 	          thickness = _props.thickness,
 	          other = (0, _objectWithoutProperties3.default)(_props, ['style', 'innerStyle', 'size', 'thickness']);
 	      var prepareStyles = this.context.muiTheme.prepareStyles;
-
+	
 	      var styles = getStyles(this.props, this.context);
-
+	
 	      return _react2.default.createElement(
 	        'div',
 	        (0, _extends3.default)({}, other, { style: prepareStyles((0, _simpleAssign2.default)(styles.root, style)) }),
@@ -620,7 +332,7 @@ webpackJsonp([1],{
 	  }]);
 	  return CircularProgress;
 	}(_react.Component);
-
+	
 	CircularProgress.defaultProps = {
 	  mode: 'indeterminate',
 	  value: 0,
@@ -679,7 +391,7 @@ webpackJsonp([1],{
 /***/ function(module, exports) {
 
 	"use strict";
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
@@ -688,33 +400,33 @@ webpackJsonp([1],{
 	  var totalValue = list[14] || list[10];
 	  return totalValue;
 	}
-
+	
 	function sortList(a, b) {
 	  return sortItemInArray(b) - sortItemInArray(a);
 	}
-
+	
 	function filterListByDropDownSelection(list, inputToFormatData) {
 	  var filterValue = inputToFormatData.filterValue,
 	      filterLocation = inputToFormatData.filterLocation;
-
+	
 	  return list.filter(function (item) {
 	    return !item[0].match(/total/i) && item[filterLocation] === filterValue;
 	  }).slice(0, 10);
 	}
-
+	
 	function formatChartData(inputToFormatData) {
 	  var valueArray = [];
 	  var nameArray = [];
 	  var sortDataList = inputToFormatData.chartData.sort(sortList);
 	  var filteredList = filterListByDropDownSelection(sortDataList, inputToFormatData);
-
+	
 	  filteredList.forEach(function (list) {
 	    return valueArray.push(list[14] || list[10]);
 	  });
 	  filteredList.forEach(function (list) {
 	    return nameArray.push(list[0]);
 	  });
-
+	
 	  return {
 	    itemName: nameArray,
 	    itemValue: valueArray
@@ -727,13 +439,13 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
+	
 	var _Chart = __webpack_require__(546);
-
+	
 	var _Chart2 = _interopRequireDefault(_Chart);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -746,31 +458,31 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	exports.Chart = undefined;
-
+	
 	var _react = __webpack_require__(24);
-
+	
 	var _react2 = _interopRequireDefault(_react);
-
+	
 	__webpack_require__(547);
-
+	
 	var _reactChartjs = __webpack_require__(549);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	var Chart = exports.Chart = function Chart(_ref) {
 	  var chartData = _ref.chartData;
 	  return _react2.default.createElement(_reactChartjs.Bar, { data: chartData, height: '300' });
 	};
-
+	
 	Chart.propTypes = {
 	  chartData: _react2.default.PropTypes.object.isRequired
 	};
-
+	
 	exports.default = Chart;
 
 /***/ },
@@ -779,7 +491,7 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
-
+	
 	// load the styles
 	var content = __webpack_require__(548);
 	if(typeof content === 'string') content = [[module.id, content, '']];
@@ -807,11 +519,11 @@ webpackJsonp([1],{
 
 	exports = module.exports = __webpack_require__(455)();
 	// imports
-
-
+	
+	
 	// module
 	exports.push([module.id, ".route--active{font-weight:700;text-decoration:underline}", "", {"version":3,"sources":["/./src/components/Chart/src/components/Chart/Chart.scss"],"names":[],"mappings":"AAAA,eACE,gBAAiB,yBACS,CAC3B","file":"Chart.scss","sourcesContent":[".route--active {\n  font-weight: bold;\n  text-decoration: underline;\n}"],"sourceRoot":"webpack://"}]);
-
+	
 	// exports
 
 
@@ -837,7 +549,7 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	var vars = __webpack_require__(551);
-
+	
 	module.exports = vars.createClass('Bar', ['getBarsAtEvent']);
 
 
@@ -848,7 +560,7 @@ webpackJsonp([1],{
 
 	var React = __webpack_require__(24);
 	var ReactDOM = __webpack_require__(55);
-
+	
 	module.exports = {
 	  createClass: function(chartType, methodNames, dataKey) {
 	    var excludedProps = ['data', 'options', 'redraw'];
@@ -869,23 +581,23 @@ webpackJsonp([1],{
 	        return React.createElement('canvas', _props);
 	      }
 	    };
-
+	
 	    var extras = ['clear', 'stop', 'resize', 'toBase64Image', 'generateLegend', 'update', 'addData', 'removeData'];
 	    function extra(type) {
 	      classData[type] = function() {
 	        return this.state.chart[type].apply(this.state.chart, arguments);
 	      };
 	    }
-
+	
 	    classData.componentDidMount = function() {
 	      this.initializeChart(this.props);
 	    };
-
+	
 	    classData.componentWillUnmount = function() {
 	      var chart = this.state.chart;
 	      chart.destroy();
 	    };
-
+	
 	    classData.componentWillReceiveProps = function(nextProps) {
 	      var chart = this.state.chart;
 	      if (nextProps.redraw) {
@@ -896,7 +608,7 @@ webpackJsonp([1],{
 	        updatePoints(nextProps, chart, dataKey);
 	        if (chart.scale) {
 	          chart.scale.xLabels = nextProps.data.labels;
-
+	           
 	            if (chart.scale.calculateXLabelRotation){
 	          chart.scale.calculateXLabelRotation();
 	            }
@@ -904,7 +616,7 @@ webpackJsonp([1],{
 	        chart.update();
 	      }
 	    };
-
+	
 	    classData.initializeChart = function(nextProps) {
 	      var Chart = __webpack_require__(552);
 	      var el = ReactDOM.findDOMNode(this);
@@ -912,19 +624,19 @@ webpackJsonp([1],{
 	      var chart = new Chart(ctx)[chartType](nextProps.data, nextProps.options || {});
 	      this.state.chart = chart;
 	    };
-
+	
 	    // return the chartjs instance
 	    classData.getChart = function() {
 	      return this.state.chart;
 	    };
-
+	
 	    // return the canvass element that contains the chart
 	    classData.getCanvass = function() {
 	      return this.refs.canvass;
 	    };
-
+	
 	    classData.getCanvas = classData.getCanvass;
-
+	
 	    var i;
 	    for (i=0; i<extras.length; i++) {
 	      extra(extras[i]);
@@ -932,20 +644,20 @@ webpackJsonp([1],{
 	    for (i=0; i<methodNames.length; i++) {
 	      extra(methodNames[i]);
 	    }
-
+	
 	    return React.createClass(classData);
 	  }
 	};
-
+	
 	var dataKeys = {
 	  'Line': 'points',
 	  'Radar': 'points',
 	  'Bar': 'bars'
 	};
-
+	
 	var updatePoints = function(nextProps, chart, dataKey) {
 	  var name = chart.name;
-
+	
 	  if (name === 'PolarArea' || name === 'Pie' || name === 'Doughnut') {
 	    nextProps.data.forEach(function(segment, segmentIndex) {
 	      if (!chart.segments[segmentIndex]) {
@@ -956,7 +668,7 @@ webpackJsonp([1],{
 	        });
 	      }
 	    });
-
+	
 	    while(nextProps.data.length < chart.segments.length) {
 	      chart.removeData();
 	    }
@@ -986,7 +698,7 @@ webpackJsonp([1],{
 	    });
 	  }
 	};
-
+	
 	var addData = function(nextProps, chart, setIndex, pointIndex) {
 	  var values = [];
 	  nextProps.data.datasets.forEach(function(set) {
@@ -1010,23 +722,23 @@ webpackJsonp([1],{
 	 * Released under the MIT license
 	 * https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
 	 */
-
-
+	
+	
 	(function(){
-
+	
 		"use strict";
-
+	
 		//Declare root variable - window in the browser, global on the server
 		var root = this,
 			previous = root.Chart;
-
+	
 		//Occupy the global variable of Chart, and create a simple base class
 		var Chart = function(context){
 			var chart = this;
 			this.canvas = context.canvas;
-
+	
 			this.ctx = context;
-
+	
 			//Variables global to the chart
 			var computeDimension = function(element,dimension)
 			{
@@ -1039,14 +751,14 @@ webpackJsonp([1],{
 					return document.defaultView.getComputedStyle(element).getPropertyValue(dimension);
 				}
 			};
-
+	
 			var width = this.width = computeDimension(context.canvas,'Width') || context.canvas.width;
 			var height = this.height = computeDimension(context.canvas,'Height') || context.canvas.height;
-
+	
 			this.aspectRatio = this.width / this.height;
 			//High pixel density displays - multiply the size of the canvas height/width by the device pixel ratio, then scale.
 			helpers.retinaScale(this);
-
+	
 			return this;
 		};
 		//Globally expose the defaults to allow for user updating/changing
@@ -1054,19 +766,19 @@ webpackJsonp([1],{
 			global: {
 				// Boolean - Whether to animate the chart
 				animation: true,
-
+	
 				// Number - Number of animation steps
 				animationSteps: 60,
-
+	
 				// String - Animation easing effect
 				animationEasing: "easeOutQuart",
-
+	
 				// Boolean - If we should show the scale at all
 				showScale: true,
-
+	
 				// Boolean - If we want to override with a hard coded scale
 				scaleOverride: false,
-
+	
 				// ** Required if scaleOverride is true **
 				// Number - The number of steps in a hard coded scale
 				scaleSteps: null,
@@ -1074,127 +786,127 @@ webpackJsonp([1],{
 				scaleStepWidth: null,
 				// Number - The scale starting value
 				scaleStartValue: null,
-
+	
 				// String - Colour of the scale line
 				scaleLineColor: "rgba(0,0,0,.1)",
-
+	
 				// Number - Pixel width of the scale line
 				scaleLineWidth: 1,
-
+	
 				// Boolean - Whether to show labels on the scale
 				scaleShowLabels: true,
-
+	
 				// Interpolated JS string - can access value
 				scaleLabel: "<%=value%>",
-
+	
 				// Boolean - Whether the scale should stick to integers, and not show any floats even if drawing space is there
 				scaleIntegersOnly: true,
-
+	
 				// Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
 				scaleBeginAtZero: false,
-
+	
 				// String - Scale label font declaration for the scale label
 				scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-
+	
 				// Number - Scale label font size in pixels
 				scaleFontSize: 12,
-
+	
 				// String - Scale label font weight style
 				scaleFontStyle: "normal",
-
+	
 				// String - Scale label font colour
 				scaleFontColor: "#666",
-
+	
 				// Boolean - whether or not the chart should be responsive and resize when the browser does.
 				responsive: false,
-
+	
 				// Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
 				maintainAspectRatio: true,
-
+	
 				// Boolean - Determines whether to draw tooltips on the canvas or not - attaches events to touchmove & mousemove
 				showTooltips: true,
-
+	
 				// Boolean - Determines whether to draw built-in tooltip or call custom tooltip function
 				customTooltips: false,
-
+	
 				// Array - Array of string names to attach tooltip events
 				tooltipEvents: ["mousemove", "touchstart", "touchmove", "mouseout"],
-
+	
 				// String - Tooltip background colour
 				tooltipFillColor: "rgba(0,0,0,0.8)",
-
+	
 				// String - Tooltip label font declaration for the scale label
 				tooltipFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-
+	
 				// Number - Tooltip label font size in pixels
 				tooltipFontSize: 14,
-
+	
 				// String - Tooltip font weight style
 				tooltipFontStyle: "normal",
-
+	
 				// String - Tooltip label font colour
 				tooltipFontColor: "#fff",
-
+	
 				// String - Tooltip title font declaration for the scale label
 				tooltipTitleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-
+	
 				// Number - Tooltip title font size in pixels
 				tooltipTitleFontSize: 14,
-
+	
 				// String - Tooltip title font weight style
 				tooltipTitleFontStyle: "bold",
-
+	
 				// String - Tooltip title font colour
 				tooltipTitleFontColor: "#fff",
-
+	
 				// String - Tooltip title template
 				tooltipTitleTemplate: "<%= label%>",
-
+	
 				// Number - pixel width of padding around tooltip text
 				tooltipYPadding: 6,
-
+	
 				// Number - pixel width of padding around tooltip text
 				tooltipXPadding: 6,
-
+	
 				// Number - Size of the caret on the tooltip
 				tooltipCaretSize: 8,
-
+	
 				// Number - Pixel radius of the tooltip border
 				tooltipCornerRadius: 6,
-
+	
 				// Number - Pixel offset from point x to tooltip edge
 				tooltipXOffset: 10,
-
+	
 				// String - Template string for single tooltips
 				tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
-
+	
 				// String - Template string for single tooltips
 				multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
-
+	
 				// String - Colour behind the legend colour block
 				multiTooltipKeyBackground: '#fff',
-
+	
 				// Array - A list of colors to use as the defaults
 				segmentColorDefault: ["#A6CEE3", "#1F78B4", "#B2DF8A", "#33A02C", "#FB9A99", "#E31A1C", "#FDBF6F", "#FF7F00", "#CAB2D6", "#6A3D9A", "#B4B482", "#B15928" ],
-
+	
 				// Array - A list of highlight colors to use as the defaults
 				segmentHighlightColorDefaults: [ "#CEF6FF", "#47A0DC", "#DAFFB2", "#5BC854", "#FFC2C1", "#FF4244", "#FFE797", "#FFA728", "#F2DAFE", "#9265C2", "#DCDCAA", "#D98150" ],
-
+	
 				// Function - Will fire on animation progression.
 				onAnimationProgress: function(){},
-
+	
 				// Function - Will fire on animation completion.
 				onAnimationComplete: function(){}
-
+	
 			}
 		};
-
+	
 		//Create a dictionary of chart types, to allow for extension of existing types
 		Chart.types = {};
-
+	
 		//Global Chart helpers object for utility methods and classes
 		var helpers = Chart.helpers = {};
-
+	
 			//-- Basic js utility methods
 		var each = helpers.each = function(loopable,callback,self){
 				var additionalArgs = Array.prototype.slice.call(arguments, 3);
@@ -1251,13 +963,13 @@ webpackJsonp([1],{
 			},
 			where = helpers.where = function(collection, filterCallback){
 				var filtered = [];
-
+	
 				helpers.each(collection, function(item){
 					if (filterCallback(item)){
 						filtered.push(item);
 					}
 				});
-
+	
 				return filtered;
 			},
 			findNextWhere = helpers.findNextWhere = function(arrayToSearch, filterCallback, startIndex){
@@ -1288,17 +1000,17 @@ webpackJsonp([1],{
 				//Basic javascript inheritance based on the model created in Backbone.js
 				var parent = this;
 				var ChartElement = (extensions && extensions.hasOwnProperty("constructor")) ? extensions.constructor : function(){ return parent.apply(this, arguments); };
-
+	
 				var Surrogate = function(){ this.constructor = ChartElement;};
 				Surrogate.prototype = parent.prototype;
 				ChartElement.prototype = new Surrogate();
-
+	
 				ChartElement.extend = inherits;
-
+	
 				if (extensions) extend(ChartElement.prototype, extensions);
-
+	
 				ChartElement.__super__ = parent.prototype;
-
+	
 				return ChartElement;
 			},
 			noop = helpers.noop = function(){},
@@ -1365,15 +1077,15 @@ webpackJsonp([1],{
 				var distanceFromXCenter = anglePoint.x - centrePoint.x,
 					distanceFromYCenter = anglePoint.y - centrePoint.y,
 					radialDistanceFromCenter = Math.sqrt( distanceFromXCenter * distanceFromXCenter + distanceFromYCenter * distanceFromYCenter);
-
-
+	
+	
 				var angle = Math.PI * 2 + Math.atan2(distanceFromYCenter, distanceFromXCenter);
-
+	
 				//If the segment is in the top left quadrant, we need to add another rotation to the angle
 				if (distanceFromXCenter < 0 && distanceFromYCenter < 0){
 					angle += Math.PI*2;
 				}
-
+	
 				return {
 					angle: angle,
 					distance: radialDistanceFromCenter
@@ -1404,12 +1116,12 @@ webpackJsonp([1],{
 				return Math.floor(Math.log(val) / Math.LN10);
 			},
 			calculateScaleRange = helpers.calculateScaleRange = function(valuesArray, drawingSize, textSize, startFromZero, integersOnly){
-
+	
 				//Set a minimum step of two - a point at the top of the graph, and a point at the base
 				var minSteps = 2,
 					maxSteps = Math.floor(drawingSize/(textSize * 1.5)),
 					skipFitting = (minSteps >= maxSteps);
-
+	
 				// Filter out null values since these would min() to zero
 				var values = [];
 				each(valuesArray, function( v ){
@@ -1417,7 +1129,7 @@ webpackJsonp([1],{
 				});
 				var minValue = min(values),
 				    maxValue = max(values);
-
+	
 				// We need some degree of separation here to calculate the scales if all the values are the same
 				// Adding/minusing 0.5 will give us a range of 1.
 				if (maxValue === minValue){
@@ -1431,7 +1143,7 @@ webpackJsonp([1],{
 						maxValue += 0.5;
 					}
 				}
-
+	
 				var	valueRange = Math.abs(maxValue - minValue),
 					rangeOrderOfMagnitude = calculateOrderOfMagnitude(valueRange),
 					graphMax = Math.ceil(maxValue / (1 * Math.pow(10, rangeOrderOfMagnitude))) * Math.pow(10, rangeOrderOfMagnitude),
@@ -1439,7 +1151,7 @@ webpackJsonp([1],{
 					graphRange = graphMax - graphMin,
 					stepValue = Math.pow(10, rangeOrderOfMagnitude),
 					numberOfSteps = Math.round(graphRange / stepValue);
-
+	
 				//If we have more space on the graph we'll use it to give more definition to the data
 				while((numberOfSteps > maxSteps || (numberOfSteps * 2) < maxSteps) && !skipFitting) {
 					if(numberOfSteps > maxSteps){
@@ -1469,50 +1181,50 @@ webpackJsonp([1],{
 							stepValue /=2;
 							numberOfSteps = Math.round(graphRange/stepValue);
 						}
-
+	
 					}
 				}
-
+	
 				if (skipFitting){
 					numberOfSteps = minSteps;
 					stepValue = graphRange / numberOfSteps;
 				}
-
+	
 				return {
 					steps : numberOfSteps,
 					stepValue : stepValue,
 					min : graphMin,
 					max	: graphMin + (numberOfSteps * stepValue)
 				};
-
+	
 			},
 			/* jshint ignore:start */
 			// Blows up jshint errors based on the new Function constructor
 			//Templating methods
 			//Javascript micro templating by John Resig - source at http://ejohn.org/blog/javascript-micro-templating/
 			template = helpers.template = function(templateString, valuesObject){
-
+	
 				// If templateString is function rather than string-template - call the function for valuesObject
-
+	
 				if(templateString instanceof Function){
 				 	return templateString(valuesObject);
 			 	}
-
+	
 				var cache = {};
 				function tmpl(str, data){
 					// Figure out if we're getting a template, or if we need to
 					// load the template - and be sure to cache the result.
 					var fn = !/\W/.test(str) ?
 					cache[str] = cache[str] :
-
+	
 					// Generate a reusable function that will serve as a template
 					// generator (and which will be cached).
 					new Function("obj",
 						"var p=[],print=function(){p.push.apply(p,arguments);};" +
-
+	
 						// Introduce the data as local variables using with(){}
 						"with(obj){p.push('" +
-
+	
 						// Convert the template into pure JavaScript
 						str
 							.replace(/[\r\t\n]/g, " ")
@@ -1524,7 +1236,7 @@ webpackJsonp([1],{
 							.split("\r").join("\\'") +
 						"');}return p.join('');"
 					);
-
+	
 					// Provide some basic currying to the user
 					return data ? fn( data ) : fn;
 				}
@@ -1760,15 +1472,15 @@ webpackJsonp([1],{
 					};
 			})(),
 			animationLoop = helpers.animationLoop = function(callback,totalSteps,easingString,onProgress,onComplete,chartInstance){
-
+	
 				var currentStep = 0,
 					easingFunction = easingEffects[easingString] || easingEffects.linear;
-
+	
 				var animationFrame = function(){
 					currentStep++;
 					var stepDecimal = currentStep/totalSteps;
 					var easeDecimal = easingFunction(stepDecimal);
-
+	
 					callback.call(chartInstance,easeDecimal,stepDecimal, currentStep);
 					onProgress.call(chartInstance,easeDecimal,stepDecimal);
 					if (currentStep < totalSteps){
@@ -1785,22 +1497,22 @@ webpackJsonp([1],{
 				var e = evt.originalEvent || evt,
 					canvas = evt.currentTarget || evt.srcElement,
 					boundingRect = canvas.getBoundingClientRect();
-
+	
 				if (e.touches){
 					mouseX = e.touches[0].clientX - boundingRect.left;
 					mouseY = e.touches[0].clientY - boundingRect.top;
-
+	
 				}
 				else{
 					mouseX = e.clientX - boundingRect.left;
 					mouseY = e.clientY - boundingRect.top;
 				}
-
+	
 				return {
 					x : mouseX,
 					y : mouseY
 				};
-
+	
 			},
 			addEvent = helpers.addEvent = function(node,eventType,method){
 				if (node.addEventListener){
@@ -1823,7 +1535,7 @@ webpackJsonp([1],{
 			bindEvents = helpers.bindEvents = function(chartInstance, arrayOfEvents, handler){
 				// Create the events object if it's not already present
 				if (!chartInstance.events) chartInstance.events = {};
-
+	
 				each(arrayOfEvents,function(eventName){
 					chartInstance.events[eventName] = function(){
 						handler.apply(chartInstance, arguments);
@@ -1858,7 +1570,7 @@ webpackJsonp([1],{
 				var ctx = chart.ctx,
 					width = chart.canvas.width,
 					height = chart.canvas.height;
-
+	
 				if (window.devicePixelRatio) {
 					ctx.canvas.style.width = width + "px";
 					ctx.canvas.style.height = height + "px";
@@ -1896,19 +1608,19 @@ webpackJsonp([1],{
 				ctx.quadraticCurveTo(x, y, x + radius, y);
 				ctx.closePath();
 			};
-
-
+	
+	
 		//Store a reference to each instance - allowing us to globally resize chart instances on window resize.
 		//Destroy method on the chart will remove the instance of the chart from this reference.
 		Chart.instances = {};
-
+	
 		Chart.Type = function(data,options,chart){
 			this.options = options;
 			this.chart = chart;
 			this.id = uid();
 			//Add the chart instance to the global namespace
 			Chart.instances[this.id] = this;
-
+	
 			// Initialize is always called when a chart type is created
 			// By default it is a no op, but it should be extended
 			if (options.responsive){
@@ -1916,7 +1628,7 @@ webpackJsonp([1],{
 			}
 			this.initialize.call(this,data);
 		};
-
+	
 		//Core methods that'll be a part of every chart type
 		extend(Chart.Type.prototype,{
 			initialize : function(){return this;},
@@ -1934,12 +1646,12 @@ webpackJsonp([1],{
 				var canvas = this.chart.canvas,
 					newWidth = getMaximumWidth(this.chart.canvas),
 					newHeight = this.options.maintainAspectRatio ? newWidth / this.chart.aspectRatio : getMaximumHeight(this.chart.canvas);
-
+	
 				canvas.width = this.chart.width = newWidth;
 				canvas.height = this.chart.height = newHeight;
-
+	
 				retinaScale(this.chart);
-
+	
 				if (typeof callback === "function"){
 					callback.apply(this, Array.prototype.slice.call(arguments, 1));
 				}
@@ -1950,25 +1662,25 @@ webpackJsonp([1],{
 				if (reflow){
 					this.reflow();
 				}
-
+				
 				if (this.options.animation && !reflow){
 					var animation = new Chart.Animation();
 					animation.numSteps = this.options.animationSteps;
 					animation.easing = this.options.animationEasing;
-
+					
 					// render function
 					animation.render = function(chartInstance, animationObject) {
 						var easingFunction = helpers.easingEffects[animationObject.easing];
 						var stepDecimal = animationObject.currentStep / animationObject.numSteps;
 						var easeDecimal = easingFunction(stepDecimal);
-
+						
 						chartInstance.draw(easeDecimal, stepDecimal, animationObject.currentStep);
 					};
-
+					
 					// user events
 					animation.onAnimationProgress = this.options.onAnimationProgress;
 					animation.onAnimationComplete = this.options.onAnimationComplete;
-
+					
 					Chart.animationService.addAnimation(this, animation);
 				}
 				else{
@@ -1985,11 +1697,11 @@ webpackJsonp([1],{
 				this.clear();
 				unbindEvents(this, this.events);
 				var canvas = this.chart.canvas;
-
+	
 				// Reset canvas height/width attributes starts a fresh with the canvas context
 				canvas.width = this.chart.width;
 				canvas.height = this.chart.height;
-
+	
 				// < IE9 doesn't support removeProperty
 				if (canvas.style.removeProperty) {
 					canvas.style.removeProperty('width');
@@ -1998,21 +1710,21 @@ webpackJsonp([1],{
 					canvas.style.removeAttribute('width');
 					canvas.style.removeAttribute('height');
 				}
-
+	
 				delete Chart.instances[this.id];
 			},
 			showTooltip : function(ChartElements, forceRedraw){
 				// Only redraw the chart if we've actually changed what we're hovering on.
 				if (typeof this.activeElements === 'undefined') this.activeElements = [];
-
+	
 				var isChanged = (function(Elements){
 					var changed = false;
-
+	
 					if (Elements.length !== this.activeElements.length){
 						changed = true;
 						return changed;
 					}
-
+	
 					each(Elements, function(element, index){
 						if (element !== this.activeElements[index]){
 							changed = true;
@@ -2020,7 +1732,7 @@ webpackJsonp([1],{
 					}, this);
 					return changed;
 				}).call(this, ChartElements);
-
+	
 				if (!isChanged && !forceRedraw){
 					return;
 				}
@@ -2036,7 +1748,7 @@ webpackJsonp([1],{
 					if (this.datasets && this.datasets.length > 1) {
 						var dataArray,
 							dataIndex;
-
+	
 						for (var i = this.datasets.length - 1; i >= 0; i--) {
 							dataArray = this.datasets[i].points || this.datasets[i].bars || this.datasets[i].segments;
 							dataIndex = indexOf(dataArray, ChartElements[0]);
@@ -2047,7 +1759,7 @@ webpackJsonp([1],{
 						var tooltipLabels = [],
 							tooltipColors = [],
 							medianPosition = (function(index) {
-
+	
 								// Get all the points at that particular index
 								var Elements = [],
 									dataCollection,
@@ -2063,33 +1775,33 @@ webpackJsonp([1],{
 										Elements.push(dataCollection[dataIndex]);
 									}
 								});
-
+	
 								helpers.each(Elements, function(element) {
 									xPositions.push(element.x);
 									yPositions.push(element.y);
-
-
+	
+	
 									//Include any colour information about the element
 									tooltipLabels.push(helpers.template(this.options.multiTooltipTemplate, element));
 									tooltipColors.push({
 										fill: element._saved.fillColor || element.fillColor,
 										stroke: element._saved.strokeColor || element.strokeColor
 									});
-
+	
 								}, this);
-
+	
 								yMin = min(yPositions);
 								yMax = max(yPositions);
-
+	
 								xMin = min(xPositions);
 								xMax = max(xPositions);
-
+	
 								return {
 									x: (xMin > this.chart.width/2) ? xMin : xMax,
 									y: (yMin + yMax)/2
 								};
 							}).call(this, dataIndex);
-
+	
 						new Chart.MultiTooltip({
 							x: medianPosition.x,
 							y: medianPosition.y,
@@ -2114,7 +1826,7 @@ webpackJsonp([1],{
 							ctx: this.chart.ctx,
 							custom: this.options.customTooltips
 						}).draw();
-
+	
 					} else {
 						each(ChartElements, function(Element) {
 							var tooltipPosition = Element.tooltipPosition();
@@ -2143,37 +1855,37 @@ webpackJsonp([1],{
 				return this.chart.canvas.toDataURL.apply(this.chart.canvas, arguments);
 			}
 		});
-
+	
 		Chart.Type.extend = function(extensions){
-
+	
 			var parent = this;
-
+	
 			var ChartType = function(){
 				return parent.apply(this,arguments);
 			};
-
+	
 			//Copy the prototype object of the this class
 			ChartType.prototype = clone(parent.prototype);
 			//Now overwrite some of the properties in the base class with the new extensions
 			extend(ChartType.prototype, extensions);
-
+	
 			ChartType.extend = Chart.Type.extend;
-
+	
 			if (extensions.name || parent.prototype.name){
-
+	
 				var chartName = extensions.name || parent.prototype.name;
 				//Assign any potential default values of the new chart type
-
+	
 				//If none are defined, we'll use a clone of the chart type this is being extended from.
 				//I.e. if we extend a line chart, we'll use the defaults from the line chart if our new chart
 				//doesn't define some defaults of their own.
-
+	
 				var baseDefaults = (Chart.defaults[parent.prototype.name]) ? clone(Chart.defaults[parent.prototype.name]) : {};
-
+	
 				Chart.defaults[chartName] = extend(baseDefaults,extensions.defaults);
-
+	
 				Chart.types[chartName] = ChartType;
-
+	
 				//Register this new chart type in the Chart prototype
 				Chart.prototype[chartName] = function(data,options){
 					var config = merge(Chart.defaults.global, Chart.defaults[chartName], options || {});
@@ -2184,7 +1896,7 @@ webpackJsonp([1],{
 			}
 			return parent;
 		};
-
+	
 		Chart.Element = function(configuration){
 			extend(this,configuration);
 			this.initialize.apply(this,arguments);
@@ -2230,10 +1942,10 @@ webpackJsonp([1],{
 				return isNumber(this.value);
 			}
 		});
-
+	
 		Chart.Element.extend = inherits;
-
-
+	
+	
 		Chart.Point = Chart.Element.extend({
 			display: true,
 			inRange: function(chartX,chartY){
@@ -2244,68 +1956,68 @@ webpackJsonp([1],{
 				if (this.display){
 					var ctx = this.ctx;
 					ctx.beginPath();
-
+	
 					ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2);
 					ctx.closePath();
-
+	
 					ctx.strokeStyle = this.strokeColor;
 					ctx.lineWidth = this.strokeWidth;
-
+	
 					ctx.fillStyle = this.fillColor;
-
+	
 					ctx.fill();
 					ctx.stroke();
 				}
-
-
+	
+	
 				//Quick debug for bezier curve splining
 				//Highlights control points and the line between them.
 				//Handy for dev - stripped in the min version.
-
+	
 				// ctx.save();
 				// ctx.fillStyle = "black";
 				// ctx.strokeStyle = "black"
 				// ctx.beginPath();
 				// ctx.arc(this.controlPoints.inner.x,this.controlPoints.inner.y, 2, 0, Math.PI*2);
 				// ctx.fill();
-
+	
 				// ctx.beginPath();
 				// ctx.arc(this.controlPoints.outer.x,this.controlPoints.outer.y, 2, 0, Math.PI*2);
 				// ctx.fill();
-
+	
 				// ctx.moveTo(this.controlPoints.inner.x,this.controlPoints.inner.y);
 				// ctx.lineTo(this.x, this.y);
 				// ctx.lineTo(this.controlPoints.outer.x,this.controlPoints.outer.y);
 				// ctx.stroke();
-
+	
 				// ctx.restore();
-
-
-
+	
+	
+	
 			}
 		});
-
+	
 		Chart.Arc = Chart.Element.extend({
 			inRange : function(chartX,chartY){
-
+	
 				var pointRelativePosition = helpers.getAngleFromPoint(this, {
 					x: chartX,
 					y: chartY
 				});
-
+	
 				// Normalize all angles to 0 - 2*PI (0 - 360°)
 				var pointRelativeAngle = pointRelativePosition.angle % (Math.PI * 2),
 				    startAngle = (Math.PI * 2 + this.startAngle) % (Math.PI * 2),
 				    endAngle = (Math.PI * 2 + this.endAngle) % (Math.PI * 2) || 360;
-
+	
 				// Calculate wether the pointRelativeAngle is between the start and the end angle
 				var betweenAngles = (endAngle < startAngle) ?
 					pointRelativeAngle <= endAngle || pointRelativeAngle >= startAngle:
 					pointRelativeAngle >= startAngle && pointRelativeAngle <= endAngle;
-
+	
 				//Check if within the range of the open/close angle
 				var withinRadius = (pointRelativePosition.distance >= this.innerRadius && pointRelativePosition.distance <= this.outerRadius);
-
+	
 				return (betweenAngles && withinRadius);
 				//Ensure within the outside of the arc centre, but inside arc outer
 			},
@@ -2318,32 +2030,32 @@ webpackJsonp([1],{
 				};
 			},
 			draw : function(animationPercent){
-
+	
 				var easingDecimal = animationPercent || 1;
-
+	
 				var ctx = this.ctx;
-
+	
 				ctx.beginPath();
-
+	
 				ctx.arc(this.x, this.y, this.outerRadius < 0 ? 0 : this.outerRadius, this.startAngle, this.endAngle);
-
+	
 	            ctx.arc(this.x, this.y, this.innerRadius < 0 ? 0 : this.innerRadius, this.endAngle, this.startAngle, true);
-
+	
 				ctx.closePath();
 				ctx.strokeStyle = this.strokeColor;
 				ctx.lineWidth = this.strokeWidth;
-
+	
 				ctx.fillStyle = this.fillColor;
-
+	
 				ctx.fill();
 				ctx.lineJoin = 'bevel';
-
+	
 				if (this.showStroke){
 					ctx.stroke();
 				}
 			}
 		});
-
+	
 		Chart.Rectangle = Chart.Element.extend({
 			draw : function(){
 				var ctx = this.ctx,
@@ -2352,7 +2064,7 @@ webpackJsonp([1],{
 					rightX = this.x + halfWidth,
 					top = this.base - (this.base - this.y),
 					halfStroke = this.strokeWidth / 2;
-
+	
 				// Canvas doesn't allow us to stroke inside the width so we can
 				// adjust the sizes to fit if we're setting a stroke on the line
 				if (this.showStroke){
@@ -2360,13 +2072,13 @@ webpackJsonp([1],{
 					rightX -= halfStroke;
 					top += halfStroke;
 				}
-
+	
 				ctx.beginPath();
-
+	
 				ctx.fillStyle = this.fillColor;
 				ctx.strokeStyle = this.strokeColor;
 				ctx.lineWidth = this.strokeWidth;
-
+	
 				// It'd be nice to keep this class totally generic to any rectangle
 				// and simply specify which border to miss out.
 				ctx.moveTo(leftX, this.base);
@@ -2385,50 +2097,50 @@ webpackJsonp([1],{
 				return (chartX >= this.x - this.width/2 && chartX <= this.x + this.width/2) && (chartY >= this.y && chartY <= this.base);
 			}
 		});
-
+	
 		Chart.Animation = Chart.Element.extend({
 			currentStep: null, // the current animation step
 			numSteps: 60, // default number of steps
 			easing: "", // the easing to use for this animation
 			render: null, // render function used by the animation service
-
-			onAnimationProgress: null, // user specified callback to fire on each step of the animation
+			
+			onAnimationProgress: null, // user specified callback to fire on each step of the animation 
 			onAnimationComplete: null, // user specified callback to fire when the animation finishes
 		});
-
+		
 		Chart.Tooltip = Chart.Element.extend({
 			draw : function(){
-
+	
 				var ctx = this.chart.ctx;
-
+	
 				ctx.font = fontString(this.fontSize,this.fontStyle,this.fontFamily);
-
+	
 				this.xAlign = "center";
 				this.yAlign = "above";
-
+	
 				//Distance between the actual element.y position and the start of the tooltip caret
 				var caretPadding = this.caretPadding = 2;
-
+	
 				var tooltipWidth = ctx.measureText(this.text).width + 2*this.xPadding,
 					tooltipRectHeight = this.fontSize + 2*this.yPadding,
 					tooltipHeight = tooltipRectHeight + this.caretHeight + caretPadding;
-
+	
 				if (this.x + tooltipWidth/2 >this.chart.width){
 					this.xAlign = "left";
 				} else if (this.x - tooltipWidth/2 < 0){
 					this.xAlign = "right";
 				}
-
+	
 				if (this.y - tooltipHeight < 0){
 					this.yAlign = "below";
 				}
-
-
+	
+	
 				var tooltipX = this.x - tooltipWidth/2,
 					tooltipY = this.y - tooltipHeight;
-
+	
 				ctx.fillStyle = this.fillColor;
-
+	
 				// Custom Tooltips
 				if(this.custom){
 					this.custom(this);
@@ -2456,7 +2168,7 @@ webpackJsonp([1],{
 						ctx.fill();
 						break;
 					}
-
+	
 					switch(this.xAlign)
 					{
 					case "left":
@@ -2466,11 +2178,11 @@ webpackJsonp([1],{
 						tooltipX = this.x - (this.cornerRadius + this.caretHeight);
 						break;
 					}
-
+	
 					drawRoundedRectangle(ctx,tooltipX,tooltipY,tooltipWidth,tooltipRectHeight,this.cornerRadius);
-
+	
 					ctx.fill();
-
+	
 					ctx.fillStyle = this.textColor;
 					ctx.textAlign = "center";
 					ctx.textBaseline = "middle";
@@ -2478,55 +2190,55 @@ webpackJsonp([1],{
 				}
 			}
 		});
-
+	
 		Chart.MultiTooltip = Chart.Element.extend({
 			initialize : function(){
 				this.font = fontString(this.fontSize,this.fontStyle,this.fontFamily);
-
+	
 				this.titleFont = fontString(this.titleFontSize,this.titleFontStyle,this.titleFontFamily);
-
+	
 				this.titleHeight = this.title ? this.titleFontSize * 1.5 : 0;
 				this.height = (this.labels.length * this.fontSize) + ((this.labels.length-1) * (this.fontSize/2)) + (this.yPadding*2) + this.titleHeight;
-
+	
 				this.ctx.font = this.titleFont;
-
+	
 				var titleWidth = this.ctx.measureText(this.title).width,
 					//Label has a legend square as well so account for this.
 					labelWidth = longestText(this.ctx,this.font,this.labels) + this.fontSize + 3,
 					longestTextWidth = max([labelWidth,titleWidth]);
-
+	
 				this.width = longestTextWidth + (this.xPadding*2);
-
-
+	
+	
 				var halfHeight = this.height/2;
-
+	
 				//Check to ensure the height will fit on the canvas
 				if (this.y - halfHeight < 0 ){
 					this.y = halfHeight;
 				} else if (this.y + halfHeight > this.chart.height){
 					this.y = this.chart.height - halfHeight;
 				}
-
+	
 				//Decide whether to align left or right based on position on canvas
 				if (this.x > this.chart.width/2){
 					this.x -= this.xOffset + this.width;
 				} else {
 					this.x += this.xOffset;
 				}
-
-
+	
+	
 			},
 			getLineHeight : function(index){
 				var baseLineHeight = this.y - (this.height/2) + this.yPadding,
 					afterTitleIndex = index-1;
-
+	
 				//If the index is zero, we're getting the title
 				if (index === 0){
 					return baseLineHeight + this.titleHeight / 3;
 				} else{
 					return baseLineHeight + ((this.fontSize * 1.5 * afterTitleIndex) + this.fontSize / 2) + this.titleHeight;
 				}
-
+	
 			},
 			draw : function(){
 				// Custom Tooltips
@@ -2539,44 +2251,44 @@ webpackJsonp([1],{
 					ctx.fillStyle = this.fillColor;
 					ctx.fill();
 					ctx.closePath();
-
+	
 					ctx.textAlign = "left";
 					ctx.textBaseline = "middle";
 					ctx.fillStyle = this.titleTextColor;
 					ctx.font = this.titleFont;
-
+	
 					ctx.fillText(this.title,this.x + this.xPadding, this.getLineHeight(0));
-
+	
 					ctx.font = this.font;
 					helpers.each(this.labels,function(label,index){
 						ctx.fillStyle = this.textColor;
 						ctx.fillText(label,this.x + this.xPadding + this.fontSize + 3, this.getLineHeight(index + 1));
-
+	
 						//A bit gnarly, but clearing this rectangle breaks when using explorercanvas (clears whole canvas)
 						//ctx.clearRect(this.x + this.xPadding, this.getLineHeight(index + 1) - this.fontSize/2, this.fontSize, this.fontSize);
 						//Instead we'll make a white filled block to put the legendColour palette over.
-
+	
 						ctx.fillStyle = this.legendColorBackground;
 						ctx.fillRect(this.x + this.xPadding, this.getLineHeight(index + 1) - this.fontSize/2, this.fontSize, this.fontSize);
-
+	
 						ctx.fillStyle = this.legendColors[index].fill;
 						ctx.fillRect(this.x + this.xPadding, this.getLineHeight(index + 1) - this.fontSize/2, this.fontSize, this.fontSize);
-
-
+	
+	
 					},this);
 				}
 			}
 		});
-
+	
 		Chart.Scale = Chart.Element.extend({
 			initialize : function(){
 				this.fit();
 			},
 			buildYLabels : function(){
 				this.yLabels = [];
-
+	
 				var stepDecimalPlaces = getDecimalPlaces(this.stepValue);
-
+	
 				for (var i=0; i<=this.steps; i++){
 					this.yLabels.push(template(this.templateString,{value:(this.min + (i * this.stepValue)).toFixed(stepDecimalPlaces)}));
 				}
@@ -2595,22 +2307,22 @@ webpackJsonp([1],{
 			// Fitting loop to rotate x Labels and figure out what fits there, and also calculate how many Y steps to use
 			fit: function(){
 				// First we need the width of the yLabels, assuming the xLabels aren't rotated
-
+	
 				// To do that we need the base line at the top and base of the chart, assuming there is no x label rotation
 				this.startPoint = (this.display) ? this.fontSize : 0;
 				this.endPoint = (this.display) ? this.height - (this.fontSize * 1.5) - 5 : this.height; // -5 to pad labels
-
+	
 				// Apply padding settings to the start and end point.
 				this.startPoint += this.padding;
 				this.endPoint -= this.padding;
-
+	
 				// Cache the starting endpoint, excluding the space for x labels
 				var cachedEndPoint = this.endPoint;
-
+	
 				// Cache the starting height, so can determine if we need to recalculate the scale yAxis
 				var cachedHeight = this.endPoint - this.startPoint,
 					cachedYLabelWidth;
-
+	
 				// Build the current yLabels so we have an idea of what size they'll be to start
 				/*
 				 *	This sets what is returned from calculateScaleRange as static properties of this class:
@@ -2622,43 +2334,43 @@ webpackJsonp([1],{
 				 *
 				 */
 				this.calculateYRange(cachedHeight);
-
+	
 				// With these properties set we can now build the array of yLabels
 				// and also the width of the largest yLabel
 				this.buildYLabels();
-
+	
 				this.calculateXLabelRotation();
-
+	
 				while((cachedHeight > this.endPoint - this.startPoint)){
 					cachedHeight = this.endPoint - this.startPoint;
 					cachedYLabelWidth = this.yLabelWidth;
-
+	
 					this.calculateYRange(cachedHeight);
 					this.buildYLabels();
-
+	
 					// Only go through the xLabel loop again if the yLabel width has changed
 					if (cachedYLabelWidth < this.yLabelWidth){
 						this.endPoint = cachedEndPoint;
 						this.calculateXLabelRotation();
 					}
 				}
-
+	
 			},
 			calculateXLabelRotation : function(){
 				//Get the width of each grid by calculating the difference
 				//between x offsets between 0 and 1.
-
+	
 				this.ctx.font = this.font;
-
+	
 				var firstWidth = this.ctx.measureText(this.xLabels[0]).width,
 					lastWidth = this.ctx.measureText(this.xLabels[this.xLabels.length - 1]).width,
 					firstRotated,
 					lastRotated;
-
-
+	
+	
 				this.xScalePaddingRight = lastWidth/2 + 3;
 				this.xScalePaddingLeft = (firstWidth/2 > this.yLabelWidth) ? firstWidth/2 : this.yLabelWidth;
-
+	
 				this.xLabelRotation = 0;
 				if (this.display){
 					var originalLabelWidth = longestText(this.ctx,this.font,this.xLabels),
@@ -2667,24 +2379,24 @@ webpackJsonp([1],{
 					this.xLabelWidth = originalLabelWidth;
 					//Allow 3 pixels x2 padding either side for label readability
 					var xGridWidth = Math.floor(this.calculateX(1) - this.calculateX(0)) - 6;
-
+	
 					//Max label rotate should be 90 - also act as a loop counter
 					while ((this.xLabelWidth > xGridWidth && this.xLabelRotation === 0) || (this.xLabelWidth > xGridWidth && this.xLabelRotation <= 90 && this.xLabelRotation > 0)){
 						cosRotation = Math.cos(toRadians(this.xLabelRotation));
-
+	
 						firstRotated = cosRotation * firstWidth;
 						lastRotated = cosRotation * lastWidth;
-
+	
 						// We're right aligning the text now.
 						if (firstRotated + this.fontSize / 2 > this.yLabelWidth){
 							this.xScalePaddingLeft = firstRotated + this.fontSize / 2;
 						}
 						this.xScalePaddingRight = this.fontSize/2;
-
-
+	
+	
 						this.xLabelRotation++;
 						this.xLabelWidth = cosRotation * originalLabelWidth;
-
+	
 					}
 					if (this.xLabelRotation > 0){
 						this.endPoint -= Math.sin(toRadians(this.xLabelRotation))*originalLabelWidth + 3;
@@ -2695,7 +2407,7 @@ webpackJsonp([1],{
 					this.xScalePaddingRight = this.padding;
 					this.xScalePaddingLeft = this.padding;
 				}
-
+	
 			},
 			// Needs to be overidden in each Chart type
 			// Otherwise we need to pass all the data into the scale class
@@ -2713,11 +2425,11 @@ webpackJsonp([1],{
 					innerWidth = this.width - (this.xScalePaddingLeft + this.xScalePaddingRight),
 					valueWidth = innerWidth/Math.max((this.valuesCount - ((this.offsetGridLines) ? 0 : 1)), 1),
 					valueOffset = (valueWidth * index) + this.xScalePaddingLeft;
-
+	
 				if (this.offsetGridLines){
 					valueOffset += (valueWidth/2);
 				}
-
+	
 				return Math.round(valueOffset);
 			},
 			update : function(newProps){
@@ -2735,22 +2447,22 @@ webpackJsonp([1],{
 						var yLabelCenter = this.endPoint - (yLabelGap * index),
 							linePositionY = Math.round(yLabelCenter),
 							drawHorizontalLine = this.showHorizontalLines;
-
+	
 						ctx.textAlign = "right";
 						ctx.textBaseline = "middle";
 						if (this.showLabels){
 							ctx.fillText(labelString,xStart - 10,yLabelCenter);
 						}
-
+	
 						// This is X axis, so draw it
 						if (index === 0 && !drawHorizontalLine){
 							drawHorizontalLine = true;
 						}
-
+	
 						if (drawHorizontalLine){
 							ctx.beginPath();
 						}
-
+	
 						if (index > 0){
 							// This is a grid line in the centre, so drop that
 							ctx.lineWidth = this.gridLineWidth;
@@ -2760,16 +2472,16 @@ webpackJsonp([1],{
 							ctx.lineWidth = this.lineWidth;
 							ctx.strokeStyle = this.lineColor;
 						}
-
+	
 						linePositionY += helpers.aliasPixel(ctx.lineWidth);
-
+	
 						if(drawHorizontalLine){
 							ctx.moveTo(xStart, linePositionY);
 							ctx.lineTo(this.width, linePositionY);
 							ctx.stroke();
 							ctx.closePath();
 						}
-
+	
 						ctx.lineWidth = this.lineWidth;
 						ctx.strokeStyle = this.lineColor;
 						ctx.beginPath();
@@ -2777,25 +2489,25 @@ webpackJsonp([1],{
 						ctx.lineTo(xStart, linePositionY);
 						ctx.stroke();
 						ctx.closePath();
-
+	
 					},this);
-
+	
 					each(this.xLabels,function(label,index){
 						var xPos = this.calculateX(index) + aliasPixel(this.lineWidth),
 							// Check to see if line/bar here and decide where to place the line
 							linePos = this.calculateX(index - (this.offsetGridLines ? 0.5 : 0)) + aliasPixel(this.lineWidth),
 							isRotated = (this.xLabelRotation > 0),
 							drawVerticalLine = this.showVerticalLines;
-
+	
 						// This is Y axis, so draw it
 						if (index === 0 && !drawVerticalLine){
 							drawVerticalLine = true;
 						}
-
+	
 						if (drawVerticalLine){
 							ctx.beginPath();
 						}
-
+	
 						if (index > 0){
 							// This is a grid line in the centre, so drop that
 							ctx.lineWidth = this.gridLineWidth;
@@ -2805,26 +2517,26 @@ webpackJsonp([1],{
 							ctx.lineWidth = this.lineWidth;
 							ctx.strokeStyle = this.lineColor;
 						}
-
+	
 						if (drawVerticalLine){
 							ctx.moveTo(linePos,this.endPoint);
 							ctx.lineTo(linePos,this.startPoint - 3);
 							ctx.stroke();
 							ctx.closePath();
 						}
-
-
+	
+	
 						ctx.lineWidth = this.lineWidth;
 						ctx.strokeStyle = this.lineColor;
-
-
+	
+	
 						// Small lines at the bottom of the base grid line
 						ctx.beginPath();
 						ctx.moveTo(linePos,this.endPoint);
 						ctx.lineTo(linePos,this.endPoint + 5);
 						ctx.stroke();
 						ctx.closePath();
-
+	
 						ctx.save();
 						ctx.translate(xPos,(isRotated) ? this.endPoint + 12 : this.endPoint + 8);
 						ctx.rotate(toRadians(this.xLabelRotation)*-1);
@@ -2834,12 +2546,12 @@ webpackJsonp([1],{
 						ctx.fillText(label, 0, 0);
 						ctx.restore();
 					},this);
-
+	
 				}
 			}
-
+	
 		});
-
+	
 		Chart.RadialScale = Chart.Element.extend({
 			initialize: function(){
 				this.size = min([this.height, this.width]);
@@ -2848,7 +2560,7 @@ webpackJsonp([1],{
 			calculateCenterOffset: function(value){
 				// Take into account half font size + the yPadding of the top value
 				var scalingFactor = this.drawingArea / (this.max - this.min);
-
+	
 				return (value - this.min) * scalingFactor;
 			},
 			update : function(){
@@ -2861,9 +2573,9 @@ webpackJsonp([1],{
 			},
 			buildYLabels: function(){
 				this.yLabels = [];
-
+	
 				var stepDecimalPlaces = getDecimalPlaces(this.stepValue);
-
+	
 				for (var i=0; i<=this.steps; i++){
 					this.yLabels.push(template(this.templateString,{value:(this.min + (i * this.stepValue)).toFixed(stepDecimalPlaces)}));
 				}
@@ -2899,8 +2611,8 @@ webpackJsonp([1],{
 				 *
 				 * https://dl.dropboxusercontent.com/u/34601363/yeahscience.gif
 				 */
-
-
+	
+	
 				// Get maximum radius of the polygon. Either half the height (minus the text width) or half the width.
 				// Use this to calculate the offset + change. - Make sure L/R protrusion is at least 0 to stop issues with centre points
 				var largestPossibleRadius = min([(this.height/2 - this.pointLabelFontSize - 5), this.width/2]),
@@ -2953,43 +2665,43 @@ webpackJsonp([1],{
 						}
 					}
 				}
-
+	
 				xProtrusionLeft = furthestLeft;
-
+	
 				xProtrusionRight = Math.ceil(furthestRight - this.width);
-
+	
 				furthestRightAngle = this.getIndexAngle(furthestRightIndex);
-
+	
 				furthestLeftAngle = this.getIndexAngle(furthestLeftIndex);
-
+	
 				radiusReductionRight = xProtrusionRight / Math.sin(furthestRightAngle + Math.PI/2);
-
+	
 				radiusReductionLeft = xProtrusionLeft / Math.sin(furthestLeftAngle + Math.PI/2);
-
+	
 				// Ensure we actually need to reduce the size of the chart
 				radiusReductionRight = (isNumber(radiusReductionRight)) ? radiusReductionRight : 0;
 				radiusReductionLeft = (isNumber(radiusReductionLeft)) ? radiusReductionLeft : 0;
-
+	
 				this.drawingArea = largestPossibleRadius - (radiusReductionLeft + radiusReductionRight)/2;
-
+	
 				//this.drawingArea = min([maxWidthRadius, (this.height - (2 * (this.pointLabelFontSize + 5)))/2])
 				this.setCenterPoint(radiusReductionLeft, radiusReductionRight);
-
+	
 			},
 			setCenterPoint: function(leftMovement, rightMovement){
-
+	
 				var maxRight = this.width - rightMovement - this.drawingArea,
 					maxLeft = leftMovement + this.drawingArea;
-
+	
 				this.xCenter = (maxLeft + maxRight)/2;
 				// Always vertically in the centre as the text height doesn't change
 				this.yCenter = (this.height/2);
 			},
-
+	
 			getIndexAngle : function(index){
 				var angleMultiplier = (Math.PI * 2) / this.valuesCount;
 				// Start from the top instead of right, so remove a quarter of the circle
-
+	
 				return index * angleMultiplier - (Math.PI/2);
 			},
 			getPointPosition : function(index, distanceFromCenter){
@@ -3008,12 +2720,12 @@ webpackJsonp([1],{
 							var yCenterOffset = index * (this.drawingArea/this.steps),
 								yHeight = this.yCenter - yCenterOffset,
 								pointPosition;
-
+	
 							// Draw circular lines around the scale
 							if (this.lineWidth > 0){
 								ctx.strokeStyle = this.lineColor;
 								ctx.lineWidth = this.lineWidth;
-
+	
 								if(this.lineArc){
 									ctx.beginPath();
 									ctx.arc(this.xCenter, this.yCenter, yCenterOffset, 0, Math.PI*2);
@@ -3053,13 +2765,13 @@ webpackJsonp([1],{
 							}
 						}
 					}, this);
-
+	
 					if (!this.lineArc){
 						ctx.lineWidth = this.angleLineWidth;
 						ctx.strokeStyle = this.angleLineColor;
 						for (var i = this.valuesCount - 1; i >= 0; i--) {
 							var centerOffset = null, outerPosition = null;
-
+	
 							if (this.angleLineWidth > 0 && (i % this.angleLineInterval === 0)){
 								centerOffset = this.calculateCenterOffset(this.max);
 								outerPosition = this.getPointPosition(i, centerOffset);
@@ -3069,20 +2781,20 @@ webpackJsonp([1],{
 								ctx.stroke();
 								ctx.closePath();
 							}
-
+	
 							if (this.backgroundColors && this.backgroundColors.length == this.valuesCount) {
 								if (centerOffset == null)
 									centerOffset = this.calculateCenterOffset(this.max);
-
+	
 								if (outerPosition == null)
 									outerPosition = this.getPointPosition(i, centerOffset);
-
+	
 								var previousOuterPosition = this.getPointPosition(i === 0 ? this.valuesCount - 1 : i - 1, centerOffset);
 								var nextOuterPosition = this.getPointPosition(i === this.valuesCount - 1 ? 0 : i + 1, centerOffset);
-
+	
 								var previousOuterHalfway = { x: (previousOuterPosition.x + outerPosition.x) / 2, y: (previousOuterPosition.y + outerPosition.y) / 2 };
 								var nextOuterHalfway = { x: (outerPosition.x + nextOuterPosition.x) / 2, y: (outerPosition.y + nextOuterPosition.y) / 2 };
-
+	
 								ctx.beginPath();
 								ctx.moveTo(this.xCenter, this.yCenter);
 								ctx.lineTo(previousOuterHalfway.x, previousOuterHalfway.y);
@@ -3096,7 +2808,7 @@ webpackJsonp([1],{
 							var pointLabelPosition = this.getPointPosition(i, this.calculateCenterOffset(this.max) + 5);
 							ctx.font = fontString(this.pointLabelFontSize,this.pointLabelFontStyle,this.pointLabelFontFamily);
 							ctx.fillStyle = this.pointLabelFontColor;
-
+	
 							var labelsCount = this.labels.length,
 								halfLabelsCount = this.labels.length/2,
 								quarterLabelsCount = halfLabelsCount/2,
@@ -3111,7 +2823,7 @@ webpackJsonp([1],{
 							} else {
 								ctx.textAlign = 'right';
 							}
-
+	
 							// Set the correct text baseline based on outer positioning
 							if (exactQuarter){
 								ctx.textBaseline = 'middle';
@@ -3120,14 +2832,14 @@ webpackJsonp([1],{
 							} else {
 								ctx.textBaseline = 'top';
 							}
-
+	
 							ctx.fillText(this.labels[i], pointLabelPosition.x, pointLabelPosition.y);
 						}
 					}
 				}
 			}
 		});
-
+	
 		Chart.animationService = {
 			frameDuration: 17,
 			animations: [],
@@ -3140,12 +2852,12 @@ webpackJsonp([1],{
 						return;
 					}
 				}
-
+				
 				this.animations.push({
 					chartInstance: chartInstance,
 					animationObject: animationObject
 				});
-
+	
 				// If there are no animations queued, manually kickstart a digest, for lack of a better word
 				if (this.animations.length == 1) {
 					helpers.requestAnimFrame.call(window, this.digestWrapper);
@@ -3156,7 +2868,7 @@ webpackJsonp([1],{
 				var index = helpers.findNextWhere(this.animations, function(animationWrapper) {
 					return animationWrapper.chartInstance === chartInstance;
 				});
-
+				
 				if (index)
 				{
 					this.animations.splice(index, 1);
@@ -3167,28 +2879,28 @@ webpackJsonp([1],{
 				Chart.animationService.startDigest.call(Chart.animationService);
 			},
 			startDigest: function() {
-
+	
 				var startTime = Date.now();
 				var framesToDrop = 0;
-
+	
 				if(this.dropFrames > 1){
 					framesToDrop = Math.floor(this.dropFrames);
 					this.dropFrames -= framesToDrop;
 				}
-
+	
 				for (var i = 0; i < this.animations.length; i++) {
-
+	
 					if (this.animations[i].animationObject.currentStep === null){
 						this.animations[i].animationObject.currentStep = 0;
 					}
-
+	
 					this.animations[i].animationObject.currentStep += 1 + framesToDrop;
 					if(this.animations[i].animationObject.currentStep > this.animations[i].animationObject.numSteps){
 						this.animations[i].animationObject.currentStep = this.animations[i].animationObject.numSteps;
 					}
-
+					
 					this.animations[i].animationObject.render(this.animations[i].chartInstance, this.animations[i].animationObject);
-
+					
 					// Check if executed the last frame.
 					if (this.animations[i].animationObject.currentStep == this.animations[i].animationObject.numSteps){
 						// Call onAnimationComplete
@@ -3199,22 +2911,22 @@ webpackJsonp([1],{
 						i--;
 					}
 				}
-
+	
 				var endTime = Date.now();
 				var delay = endTime - startTime - this.frameDuration;
 				var frameDelay = delay / this.frameDuration;
-
+	
 				if(frameDelay > 1){
 					this.dropFrames += frameDelay;
 				}
-
+	
 				// Do we have more stuff to animate?
 				if (this.animations.length > 0){
 					helpers.requestAnimFrame.call(window, this.digestWrapper);
 				}
 			}
 		};
-
+	
 		// Attach global event to resize each chart instance when the browser resizes
 		helpers.addEvent(window, "resize", (function(){
 			// Basic debounce of resize function so it doesn't hurt performance when resizing browser.
@@ -3232,8 +2944,8 @@ webpackJsonp([1],{
 				}, 50);
 			};
 		})());
-
-
+	
+	
 		if (amd) {
 			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function(){
 				return Chart;
@@ -3241,69 +2953,69 @@ webpackJsonp([1],{
 		} else if (typeof module === 'object' && module.exports) {
 			module.exports = Chart;
 		}
-
+	
 		root.Chart = Chart;
-
+	
 		Chart.noConflict = function(){
 			root.Chart = previous;
 			return Chart;
 		};
-
+	
 	}).call(this);
-
+	
 	(function(){
 		"use strict";
-
+	
 		var root = this,
 			Chart = root.Chart,
 			helpers = Chart.helpers;
-
-
+	
+	
 		var defaultConfig = {
 			//Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
 			scaleBeginAtZero : true,
-
+	
 			//Boolean - Whether grid lines are shown across the chart
 			scaleShowGridLines : true,
-
+	
 			//String - Colour of the grid lines
 			scaleGridLineColor : "rgba(0,0,0,.05)",
-
+	
 			//Number - Width of the grid lines
 			scaleGridLineWidth : 1,
-
+	
 			//Boolean - Whether to show horizontal lines (except X axis)
 			scaleShowHorizontalLines: true,
-
+	
 			//Boolean - Whether to show vertical lines (except Y axis)
 			scaleShowVerticalLines: true,
-
+	
 			//Boolean - If there is a stroke on each bar
 			barShowStroke : true,
-
+	
 			//Number - Pixel width of the bar stroke
 			barStrokeWidth : 2,
-
+	
 			//Number - Spacing between each of the X value sets
 			barValueSpacing : 5,
-
+	
 			//Number - Spacing between data sets within X values
 			barDatasetSpacing : 1,
-
+	
 			//String - A legend template
 			legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"<%=name.toLowerCase()%>-legend-icon\" style=\"background-color:<%=datasets[i].fillColor%>\"></span><span class=\"<%=name.toLowerCase()%>-legend-text\"><%if(datasets[i].label){%><%=datasets[i].label%><%}%></span></li><%}%></ul>"
-
+	
 		};
-
-
+	
+	
 		Chart.Type.extend({
 			name: "Bar",
 			defaults : defaultConfig,
 			initialize:  function(data){
-
+	
 				//Expose options as a scope variable here so we can access it in the ScaleClass
 				var options = this.options;
-
+	
 				this.ScaleClass = Chart.Scale.extend({
 					offsetGridLines : true,
 					calculateBarX : function(datasetCount, datasetIndex, barIndex){
@@ -3311,7 +3023,7 @@ webpackJsonp([1],{
 						var xWidth = this.calculateBaseWidth(),
 							xAbsolute = this.calculateX(barIndex) - (xWidth/2),
 							barWidth = this.calculateBarWidth(datasetCount);
-
+	
 						return xAbsolute + (barWidth * datasetIndex) + (datasetIndex * options.barDatasetSpacing) + barWidth/2;
 					},
 					calculateBaseWidth : function(){
@@ -3320,18 +3032,18 @@ webpackJsonp([1],{
 					calculateBarWidth : function(datasetCount){
 						//The padding between datasets is to the right of each bar, providing that there are more than 1 dataset
 						var baseWidth = this.calculateBaseWidth() - ((datasetCount - 1) * options.barDatasetSpacing);
-
+	
 						return (baseWidth / datasetCount);
 					}
 				});
-
+	
 				this.datasets = [];
-
+	
 				//Set up tooltip events on the chart
 				if (this.options.showTooltips){
 					helpers.bindEvents(this, this.options.tooltipEvents, function(evt){
 						var activeBars = (evt.type !== 'mouseout') ? this.getBarsAtEvent(evt) : [];
-
+	
 						this.eachBars(function(bar){
 							bar.restore(['fillColor', 'strokeColor']);
 						});
@@ -3344,26 +3056,26 @@ webpackJsonp([1],{
 						this.showTooltip(activeBars);
 					});
 				}
-
+	
 				//Declare the extension of the default point, to cater for the options passed in to the constructor
 				this.BarClass = Chart.Rectangle.extend({
 					strokeWidth : this.options.barStrokeWidth,
 					showStroke : this.options.barShowStroke,
 					ctx : this.chart.ctx
 				});
-
+	
 				//Iterate through each of the datasets, and build this into a property of the chart
 				helpers.each(data.datasets,function(dataset,datasetIndex){
-
+	
 					var datasetObject = {
 						label : dataset.label || null,
 						fillColor : dataset.fillColor,
 						strokeColor : dataset.strokeColor,
 						bars : []
 					};
-
+	
 					this.datasets.push(datasetObject);
-
+	
 					helpers.each(dataset.data,function(dataPoint,index){
 						//Add a new point for each piece of data, passing any required data to draw.
 						datasetObject.bars.push(new this.BarClass({
@@ -3376,13 +3088,13 @@ webpackJsonp([1],{
 							highlightStroke : (dataset.highlightStroke) ? (typeof dataset.highlightStroke == 'object') ? dataset.highlightStroke[index] : dataset.highlightStroke : (typeof dataset.strokeColor == 'object') ? dataset.strokeColor[index] : dataset.strokeColor
 						}));
 					},this);
-
+	
 				},this);
-
+	
 				this.buildScale(data.labels);
-
+	
 				this.BarClass.prototype.base = this.scale.endPoint;
-
+	
 				this.eachBars(function(bar, index, datasetIndex){
 					helpers.extend(bar, {
 						width : this.scale.calculateBarWidth(this.datasets.length),
@@ -3391,7 +3103,7 @@ webpackJsonp([1],{
 					});
 					bar.save();
 				}, this);
-
+	
 				this.render();
 			},
 			update : function(){
@@ -3400,7 +3112,7 @@ webpackJsonp([1],{
 				helpers.each(this.activeElements, function(activeElement){
 					activeElement.restore(['fillColor', 'strokeColor']);
 				});
-
+	
 				this.eachBars(function(bar){
 					bar.save();
 				});
@@ -3418,7 +3130,7 @@ webpackJsonp([1],{
 						barsArray.push(dataset.bars[barIndex]);
 					},
 					barIndex;
-
+	
 				for (var datasetIndex = 0; datasetIndex < this.datasets.length; datasetIndex++) {
 					for (barIndex = 0; barIndex < this.datasets[datasetIndex].bars.length; barIndex++) {
 						if (this.datasets[datasetIndex].bars[barIndex].inRange(eventPosition.x,eventPosition.y)){
@@ -3427,12 +3139,12 @@ webpackJsonp([1],{
 						}
 					}
 				}
-
+	
 				return barsArray;
 			},
 			buildScale : function(labels){
 				var self = this;
-
+	
 				var dataTotal = function(){
 					var values = [];
 					self.eachBars(function(bar){
@@ -3440,7 +3152,7 @@ webpackJsonp([1],{
 					});
 					return values;
 				};
-
+	
 				var scaleOptions = {
 					templateString : this.options.scaleLabel,
 					height : this.chart.height,
@@ -3475,7 +3187,7 @@ webpackJsonp([1],{
 					showLabels : this.options.scaleShowLabels,
 					display : this.options.showScale
 				};
-
+	
 				if (this.options.scaleOverride){
 					helpers.extend(scaleOptions, {
 						calculateYRange: helpers.noop,
@@ -3485,7 +3197,7 @@ webpackJsonp([1],{
 						max: this.options.scaleStartValue + (this.options.scaleSteps * this.options.scaleStepWidth)
 					});
 				}
-
+	
 				this.scale = new this.ScaleClass(scaleOptions);
 			},
 			addData : function(valuesArray,label){
@@ -3504,7 +3216,7 @@ webpackJsonp([1],{
 						fillColor : this.datasets[datasetIndex].fillColor
 					}));
 				},this);
-
+	
 				this.scale.addXLabel(label);
 				//Then re-render the chart.
 				this.update();
@@ -3531,11 +3243,11 @@ webpackJsonp([1],{
 			draw : function(ease){
 				var easingDecimal = ease || 1;
 				this.clear();
-
+	
 				var ctx = this.chart.ctx;
-
+	
 				this.scale.draw(easingDecimal);
-
+	
 				//Draw all the bars for each dataset
 				helpers.each(this.datasets,function(dataset,datasetIndex){
 					helpers.each(dataset.bars,function(bar,index){
@@ -3549,52 +3261,52 @@ webpackJsonp([1],{
 							}, easingDecimal).draw();
 						}
 					},this);
-
+	
 				},this);
 			}
 		});
-
-
+	
+	
 	}).call(this);
-
+	
 	(function(){
 		"use strict";
-
+	
 		var root = this,
 			Chart = root.Chart,
 			//Cache a local reference to Chart.helpers
 			helpers = Chart.helpers;
-
+	
 		var defaultConfig = {
 			//Boolean - Whether we should show a stroke on each segment
 			segmentShowStroke : true,
-
+	
 			//String - The colour of each segment stroke
 			segmentStrokeColor : "#fff",
-
+	
 			//Number - The width of each segment stroke
 			segmentStrokeWidth : 2,
-
+	
 			//The percentage of the chart that we cut out of the middle.
 			percentageInnerCutout : 50,
-
+	
 			//Number - Amount of animation steps
 			animationSteps : 100,
-
+	
 			//String - Animation easing effect
 			animationEasing : "easeOutBounce",
-
+	
 			//Boolean - Whether we animate the rotation of the Doughnut
 			animateRotate : true,
-
+	
 			//Boolean - Whether we animate scaling the Doughnut from the centre
 			animateScale : false,
-
+	
 			//String - A legend template
 			legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span class=\"<%=name.toLowerCase()%>-legend-icon\" style=\"background-color:<%=segments[i].fillColor%>\"></span><span class=\"<%=name.toLowerCase()%>-legend-text\"><%if(segments[i].label){%><%=segments[i].label%><%}%></span></li><%}%></ul>"
-
+	
 		};
-
+	
 		Chart.Type.extend({
 			//Passing in a name registers this chart in the Chart namespace
 			name: "Doughnut",
@@ -3603,22 +3315,22 @@ webpackJsonp([1],{
 			//Initialize is fired when the chart is initialized - Data is passed in as a parameter
 			//Config is automatically merged by the core of Chart.js, and is available at this.options
 			initialize:  function(data){
-
+	
 				//Declare segments as a static property to prevent inheriting across the Chart type prototype
 				this.segments = [];
 				this.outerRadius = (helpers.min([this.chart.width,this.chart.height]) -	this.options.segmentStrokeWidth/2)/2;
-
+	
 				this.SegmentArc = Chart.Arc.extend({
 					ctx : this.chart.ctx,
 					x : this.chart.width/2,
 					y : this.chart.height/2
 				});
-
+	
 				//Set up tooltip events on the chart
 				if (this.options.showTooltips){
 					helpers.bindEvents(this, this.options.tooltipEvents, function(evt){
 						var activeSegments = (evt.type !== 'mouseout') ? this.getSegmentsAtEvent(evt) : [];
-
+	
 						helpers.each(this.segments,function(segment){
 							segment.restore(["fillColor"]);
 						});
@@ -3629,21 +3341,21 @@ webpackJsonp([1],{
 					});
 				}
 				this.calculateTotal(data);
-
+	
 				helpers.each(data,function(datapoint, index){
 					if (!datapoint.color) {
 						datapoint.color = 'hsl(' + (360 * index / data.length) + ', 100%, 50%)';
 					}
 					this.addData(datapoint, index, true);
 				},this);
-
+	
 				this.render();
 			},
 			getSegmentsAtEvent : function(e){
 				var segmentsArray = [];
-
+	
 				var location = helpers.getRelativePosition(e);
-
+	
 				helpers.each(this.segments,function(segment){
 					if (segment.inRange(location.x,location.y)) segmentsArray.push(segment);
 				},this);
@@ -3653,7 +3365,7 @@ webpackJsonp([1],{
 				var index = atIndex !== undefined ? atIndex : this.segments.length;
 				if ( typeof(segment.color) === "undefined" ) {
 					segment.color = Chart.defaults.global.segmentColorDefault[index % Chart.defaults.global.segmentColorDefault.length];
-					segment.highlight = Chart.defaults.global.segmentHighlightColorDefaults[index % Chart.defaults.global.segmentHighlightColorDefaults.length];
+					segment.highlight = Chart.defaults.global.segmentHighlightColorDefaults[index % Chart.defaults.global.segmentHighlightColorDefaults.length];				
 				}
 				this.segments.splice(index, 0, new this.SegmentArc({
 					value : segment.value,
@@ -3688,25 +3400,25 @@ webpackJsonp([1],{
 			},
 			update : function(){
 				this.calculateTotal(this.segments);
-
+	
 				// Reset any highlight colours before updating.
 				helpers.each(this.activeElements, function(activeElement){
 					activeElement.restore(['fillColor']);
 				});
-
+	
 				helpers.each(this.segments,function(segment){
 					segment.save();
 				});
 				this.render();
 			},
-
+	
 			removeData: function(atIndex){
 				var indexToDelete = (helpers.isNumber(atIndex)) ? atIndex : this.segments.length-1;
 				this.segments.splice(indexToDelete, 1);
 				this.reflow();
 				this.update();
 			},
-
+	
 			reflow : function(){
 				helpers.extend(this.SegmentArc.prototype,{
 					x : this.chart.width/2,
@@ -3729,9 +3441,9 @@ webpackJsonp([1],{
 						outerRadius : this.outerRadius,
 						innerRadius : (this.outerRadius/100) * this.options.percentageInnerCutout
 					},animDecimal);
-
+	
 					segment.endAngle = segment.startAngle + segment.circumference;
-
+	
 					segment.draw();
 					if (index === 0){
 						segment.startAngle = Math.PI * 1.5;
@@ -3741,77 +3453,77 @@ webpackJsonp([1],{
 						this.segments[index+1].startAngle = segment.endAngle;
 					}
 				},this);
-
+	
 			}
 		});
-
+	
 		Chart.types.Doughnut.extend({
 			name : "Pie",
 			defaults : helpers.merge(defaultConfig,{percentageInnerCutout : 0})
 		});
-
+	
 	}).call(this);
-
+	
 	(function(){
 		"use strict";
-
+	
 		var root = this,
 			Chart = root.Chart,
 			helpers = Chart.helpers;
-
+	
 		var defaultConfig = {
-
+	
 			///Boolean - Whether grid lines are shown across the chart
 			scaleShowGridLines : true,
-
+	
 			//String - Colour of the grid lines
 			scaleGridLineColor : "rgba(0,0,0,.05)",
-
+	
 			//Number - Width of the grid lines
 			scaleGridLineWidth : 1,
-
+	
 			//Boolean - Whether to show horizontal lines (except X axis)
 			scaleShowHorizontalLines: true,
-
+	
 			//Boolean - Whether to show vertical lines (except Y axis)
 			scaleShowVerticalLines: true,
-
+	
 			//Boolean - Whether the line is curved between points
 			bezierCurve : true,
-
+	
 			//Number - Tension of the bezier curve between points
 			bezierCurveTension : 0.4,
-
+	
 			//Boolean - Whether to show a dot for each point
 			pointDot : true,
-
+	
 			//Number - Radius of each point dot in pixels
 			pointDotRadius : 4,
-
+	
 			//Number - Pixel width of point dot stroke
 			pointDotStrokeWidth : 1,
-
+	
 			//Number - amount extra to add to the radius to cater for hit detection outside the drawn point
 			pointHitDetectionRadius : 20,
-
+	
 			//Boolean - Whether to show a stroke for datasets
 			datasetStroke : true,
-
+	
 			//Number - Pixel width of dataset stroke
 			datasetStrokeWidth : 2,
-
+	
 			//Boolean - Whether to fill the dataset with a colour
 			datasetFill : true,
-
+	
 			//String - A legend template
 			legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"<%=name.toLowerCase()%>-legend-icon\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><span class=\"<%=name.toLowerCase()%>-legend-text\"><%if(datasets[i].label){%><%=datasets[i].label%><%}%></span></li><%}%></ul>",
-
+	
 			//Boolean - Whether to horizontally center the label and point dot inside the grid
 			offsetGridLines : false
-
+	
 		};
-
-
+	
+	
 		Chart.Type.extend({
 			name: "Line",
 			defaults : defaultConfig,
@@ -3828,9 +3540,9 @@ webpackJsonp([1],{
 						return (Math.pow(mouseX-this.x, 2) < Math.pow(this.radius + this.hitDetectionRadius,2));
 					}
 				});
-
+	
 				this.datasets = [];
-
+	
 				//Set up tooltip events on the chart
 				if (this.options.showTooltips){
 					helpers.bindEvents(this, this.options.tooltipEvents, function(evt){
@@ -3845,10 +3557,10 @@ webpackJsonp([1],{
 						this.showTooltip(activePoints);
 					});
 				}
-
+	
 				//Iterate through each of the datasets, and build this into a property of the chart
 				helpers.each(data.datasets,function(dataset){
-
+	
 					var datasetObject = {
 						label : dataset.label || null,
 						fillColor : dataset.fillColor,
@@ -3857,10 +3569,10 @@ webpackJsonp([1],{
 						pointStrokeColor : dataset.pointStrokeColor,
 						points : []
 					};
-
+	
 					this.datasets.push(datasetObject);
-
-
+	
+	
 					helpers.each(dataset.data,function(dataPoint,index){
 						//Add a new point for each piece of data, passing any required data to draw.
 						datasetObject.points.push(new this.PointClass({
@@ -3873,10 +3585,10 @@ webpackJsonp([1],{
 							highlightStroke : dataset.pointHighlightStroke || dataset.pointStrokeColor
 						}));
 					},this);
-
+	
 					this.buildScale(data.labels);
-
-
+	
+	
 					this.eachPoints(function(point, index){
 						helpers.extend(point, {
 							x: this.scale.calculateX(index),
@@ -3884,10 +3596,10 @@ webpackJsonp([1],{
 						});
 						point.save();
 					}, this);
-
+	
 				},this);
-
-
+	
+	
 				this.render();
 			},
 			update : function(){
@@ -3918,16 +3630,16 @@ webpackJsonp([1],{
 			},
 			buildScale : function(labels){
 				var self = this;
-
+	
 				var dataTotal = function(){
 					var values = [];
 					self.eachPoints(function(point){
 						values.push(point.value);
 					});
-
+	
 					return values;
 				};
-
+	
 				var scaleOptions = {
 					templateString : this.options.scaleLabel,
 					height : this.chart.height,
@@ -3963,7 +3675,7 @@ webpackJsonp([1],{
 					showLabels : this.options.scaleShowLabels,
 					display : this.options.showScale
 				};
-
+	
 				if (this.options.scaleOverride){
 					helpers.extend(scaleOptions, {
 						calculateYRange: helpers.noop,
@@ -3973,13 +3685,13 @@ webpackJsonp([1],{
 						max: this.options.scaleStartValue + (this.options.scaleSteps * this.options.scaleStepWidth)
 					});
 				}
-
-
+	
+	
 				this.scale = new Chart.Scale(scaleOptions);
 			},
 			addData : function(valuesArray,label){
 				//Map the values array for each of the datasets
-
+	
 				helpers.each(valuesArray,function(value,datasetIndex){
 					//Add a new point for each piece of data, passing any required data to draw.
 					this.datasets[datasetIndex].points.push(new this.PointClass({
@@ -3992,7 +3704,7 @@ webpackJsonp([1],{
 						fillColor : this.datasets[datasetIndex].pointColor
 					}));
 				},this);
-
+	
 				this.scale.addXLabel(label);
 				//Then re-render the chart.
 				this.update();
@@ -4015,9 +3727,9 @@ webpackJsonp([1],{
 			draw : function(ease){
 				var easingDecimal = ease || 1;
 				this.clear();
-
+	
 				var ctx = this.chart.ctx;
-
+	
 				// Some helper methods for getting the next/prev points
 				var hasValue = function(item){
 					return item.value !== null;
@@ -4028,17 +3740,17 @@ webpackJsonp([1],{
 				previousPoint = function(point, collection, index){
 					return helpers.findPreviousWhere(collection, hasValue, index) || point;
 				};
-
+	
 				if (!this.scale) return;
 				this.scale.draw(easingDecimal);
-
-
+	
+	
 				helpers.each(this.datasets,function(dataset){
 					var pointsWithValues = helpers.where(dataset.points, hasValue);
-
+	
 					//Transition each point first so that the line and point drawing isn't out of sync
 					//We can use this extra loop to calculate the control points of this dataset also in this loop
-
+	
 					helpers.each(dataset.points, function(point, index){
 						if (point.hasValue()){
 							point.transition({
@@ -4047,8 +3759,8 @@ webpackJsonp([1],{
 							}, easingDecimal);
 						}
 					},this);
-
-
+	
+	
 					// Control points need to be calculated in a separate loop, because we need to know the current x/y of the point
 					// This would cause issues when there is no animation, because the y of the next point would be 0, so beziers would be skewed
 					if (this.options.bezierCurve){
@@ -4060,9 +3772,9 @@ webpackJsonp([1],{
 								nextPoint(point, pointsWithValues, index),
 								tension
 							);
-
+	
 							// Prevent the bezier going outside of the bounds of the graph
-
+	
 							// Cap puter bezier handles to the upper/lower scale bounds
 							if (point.controlPoints.outer.y > this.scale.endPoint){
 								point.controlPoints.outer.y = this.scale.endPoint;
@@ -4070,7 +3782,7 @@ webpackJsonp([1],{
 							else if (point.controlPoints.outer.y < this.scale.startPoint){
 								point.controlPoints.outer.y = this.scale.startPoint;
 							}
-
+	
 							// Cap inner bezier handles to the upper/lower scale bounds
 							if (point.controlPoints.inner.y > this.scale.endPoint){
 								point.controlPoints.inner.y = this.scale.endPoint;
@@ -4080,13 +3792,13 @@ webpackJsonp([1],{
 							}
 						},this);
 					}
-
-
+	
+	
 					//Draw the line between all the points
 					ctx.lineWidth = this.options.datasetStrokeWidth;
 					ctx.strokeStyle = dataset.strokeColor;
 					ctx.beginPath();
-
+	
 					helpers.each(pointsWithValues, function(point, index){
 						if (index === 0){
 							ctx.moveTo(point.x, point.y);
@@ -4094,7 +3806,7 @@ webpackJsonp([1],{
 						else{
 							if(this.options.bezierCurve){
 								var previous = previousPoint(point, pointsWithValues, index);
-
+	
 								ctx.bezierCurveTo(
 									previous.controlPoints.outer.x,
 									previous.controlPoints.outer.y,
@@ -4109,11 +3821,11 @@ webpackJsonp([1],{
 							}
 						}
 					}, this);
-
+	
 					if (this.options.datasetStroke) {
 						ctx.stroke();
 					}
-
+	
 					if (this.options.datasetFill && pointsWithValues.length > 0){
 						//Round off the line by going to the base of the chart, back to the start, then fill.
 						ctx.lineTo(pointsWithValues[pointsWithValues.length - 1].x, this.scale.endPoint);
@@ -4122,7 +3834,7 @@ webpackJsonp([1],{
 						ctx.closePath();
 						ctx.fill();
 					}
-
+	
 					//Now draw the points over the line
 					//A little inefficient double looping, but better than the line
 					//lagging behind the point positions
@@ -4132,63 +3844,63 @@ webpackJsonp([1],{
 				},this);
 			}
 		});
-
-
+	
+	
 	}).call(this);
-
+	
 	(function(){
 		"use strict";
-
+	
 		var root = this,
 			Chart = root.Chart,
 			//Cache a local reference to Chart.helpers
 			helpers = Chart.helpers;
-
+	
 		var defaultConfig = {
 			//Boolean - Show a backdrop to the scale label
 			scaleShowLabelBackdrop : true,
-
+	
 			//String - The colour of the label backdrop
 			scaleBackdropColor : "rgba(255,255,255,0.75)",
-
+	
 			// Boolean - Whether the scale should begin at zero
 			scaleBeginAtZero : true,
-
+	
 			//Number - The backdrop padding above & below the label in pixels
 			scaleBackdropPaddingY : 2,
-
+	
 			//Number - The backdrop padding to the side of the label in pixels
 			scaleBackdropPaddingX : 2,
-
+	
 			//Boolean - Show line for each value in the scale
 			scaleShowLine : true,
-
+	
 			//Boolean - Stroke a line around each segment in the chart
 			segmentShowStroke : true,
-
+	
 			//String - The colour of the stroke on each segment.
 			segmentStrokeColor : "#fff",
-
+	
 			//Number - The width of the stroke value in pixels
 			segmentStrokeWidth : 2,
-
+	
 			//Number - Amount of animation steps
 			animationSteps : 100,
-
+	
 			//String - Animation easing effect.
 			animationEasing : "easeOutBounce",
-
+	
 			//Boolean - Whether to animate the rotation of the chart
 			animateRotate : true,
-
+	
 			//Boolean - Whether to animate scaling the chart from the centre
 			animateScale : false,
-
+	
 			//String - A legend template
 			legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span class=\"<%=name.toLowerCase()%>-legend-icon\" style=\"background-color:<%=segments[i].fillColor%>\"></span><span class=\"<%=name.toLowerCase()%>-legend-text\"><%if(segments[i].label){%><%=segments[i].label%><%}%></span></li><%}%></ul>"
 		};
-
-
+	
+	
 		Chart.Type.extend({
 			//Passing in a name registers this chart in the Chart namespace
 			name: "PolarArea",
@@ -4230,15 +3942,15 @@ webpackJsonp([1],{
 					templateString: this.options.scaleLabel,
 					valuesCount: data.length
 				});
-
+	
 				this.updateScaleRange(data);
-
+	
 				this.scale.update();
-
+	
 				helpers.each(data,function(segment,index){
 					this.addData(segment,index,true);
 				},this);
-
+	
 				//Set up tooltip events on the chart
 				if (this.options.showTooltips){
 					helpers.bindEvents(this, this.options.tooltipEvents, function(evt){
@@ -4252,14 +3964,14 @@ webpackJsonp([1],{
 						this.showTooltip(activeSegments);
 					});
 				}
-
+	
 				this.render();
 			},
 			getSegmentsAtEvent : function(e){
 				var segmentsArray = [];
-
+	
 				var location = helpers.getRelativePosition(e);
-
+	
 				helpers.each(this.segments,function(segment){
 					if (segment.inRange(location.x,location.y)) segmentsArray.push(segment);
 				},this);
@@ -4267,7 +3979,7 @@ webpackJsonp([1],{
 			},
 			addData : function(segment, atIndex, silent){
 				var index = atIndex || this.segments.length;
-
+	
 				this.segments.splice(index, 0, new this.SegmentArc({
 					fillColor: segment.color,
 					highlightColor: segment.highlight || segment.color,
@@ -4300,7 +4012,7 @@ webpackJsonp([1],{
 				helpers.each(datapoints,function(segment){
 					valuesArray.push(segment.value);
 				});
-
+	
 				var scaleSizes = (this.options.scaleOverride) ?
 					{
 						steps: this.options.scaleSteps,
@@ -4315,7 +4027,7 @@ webpackJsonp([1],{
 						this.options.scaleBeginAtZero,
 						this.options.scaleIntegersOnly
 					);
-
+	
 				helpers.extend(
 					this.scale,
 					scaleSizes,
@@ -4325,15 +4037,15 @@ webpackJsonp([1],{
 						yCenter: this.chart.height/2
 					}
 				);
-
+	
 			},
 			update : function(){
 				this.calculateTotal(this.segments);
-
+	
 				helpers.each(this.segments,function(segment){
 					segment.save();
 				});
-
+				
 				this.reflow();
 				this.render();
 			},
@@ -4344,18 +4056,18 @@ webpackJsonp([1],{
 				});
 				this.updateScaleRange(this.segments);
 				this.scale.update();
-
+	
 				helpers.extend(this.scale,{
 					xCenter: this.chart.width/2,
 					yCenter: this.chart.height/2
 				});
-
+	
 				helpers.each(this.segments, function(segment){
 					segment.update({
 						outerRadius : this.scale.calculateCenterOffset(segment.value)
 					});
 				}, this);
-
+	
 			},
 			draw : function(ease){
 				var easingDecimal = ease || 1;
@@ -4366,15 +4078,15 @@ webpackJsonp([1],{
 						circumference : this.scale.getCircumference(),
 						outerRadius : this.scale.calculateCenterOffset(segment.value)
 					},easingDecimal);
-
+	
 					segment.endAngle = segment.startAngle + segment.circumference;
-
+	
 					// If we've removed the first segment we need to set the first one to
 					// start at the top.
 					if (index === 0){
 						segment.startAngle = Math.PI * 1.5;
 					}
-
+	
 					//Check to see if it's the last segment, if not get the next and update the start angle
 					if (index < this.segments.length - 1){
 						this.segments[index+1].startAngle = segment.endAngle;
@@ -4384,80 +4096,80 @@ webpackJsonp([1],{
 				this.scale.draw();
 			}
 		});
-
+	
 	}).call(this);
-
+	
 	(function(){
 		"use strict";
-
+	
 		var root = this,
 			Chart = root.Chart,
 			helpers = Chart.helpers;
-
-
-
+	
+	
+	
 		Chart.Type.extend({
 			name: "Radar",
 			defaults:{
 				//Boolean - Whether to show lines for each scale point
 				scaleShowLine : true,
-
+	
 				//Boolean - Whether we show the angle lines out of the radar
 				angleShowLineOut : true,
-
+	
 				//Boolean - Whether to show labels on the scale
 				scaleShowLabels : false,
-
+	
 				// Boolean - Whether the scale should begin at zero
 				scaleBeginAtZero : true,
-
+	
 				//String - Colour of the angle line
 				angleLineColor : "rgba(0,0,0,.1)",
-
+	
 				//Number - Pixel width of the angle line
 				angleLineWidth : 1,
-
+	
 				//Number - Interval at which to draw angle lines ("every Nth point")
 				angleLineInterval: 1,
-
+	
 				//String - Point label font declaration
 				pointLabelFontFamily : "'Arial'",
-
+	
 				//String - Point label font weight
 				pointLabelFontStyle : "normal",
-
+	
 				//Number - Point label font size in pixels
 				pointLabelFontSize : 10,
-
+	
 				//String - Point label font colour
 				pointLabelFontColor : "#666",
-
+	
 				//Boolean - Whether to show a dot for each point
 				pointDot : true,
-
+	
 				//Number - Radius of each point dot in pixels
 				pointDotRadius : 3,
-
+	
 				//Number - Pixel width of point dot stroke
 				pointDotStrokeWidth : 1,
-
+	
 				//Number - amount extra to add to the radius to cater for hit detection outside the drawn point
 				pointHitDetectionRadius : 20,
-
+	
 				//Boolean - Whether to show a stroke for datasets
 				datasetStroke : true,
-
+	
 				//Number - Pixel width of dataset stroke
 				datasetStrokeWidth : 2,
-
+	
 				//Boolean - Whether to fill the dataset with a colour
 				datasetFill : true,
-
+	
 				//String - A legend template
 				legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span class=\"<%=name.toLowerCase()%>-legend-icon\" style=\"background-color:<%=datasets[i].strokeColor%>\"></span><span class=\"<%=name.toLowerCase()%>-legend-text\"><%if(datasets[i].label){%><%=datasets[i].label%><%}%></span></li><%}%></ul>"
-
+	
 			},
-
+	
 			initialize: function(data){
 				this.PointClass = Chart.Point.extend({
 					strokeWidth : this.options.pointDotStrokeWidth,
@@ -4466,16 +4178,16 @@ webpackJsonp([1],{
 					hitDetectionRadius : this.options.pointHitDetectionRadius,
 					ctx : this.chart.ctx
 				});
-
+	
 				this.datasets = [];
-
+	
 				this.buildScale(data);
-
+	
 				//Set up tooltip events on the chart
 				if (this.options.showTooltips){
 					helpers.bindEvents(this, this.options.tooltipEvents, function(evt){
 						var activePointsCollection = (evt.type !== 'mouseout') ? this.getPointsAtEvent(evt) : [];
-
+	
 						this.eachPoints(function(point){
 							point.restore(['fillColor', 'strokeColor']);
 						});
@@ -4483,14 +4195,14 @@ webpackJsonp([1],{
 							activePoint.fillColor = activePoint.highlightFill;
 							activePoint.strokeColor = activePoint.highlightStroke;
 						});
-
+	
 						this.showTooltip(activePointsCollection);
 					});
 				}
-
+	
 				//Iterate through each of the datasets, and build this into a property of the chart
 				helpers.each(data.datasets,function(dataset){
-
+	
 					var datasetObject = {
 						label: dataset.label || null,
 						fillColor : dataset.fillColor,
@@ -4499,9 +4211,9 @@ webpackJsonp([1],{
 						pointStrokeColor : dataset.pointStrokeColor,
 						points : []
 					};
-
+	
 					this.datasets.push(datasetObject);
-
+	
 					helpers.each(dataset.data,function(dataPoint,index){
 						//Add a new point for each piece of data, passing any required data to draw.
 						var pointPosition;
@@ -4520,9 +4232,9 @@ webpackJsonp([1],{
 							highlightStroke : dataset.pointHighlightStroke || dataset.pointStrokeColor
 						}));
 					},this);
-
+	
 				},this);
-
+	
 				this.render();
 			},
 			eachPoints : function(callback){
@@ -4530,32 +4242,32 @@ webpackJsonp([1],{
 					helpers.each(dataset.points,callback,this);
 				},this);
 			},
-
+	
 			getPointsAtEvent : function(evt){
 				var mousePosition = helpers.getRelativePosition(evt),
 					fromCenter = helpers.getAngleFromPoint({
 						x: this.scale.xCenter,
 						y: this.scale.yCenter
 					}, mousePosition);
-
+	
 				var anglePerIndex = (Math.PI * 2) /this.scale.valuesCount,
 					pointIndex = Math.round((fromCenter.angle - Math.PI * 1.5) / anglePerIndex),
 					activePointsCollection = [];
-
+	
 				// If we're at the top, make the pointIndex 0 to get the first of the array.
 				if (pointIndex >= this.scale.valuesCount || pointIndex < 0){
 					pointIndex = 0;
 				}
-
+	
 				if (fromCenter.distance <= this.scale.drawingArea){
 					helpers.each(this.datasets, function(dataset){
 						activePointsCollection.push(dataset.points[pointIndex]);
 					});
 				}
-
+	
 				return activePointsCollection;
 			},
-
+	
 			buildScale : function(data){
 				this.scale = new Chart.RadialScale({
 					display: this.options.showScale,
@@ -4588,7 +4300,7 @@ webpackJsonp([1],{
 					labels: data.labels,
 					valuesCount: data.datasets[0].data.length
 				});
-
+	
 				this.scale.setScaleSize();
 				this.updateScaleRange(data.datasets);
 				this.scale.buildYLabels();
@@ -4608,8 +4320,8 @@ webpackJsonp([1],{
 					});
 					return totalDataArray;
 				})();
-
-
+	
+	
 				var scaleSizes = (this.options.scaleOverride) ?
 					{
 						steps: this.options.scaleSteps,
@@ -4624,12 +4336,12 @@ webpackJsonp([1],{
 						this.options.scaleBeginAtZero,
 						this.options.scaleIntegersOnly
 					);
-
+	
 				helpers.extend(
 					this.scale,
 					scaleSizes
 				);
-
+	
 			},
 			addData : function(valuesArray,label){
 				//Map the values array for each of the datasets
@@ -4646,11 +4358,11 @@ webpackJsonp([1],{
 						fillColor : this.datasets[datasetIndex].pointColor
 					}));
 				},this);
-
+	
 				this.scale.labels.push(label);
-
+	
 				this.reflow();
-
+	
 				this.update();
 			},
 			removeData : function(){
@@ -4686,18 +4398,18 @@ webpackJsonp([1],{
 					ctx = this.chart.ctx;
 				this.clear();
 				this.scale.draw();
-
+	
 				helpers.each(this.datasets,function(dataset){
-
+	
 					//Transition each point first so that the line and point drawing isn't out of sync
 					helpers.each(dataset.points,function(point,index){
 						if (point.hasValue()){
 							point.transition(this.scale.getPointPosition(index, this.scale.calculateCenterOffset(point.value)), easeDecimal);
 						}
 					},this);
-
-
-
+	
+	
+	
 					//Draw the line between all the points
 					ctx.lineWidth = this.options.datasetStrokeWidth;
 					ctx.strokeStyle = dataset.strokeColor;
@@ -4712,7 +4424,7 @@ webpackJsonp([1],{
 					},this);
 					ctx.closePath();
 					ctx.stroke();
-
+	
 					ctx.fillStyle = dataset.fillColor;
 					if(this.options.datasetFill){
 						ctx.fill();
@@ -4725,17 +4437,17 @@ webpackJsonp([1],{
 							point.draw();
 						}
 					});
-
+	
 				},this);
-
+	
 			}
-
+	
 		});
-
-
-
-
-
+	
+	
+	
+	
+	
 	}).call(this);
 
 
@@ -4745,7 +4457,7 @@ webpackJsonp([1],{
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {module.exports = __webpack_amd_options__;
-
+	
 	/* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ },
@@ -4754,7 +4466,7 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	var vars = __webpack_require__(551);
-
+	
 	module.exports = vars.createClass('Doughnut', ['getSegmentsAtEvent']);
 
 
@@ -4764,7 +4476,7 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	var vars = __webpack_require__(551);
-
+	
 	module.exports = vars.createClass('Line', ['getPointsAtEvent']);
 
 
@@ -4774,7 +4486,7 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	var vars = __webpack_require__(551);
-
+	
 	module.exports = vars.createClass('Pie', ['getSegmentsAtEvent']);
 
 
@@ -4784,7 +4496,7 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	var vars = __webpack_require__(551);
-
+	
 	module.exports = vars.createClass('PolarArea', ['getSegmentsAtEvent']);
 
 
@@ -4794,7 +4506,7 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	var vars = __webpack_require__(551);
-
+	
 	module.exports = vars.createClass('Radar', ['getPointsAtEvent']);
 
 
@@ -4804,13 +4516,13 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
+	
 	var _Filter = __webpack_require__(560);
-
+	
 	var _Filter2 = _interopRequireDefault(_Filter);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -4823,36 +4535,36 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	exports.Filter = undefined;
-
+	
 	var _react = __webpack_require__(24);
-
+	
 	var _react2 = _interopRequireDefault(_react);
-
+	
 	var _SelectField = __webpack_require__(561);
-
+	
 	var _SelectField2 = _interopRequireDefault(_SelectField);
-
+	
 	var _MenuItem = __webpack_require__(514);
-
+	
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
-
+	
 	var _apiConfig = __webpack_require__(538);
-
+	
 	var _apiConfig2 = _interopRequireDefault(_apiConfig);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	var renderOptions = function renderOptions(options) {
 	  return _apiConfig2.default[options].map(function (obj, i) {
 	    return _react2.default.createElement(_MenuItem2.default, { key: i, value: obj.value, primaryText: obj.label });
 	  });
 	};
-
+	
 	var Filter = exports.Filter = function Filter(_ref) {
 	  var handleChange = _ref.handleChange,
 	      value = _ref.value,
@@ -4871,13 +4583,13 @@ webpackJsonp([1],{
 	    )
 	  );
 	};
-
+	
 	Filter.propTypes = {
 	  handleChange: _react2.default.PropTypes.func.isRequired,
 	  value: _react2.default.PropTypes.string.isRequired,
 	  options: _react2.default.PropTypes.string.isRequired
 	};
-
+	
 	exports.default = Filter;
 
 /***/ },
@@ -4886,18 +4598,18 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	exports.default = undefined;
-
+	
 	var _SelectField = __webpack_require__(562);
-
+	
 	var _SelectField2 = _interopRequireDefault(_SelectField);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	exports.default = _SelectField2.default;
 
 /***/ },
@@ -4906,57 +4618,57 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
+	
 	var _extends2 = __webpack_require__(280);
-
+	
 	var _extends3 = _interopRequireDefault(_extends2);
-
+	
 	var _objectWithoutProperties2 = __webpack_require__(459);
-
+	
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
+	
 	var _getPrototypeOf = __webpack_require__(304);
-
+	
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
+	
 	var _classCallCheck2 = __webpack_require__(309);
-
+	
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
+	
 	var _createClass2 = __webpack_require__(310);
-
+	
 	var _createClass3 = _interopRequireDefault(_createClass2);
-
+	
 	var _possibleConstructorReturn2 = __webpack_require__(314);
-
+	
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
+	
 	var _inherits2 = __webpack_require__(348);
-
+	
 	var _inherits3 = _interopRequireDefault(_inherits2);
-
+	
 	var _simpleAssign = __webpack_require__(460);
-
+	
 	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
+	
 	var _react = __webpack_require__(24);
-
+	
 	var _react2 = _interopRequireDefault(_react);
-
+	
 	var _TextField = __webpack_require__(563);
-
+	
 	var _TextField2 = _interopRequireDefault(_TextField);
-
+	
 	var _DropDownMenu = __webpack_require__(569);
-
+	
 	var _DropDownMenu2 = _interopRequireDefault(_DropDownMenu);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	function getStyles(props) {
 	  return {
 	    label: {
@@ -4975,15 +4687,15 @@ webpackJsonp([1],{
 	    }
 	  };
 	}
-
+	
 	var SelectField = function (_Component) {
 	  (0, _inherits3.default)(SelectField, _Component);
-
+	
 	  function SelectField() {
 	    (0, _classCallCheck3.default)(this, SelectField);
 	    return (0, _possibleConstructorReturn3.default)(this, (SelectField.__proto__ || (0, _getPrototypeOf2.default)(SelectField)).apply(this, arguments));
 	  }
-
+	
 	  (0, _createClass3.default)(SelectField, [{
 	    key: 'render',
 	    value: function render() {
@@ -5016,10 +4728,10 @@ webpackJsonp([1],{
 	          onChange = _props.onChange,
 	          value = _props.value,
 	          other = (0, _objectWithoutProperties3.default)(_props, ['autoWidth', 'children', 'style', 'labelStyle', 'iconStyle', 'id', 'underlineDisabledStyle', 'underlineFocusStyle', 'menuItemStyle', 'selectedMenuItemStyle', 'underlineStyle', 'errorStyle', 'disabled', 'floatingLabelFixed', 'floatingLabelText', 'floatingLabelStyle', 'hintStyle', 'hintText', 'fullWidth', 'errorText', 'listStyle', 'maxHeight', 'menuStyle', 'onFocus', 'onBlur', 'onChange', 'value']);
-
-
+	
+	
 	      var styles = getStyles(this.props, this.context);
-
+	
 	      return _react2.default.createElement(
 	        _TextField2.default,
 	        (0, _extends3.default)({}, other, {
@@ -5063,7 +4775,7 @@ webpackJsonp([1],{
 	  }]);
 	  return SelectField;
 	}(_react.Component);
-
+	
 	SelectField.defaultProps = {
 	  autoWidth: false,
 	  disabled: false,
@@ -5197,18 +4909,18 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	exports.default = undefined;
-
+	
 	var _TextField = __webpack_require__(564);
-
+	
 	var _TextField2 = _interopRequireDefault(_TextField);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	exports.default = _TextField2.default;
 
 /***/ },
@@ -5217,81 +4929,81 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
+	
 	var _extends2 = __webpack_require__(280);
-
+	
 	var _extends3 = _interopRequireDefault(_extends2);
-
+	
 	var _objectWithoutProperties2 = __webpack_require__(459);
-
+	
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
+	
 	var _getPrototypeOf = __webpack_require__(304);
-
+	
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
+	
 	var _classCallCheck2 = __webpack_require__(309);
-
+	
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
+	
 	var _createClass2 = __webpack_require__(310);
-
+	
 	var _createClass3 = _interopRequireDefault(_createClass2);
-
+	
 	var _possibleConstructorReturn2 = __webpack_require__(314);
-
+	
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
+	
 	var _inherits2 = __webpack_require__(348);
-
+	
 	var _inherits3 = _interopRequireDefault(_inherits2);
-
+	
 	var _simpleAssign = __webpack_require__(460);
-
+	
 	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
+	
 	var _react = __webpack_require__(24);
-
+	
 	var _react2 = _interopRequireDefault(_react);
-
+	
 	var _reactDom = __webpack_require__(55);
-
+	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
-
+	
 	var _shallowEqual = __webpack_require__(472);
-
+	
 	var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
-
+	
 	var _transitions = __webpack_require__(463);
-
+	
 	var _transitions2 = _interopRequireDefault(_transitions);
-
+	
 	var _EnhancedTextarea = __webpack_require__(565);
-
+	
 	var _EnhancedTextarea2 = _interopRequireDefault(_EnhancedTextarea);
-
+	
 	var _TextFieldHint = __webpack_require__(566);
-
+	
 	var _TextFieldHint2 = _interopRequireDefault(_TextFieldHint);
-
+	
 	var _TextFieldLabel = __webpack_require__(567);
-
+	
 	var _TextFieldLabel2 = _interopRequireDefault(_TextFieldLabel);
-
+	
 	var _TextFieldUnderline = __webpack_require__(568);
-
+	
 	var _TextFieldUnderline2 = _interopRequireDefault(_TextFieldUnderline);
-
+	
 	var _warning = __webpack_require__(232);
-
+	
 	var _warning2 = _interopRequireDefault(_warning);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	var getStyles = function getStyles(props, context, state) {
 	  var _context$muiTheme = context.muiTheme,
 	      baseTheme = _context$muiTheme.baseTheme,
@@ -5302,8 +5014,8 @@ webpackJsonp([1],{
 	      disabledTextColor = _context$muiTheme$tex.disabledTextColor,
 	      backgroundColor = _context$muiTheme$tex.backgroundColor,
 	      errorColor = _context$muiTheme$tex.errorColor;
-
-
+	
+	
 	  var styles = {
 	    root: {
 	      fontSize: 16,
@@ -5343,42 +5055,42 @@ webpackJsonp([1],{
 	    inputNative: {
 	      appearance: 'textfield' }
 	  };
-
+	
 	  styles.textarea = (0, _simpleAssign2.default)({}, styles.input, {
 	    marginTop: props.floatingLabelText ? 36 : 12,
 	    marginBottom: props.floatingLabelText ? -36 : -12,
 	    boxSizing: 'border-box',
 	    font: 'inherit'
 	  });
-
+	
 	  // Do not assign a height to the textarea as he handles it on his own.
 	  styles.input.height = '100%';
-
+	
 	  if (state.isFocused) {
 	    styles.floatingLabel.color = focusColor;
 	  }
-
+	
 	  if (props.floatingLabelText) {
 	    styles.input.boxSizing = 'border-box';
-
+	
 	    if (!props.multiLine) {
 	      styles.input.marginTop = 14;
 	    }
-
+	
 	    if (state.errorText) {
 	      styles.error.bottom = !props.multiLine ? styles.error.fontSize + 3 : 3;
 	    }
 	  }
-
+	
 	  if (state.errorText) {
 	    if (state.isFocused) {
 	      styles.floatingLabel.color = styles.error.color;
 	    }
 	  }
-
+	
 	  return styles;
 	};
-
+	
 	/**
 	 * Check if a value is valid to be displayed inside an input.
 	 *
@@ -5388,21 +5100,21 @@ webpackJsonp([1],{
 	function isValid(value) {
 	  return value !== '' && value !== undefined && value !== null;
 	}
-
+	
 	var TextField = function (_Component) {
 	  (0, _inherits3.default)(TextField, _Component);
-
+	
 	  function TextField() {
 	    var _ref;
-
+	
 	    var _temp, _this, _ret;
-
+	
 	    (0, _classCallCheck3.default)(this, TextField);
-
+	
 	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
 	      args[_key] = arguments[_key];
 	    }
-
+	
 	    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = TextField.__proto__ || (0, _getPrototypeOf2.default)(TextField)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
 	      isFocused: false,
 	      errorText: undefined,
@@ -5433,7 +5145,7 @@ webpackJsonp([1],{
 	      _reactDom2.default.findDOMNode(_this).style.height = newHeight + 'px';
 	    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
 	  }
-
+	
 	  (0, _createClass3.default)(TextField, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
@@ -5443,17 +5155,17 @@ webpackJsonp([1],{
 	          hintText = _props.hintText,
 	          floatingLabelText = _props.floatingLabelText,
 	          id = _props.id;
-
-
+	
+	
 	      var propsLeaf = children ? children.props : this.props;
-
+	
 	      this.setState({
 	        errorText: this.props.errorText,
 	        hasValue: isValid(propsLeaf.value) || isValid(propsLeaf.defaultValue)
 	      });
-
+	
 	       true ? (0, _warning2.default)(name || hintText || floatingLabelText || id, 'Material-UI: We don\'t have enough information\n      to build a robust unique id for the TextField component. Please provide an id or a name.') : void 0;
-
+	
 	      var uniqueId = name + '-' + hintText + '-' + floatingLabelText + '-' + Math.floor(Math.random() * 0xFFFF);
 	      this.uniqueId = uniqueId.replace(/[^A-Za-z0-9-]/gi, '');
 	    }
@@ -5465,14 +5177,14 @@ webpackJsonp([1],{
 	          errorText: nextProps.errorText
 	        });
 	      }
-
+	
 	      if (nextProps.children && nextProps.children.props) {
 	        nextProps = nextProps.children.props;
 	      }
-
+	
 	      if (nextProps.hasOwnProperty('value')) {
 	        var hasValue = isValid(nextProps.value);
-
+	
 	        this.setState({
 	          hasValue: hasValue
 	        });
@@ -5523,7 +5235,7 @@ webpackJsonp([1],{
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
-
+	
 	      var _props2 = this.props,
 	          children = _props2.children,
 	          className = _props2.className,
@@ -5555,16 +5267,16 @@ webpackJsonp([1],{
 	          textareaStyle = _props2.textareaStyle,
 	          other = (0, _objectWithoutProperties3.default)(_props2, ['children', 'className', 'disabled', 'errorStyle', 'errorText', 'floatingLabelFixed', 'floatingLabelFocusStyle', 'floatingLabelShrinkStyle', 'floatingLabelStyle', 'floatingLabelText', 'fullWidth', 'hintText', 'hintStyle', 'id', 'inputStyle', 'multiLine', 'onBlur', 'onChange', 'onFocus', 'style', 'type', 'underlineDisabledStyle', 'underlineFocusStyle', 'underlineShow', 'underlineStyle', 'rows', 'rowsMax', 'textareaStyle']);
 	      var prepareStyles = this.context.muiTheme.prepareStyles;
-
+	
 	      var styles = getStyles(this.props, this.context, this.state);
 	      var inputId = id || this.uniqueId;
-
+	
 	      var errorTextElement = this.state.errorText && _react2.default.createElement(
 	        'div',
 	        { style: prepareStyles((0, _simpleAssign2.default)(styles.error, errorStyle)) },
 	        this.state.errorText
 	      );
-
+	
 	      var floatingLabelTextElement = floatingLabelText && _react2.default.createElement(
 	        _TextFieldLabel2.default,
 	        {
@@ -5577,7 +5289,7 @@ webpackJsonp([1],{
 	        },
 	        floatingLabelText
 	      );
-
+	
 	      var inputProps = {
 	        id: inputId,
 	        ref: function ref(elem) {
@@ -5588,9 +5300,9 @@ webpackJsonp([1],{
 	        onChange: this.handleInputChange,
 	        onFocus: this.handleInputFocus
 	      };
-
+	
 	      var childStyleMerged = (0, _simpleAssign2.default)(styles.input, inputStyle);
-
+	
 	      var inputElement = void 0;
 	      if (children) {
 	        inputElement = _react2.default.cloneElement(children, (0, _extends3.default)({}, inputProps, children.props, {
@@ -5609,13 +5321,13 @@ webpackJsonp([1],{
 	          style: prepareStyles((0, _simpleAssign2.default)(styles.inputNative, childStyleMerged))
 	        }, other, inputProps));
 	      }
-
+	
 	      var rootProps = {};
-
+	
 	      if (children) {
 	        rootProps = other;
 	      }
-
+	
 	      return _react2.default.createElement(
 	        'div',
 	        (0, _extends3.default)({}, rootProps, {
@@ -5646,7 +5358,7 @@ webpackJsonp([1],{
 	  }]);
 	  return TextField;
 	}(_react.Component);
-
+	
 	TextField.defaultProps = {
 	  disabled: false,
 	  floatingLabelFixed: false,
@@ -5798,55 +5510,55 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
+	
 	var _extends2 = __webpack_require__(280);
-
+	
 	var _extends3 = _interopRequireDefault(_extends2);
-
+	
 	var _objectWithoutProperties2 = __webpack_require__(459);
-
+	
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
+	
 	var _getPrototypeOf = __webpack_require__(304);
-
+	
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
+	
 	var _classCallCheck2 = __webpack_require__(309);
-
+	
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
+	
 	var _createClass2 = __webpack_require__(310);
-
+	
 	var _createClass3 = _interopRequireDefault(_createClass2);
-
+	
 	var _possibleConstructorReturn2 = __webpack_require__(314);
-
+	
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
+	
 	var _inherits2 = __webpack_require__(348);
-
+	
 	var _inherits3 = _interopRequireDefault(_inherits2);
-
+	
 	var _simpleAssign = __webpack_require__(460);
-
+	
 	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
+	
 	var _react = __webpack_require__(24);
-
+	
 	var _react2 = _interopRequireDefault(_react);
-
+	
 	var _reactEventListener = __webpack_require__(507);
-
+	
 	var _reactEventListener2 = _interopRequireDefault(_reactEventListener);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	var rowsHeight = 24;
-
+	
 	function getStyles(props, context, state) {
 	  return {
 	    root: {
@@ -5871,38 +5583,38 @@ webpackJsonp([1],{
 	    }
 	  };
 	}
-
+	
 	var EnhancedTextarea = function (_Component) {
 	  (0, _inherits3.default)(EnhancedTextarea, _Component);
-
+	
 	  function EnhancedTextarea() {
 	    var _ref;
-
+	
 	    var _temp, _this, _ret;
-
+	
 	    (0, _classCallCheck3.default)(this, EnhancedTextarea);
-
+	
 	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
 	      args[_key] = arguments[_key];
 	    }
-
+	
 	    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = EnhancedTextarea.__proto__ || (0, _getPrototypeOf2.default)(EnhancedTextarea)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
 	      height: null
 	    }, _this.handleResize = function (event) {
 	      _this.syncHeightWithShadow(undefined, event);
 	    }, _this.handleChange = function (event) {
 	      _this.syncHeightWithShadow(event.target.value);
-
+	
 	      if (_this.props.hasOwnProperty('valueLink')) {
 	        _this.props.valueLink.requestChange(event.target.value);
 	      }
-
+	
 	      if (_this.props.onChange) {
 	        _this.props.onChange(event);
 	      }
 	    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
 	  }
-
+	
 	  (0, _createClass3.default)(EnhancedTextarea, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
@@ -5937,28 +5649,28 @@ webpackJsonp([1],{
 	    key: 'syncHeightWithShadow',
 	    value: function syncHeightWithShadow(newValue, event) {
 	      var shadow = this.refs.shadow;
-
+	
 	      if (newValue !== undefined) {
 	        shadow.value = newValue;
 	      }
-
+	
 	      var newHeight = shadow.scrollHeight;
-
+	
 	      // Guarding for jsdom, where scrollHeight isn't present.
 	      // See https://github.com/tmpvar/jsdom/issues/1013
 	      if (newHeight === undefined) return;
-
+	
 	      if (this.props.rowsMax >= this.props.rows) {
 	        newHeight = Math.min(this.props.rowsMax * rowsHeight, newHeight);
 	      }
-
+	
 	      newHeight = Math.max(newHeight, rowsHeight);
-
+	
 	      if (this.state.height !== newHeight) {
 	        this.setState({
 	          height: newHeight
 	        });
-
+	
 	        if (this.props.onHeightChange) {
 	          this.props.onHeightChange(event, newHeight);
 	        }
@@ -5978,16 +5690,16 @@ webpackJsonp([1],{
 	          valueLink = _props.valueLink,
 	          other = (0, _objectWithoutProperties3.default)(_props, ['onChange', 'onHeightChange', 'rows', 'rowsMax', 'shadowStyle', 'style', 'textareaStyle', 'valueLink']);
 	      var prepareStyles = this.context.muiTheme.prepareStyles;
-
+	
 	      var styles = getStyles(this.props, this.context, this.state);
 	      var rootStyles = (0, _simpleAssign2.default)(styles.root, style);
 	      var textareaStyles = (0, _simpleAssign2.default)(styles.textarea, textareaStyle);
 	      var shadowStyles = (0, _simpleAssign2.default)({}, textareaStyles, styles.shadow, shadowStyle);
-
+	
 	      if (this.props.hasOwnProperty('valueLink')) {
 	        other.value = this.props.valueLink.value;
 	      }
-
+	
 	      return _react2.default.createElement(
 	        'div',
 	        { style: prepareStyles(rootStyles) },
@@ -6013,7 +5725,7 @@ webpackJsonp([1],{
 	  }]);
 	  return EnhancedTextarea;
 	}(_react.Component);
-
+	
 	EnhancedTextarea.defaultProps = {
 	  rows: 1
 	};
@@ -6044,30 +5756,30 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
+	
 	var _simpleAssign = __webpack_require__(460);
-
+	
 	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
+	
 	var _react = __webpack_require__(24);
-
+	
 	var _react2 = _interopRequireDefault(_react);
-
+	
 	var _transitions = __webpack_require__(463);
-
+	
 	var _transitions2 = _interopRequireDefault(_transitions);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	function getStyles(props) {
 	  var hintColor = props.muiTheme.textField.hintColor,
 	      show = props.show;
-
-
+	
+	
 	  return {
 	    root: {
 	      position: 'absolute',
@@ -6078,22 +5790,22 @@ webpackJsonp([1],{
 	    }
 	  };
 	}
-
+	
 	var TextFieldHint = function TextFieldHint(props) {
 	  var prepareStyles = props.muiTheme.prepareStyles,
 	      style = props.style,
 	      text = props.text;
-
-
+	
+	
 	  var styles = getStyles(props);
-
+	
 	  return _react2.default.createElement(
 	    'div',
 	    { style: prepareStyles((0, _simpleAssign2.default)(styles.root, style)) },
 	    text
 	  );
 	};
-
+	
 	 true ? TextFieldHint.propTypes = {
 	  /**
 	   * @ignore
@@ -6113,11 +5825,11 @@ webpackJsonp([1],{
 	   */
 	  text: _react.PropTypes.node
 	} : void 0;
-
+	
 	TextFieldHint.defaultProps = {
 	  show: true
 	};
-
+	
 	exports.default = TextFieldHint;
 
 /***/ },
@@ -6126,25 +5838,25 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
+	
 	var _simpleAssign = __webpack_require__(460);
-
+	
 	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
+	
 	var _react = __webpack_require__(24);
-
+	
 	var _react2 = _interopRequireDefault(_react);
-
+	
 	var _transitions = __webpack_require__(463);
-
+	
 	var _transitions2 = _interopRequireDefault(_transitions);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	function getStyles(props) {
 	  var defaultStyles = {
 	    position: 'absolute',
@@ -6157,17 +5869,17 @@ webpackJsonp([1],{
 	    pointerEvents: 'auto',
 	    userSelect: 'none'
 	  };
-
+	
 	  var shrinkStyles = props.shrink ? (0, _simpleAssign2.default)({
 	    transform: 'scale(0.75) translate(0, -28px)',
 	    pointerEvents: 'none'
 	  }, props.shrinkStyle) : null;
-
+	
 	  return {
 	    root: (0, _simpleAssign2.default)(defaultStyles, props.style, shrinkStyles)
 	  };
 	}
-
+	
 	var TextFieldLabel = function TextFieldLabel(props) {
 	  var muiTheme = props.muiTheme,
 	      className = props.className,
@@ -6175,9 +5887,9 @@ webpackJsonp([1],{
 	      htmlFor = props.htmlFor,
 	      onTouchTap = props.onTouchTap;
 	  var prepareStyles = muiTheme.prepareStyles;
-
+	
 	  var styles = getStyles(props);
-
+	
 	  return _react2.default.createElement(
 	    'label',
 	    {
@@ -6189,7 +5901,7 @@ webpackJsonp([1],{
 	    children
 	  );
 	};
-
+	
 	 true ? TextFieldLabel.propTypes = {
 	  /**
 	   * The label contents.
@@ -6231,12 +5943,12 @@ webpackJsonp([1],{
 	   */
 	  style: _react.PropTypes.object
 	} : void 0;
-
+	
 	TextFieldLabel.defaultProps = {
 	  disabled: false,
 	  shrink: false
 	};
-
+	
 	exports.default = TextFieldLabel;
 
 /***/ },
@@ -6245,25 +5957,25 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
+	
 	var _simpleAssign = __webpack_require__(460);
-
+	
 	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
+	
 	var _react = __webpack_require__(24);
-
+	
 	var _react2 = _interopRequireDefault(_react);
-
+	
 	var _transitions = __webpack_require__(463);
-
+	
 	var _transitions2 = _interopRequireDefault(_transitions);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	var propTypes = {
 	  /**
 	   * True if the parent `TextField` is disabled.
@@ -6299,7 +6011,7 @@ webpackJsonp([1],{
 	   */
 	  style: _react.PropTypes.object
 	};
-
+	
 	var defaultProps = {
 	  disabled: false,
 	  disabledStyle: {},
@@ -6309,7 +6021,7 @@ webpackJsonp([1],{
 	  focusStyle: {},
 	  style: {}
 	};
-
+	
 	var TextFieldUnderline = function TextFieldUnderline(props) {
 	  var disabled = props.disabled,
 	      disabledStyle = props.disabledStyle,
@@ -6326,8 +6038,8 @@ webpackJsonp([1],{
 	      disabledTextColor = _muiTheme$textField.disabledTextColor,
 	      errorColor = _muiTheme$textField.errorColor,
 	      focusColor = _muiTheme$textField.focusColor;
-
-
+	
+	
 	  var styles = {
 	    root: {
 	      borderTop: 'none',
@@ -6356,14 +6068,14 @@ webpackJsonp([1],{
 	      transform: 'scaleX(1)'
 	    }
 	  };
-
+	
 	  var underline = (0, _simpleAssign2.default)({}, styles.root, style);
 	  var focusedUnderline = (0, _simpleAssign2.default)({}, underline, styles.focus, focusStyle);
-
+	
 	  if (disabled) underline = (0, _simpleAssign2.default)({}, underline, styles.disabled, disabledStyle);
 	  if (focus) focusedUnderline = (0, _simpleAssign2.default)({}, focusedUnderline, { transform: 'scaleX(1)' });
 	  if (error) focusedUnderline = (0, _simpleAssign2.default)({}, focusedUnderline, styles.error);
-
+	
 	  return _react2.default.createElement(
 	    'div',
 	    null,
@@ -6371,10 +6083,10 @@ webpackJsonp([1],{
 	    _react2.default.createElement('hr', { style: prepareStyles(focusedUnderline) })
 	  );
 	};
-
+	
 	 true ? TextFieldUnderline.propTypes = propTypes : void 0;
 	TextFieldUnderline.defaultProps = defaultProps;
-
+	
 	exports.default = TextFieldUnderline;
 
 /***/ },
@@ -6383,22 +6095,22 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	exports.default = exports.MenuItem = exports.DropDownMenu = undefined;
-
+	
 	var _DropDownMenu2 = __webpack_require__(570);
-
+	
 	var _DropDownMenu3 = _interopRequireDefault(_DropDownMenu2);
-
+	
 	var _MenuItem2 = __webpack_require__(515);
-
+	
 	var _MenuItem3 = _interopRequireDefault(_MenuItem2);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	exports.DropDownMenu = _DropDownMenu3.default;
 	exports.MenuItem = _MenuItem3.default;
 	exports.default = _DropDownMenu3.default;
@@ -6409,81 +6121,81 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
+	
 	var _extends2 = __webpack_require__(280);
-
+	
 	var _extends3 = _interopRequireDefault(_extends2);
-
+	
 	var _objectWithoutProperties2 = __webpack_require__(459);
-
+	
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
+	
 	var _getPrototypeOf = __webpack_require__(304);
-
+	
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
+	
 	var _classCallCheck2 = __webpack_require__(309);
-
+	
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
+	
 	var _createClass2 = __webpack_require__(310);
-
+	
 	var _createClass3 = _interopRequireDefault(_createClass2);
-
+	
 	var _possibleConstructorReturn2 = __webpack_require__(314);
-
+	
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
+	
 	var _inherits2 = __webpack_require__(348);
-
+	
 	var _inherits3 = _interopRequireDefault(_inherits2);
-
+	
 	var _simpleAssign = __webpack_require__(460);
-
+	
 	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
+	
 	var _react = __webpack_require__(24);
-
+	
 	var _react2 = _interopRequireDefault(_react);
-
+	
 	var _transitions = __webpack_require__(463);
-
+	
 	var _transitions2 = _interopRequireDefault(_transitions);
-
+	
 	var _arrowDropDown = __webpack_require__(571);
-
+	
 	var _arrowDropDown2 = _interopRequireDefault(_arrowDropDown);
-
+	
 	var _Menu = __webpack_require__(529);
-
+	
 	var _Menu2 = _interopRequireDefault(_Menu);
-
+	
 	var _ClearFix = __webpack_require__(572);
-
+	
 	var _ClearFix2 = _interopRequireDefault(_ClearFix);
-
+	
 	var _Popover = __webpack_require__(516);
-
+	
 	var _Popover2 = _interopRequireDefault(_Popover);
-
+	
 	var _PopoverAnimationVertical = __webpack_require__(574);
-
+	
 	var _PopoverAnimationVertical2 = _interopRequireDefault(_PopoverAnimationVertical);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	var anchorOrigin = {
 	  vertical: 'top',
 	  horizontal: 'left'
 	};
-
+	
 	function getStyles(props, context) {
 	  var disabled = props.disabled;
-
+	
 	  var spacing = context.muiTheme.baseTheme.spacing;
 	  var palette = context.muiTheme.baseTheme.palette;
 	  var accentColor = context.muiTheme.dropDownMenu.accentColor;
@@ -6538,21 +6250,21 @@ webpackJsonp([1],{
 	    }
 	  };
 	}
-
+	
 	var DropDownMenu = function (_Component) {
 	  (0, _inherits3.default)(DropDownMenu, _Component);
-
+	
 	  function DropDownMenu() {
 	    var _ref;
-
+	
 	    var _temp, _this, _ret;
-
+	
 	    (0, _classCallCheck3.default)(this, DropDownMenu);
-
+	
 	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
 	      args[_key] = arguments[_key];
 	    }
-
+	
 	    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = DropDownMenu.__proto__ || (0, _getPrototypeOf2.default)(DropDownMenu)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
 	      open: false
 	    }, _this.handleTouchTapControl = function (event) {
@@ -6586,17 +6298,17 @@ webpackJsonp([1],{
 	      });
 	    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
 	  }
-
+	
 	  // The nested styles for drop-down-menu are modified by toolbar and possibly
 	  // other user components, so it will give full access to its js styles rather
 	  // than just the parent.
-
-
+	
+	
 	  (0, _createClass3.default)(DropDownMenu, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      var _this2 = this;
-
+	
 	      if (this.props.autoWidth) {
 	        this.setWidth();
 	      }
@@ -6622,19 +6334,19 @@ webpackJsonp([1],{
 	        this.setWidth();
 	      }
 	    }
-
+	
 	    /**
 	     * This method is deprecated but still here because the TextField
 	     * need it in order to work. TODO: That will be addressed later.
 	     */
-
+	
 	  }, {
 	    key: 'getInputNode',
 	    value: function getInputNode() {
 	      var _this3 = this;
-
+	
 	      var root = this.refs.root;
-
+	
 	      root.focus = function () {
 	        if (!_this3.props.disabled) {
 	          _this3.setState({
@@ -6643,7 +6355,7 @@ webpackJsonp([1],{
 	          });
 	        }
 	      };
-
+	
 	      return root;
 	    }
 	  }, {
@@ -6680,9 +6392,9 @@ webpackJsonp([1],{
 	          anchorEl = _state.anchorEl,
 	          open = _state.open;
 	      var prepareStyles = this.context.muiTheme.prepareStyles;
-
+	
 	      var styles = getStyles(this.props, this.context);
-
+	
 	      var displayValue = '';
 	      _react2.default.Children.forEach(children, function (child) {
 	        if (child && value === child.props.value) {
@@ -6690,7 +6402,7 @@ webpackJsonp([1],{
 	          displayValue = child.props.label || child.props.primaryText;
 	        }
 	      });
-
+	
 	      var menuStyle = void 0;
 	      if (anchorEl && !autoWidth) {
 	        menuStyle = (0, _simpleAssign2.default)({
@@ -6699,7 +6411,7 @@ webpackJsonp([1],{
 	      } else {
 	        menuStyle = menuStyleProp;
 	      }
-
+	
 	      return _react2.default.createElement(
 	        'div',
 	        (0, _extends3.default)({}, other, {
@@ -6750,7 +6462,7 @@ webpackJsonp([1],{
 	  }]);
 	  return DropDownMenu;
 	}(_react.Component);
-
+	
 	DropDownMenu.muiName = 'DropDownMenu';
 	DropDownMenu.defaultProps = {
 	  animated: true,
@@ -6856,25 +6568,25 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
+	
 	var _react = __webpack_require__(24);
-
+	
 	var _react2 = _interopRequireDefault(_react);
-
+	
 	var _pure = __webpack_require__(492);
-
+	
 	var _pure2 = _interopRequireDefault(_pure);
-
+	
 	var _SvgIcon = __webpack_require__(501);
-
+	
 	var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	var NavigationArrowDropDown = function NavigationArrowDropDown(props) {
 	  return _react2.default.createElement(
 	    _SvgIcon2.default,
@@ -6885,7 +6597,7 @@ webpackJsonp([1],{
 	NavigationArrowDropDown = (0, _pure2.default)(NavigationArrowDropDown);
 	NavigationArrowDropDown.displayName = 'NavigationArrowDropDown';
 	NavigationArrowDropDown.muiName = 'SvgIcon';
-
+	
 	exports.default = NavigationArrowDropDown;
 
 /***/ },
@@ -6894,29 +6606,29 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
+	
 	var _extends2 = __webpack_require__(280);
-
+	
 	var _extends3 = _interopRequireDefault(_extends2);
-
+	
 	var _objectWithoutProperties2 = __webpack_require__(459);
-
+	
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
+	
 	var _react = __webpack_require__(24);
-
+	
 	var _react2 = _interopRequireDefault(_react);
-
+	
 	var _BeforeAfterWrapper = __webpack_require__(573);
-
+	
 	var _BeforeAfterWrapper2 = _interopRequireDefault(_BeforeAfterWrapper);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	var styles = {
 	  before: {
 	    content: "' '",
@@ -6928,7 +6640,7 @@ webpackJsonp([1],{
 	    display: 'table'
 	  }
 	};
-
+	
 	var ClearFix = function ClearFix(_ref) {
 	  var style = _ref.style,
 	      children = _ref.children,
@@ -6943,9 +6655,9 @@ webpackJsonp([1],{
 	    children
 	  );
 	};
-
+	
 	ClearFix.muiName = 'ClearFix';
-
+	
 	 true ? ClearFix.propTypes = {
 	  children: _react.PropTypes.node,
 	  /**
@@ -6953,7 +6665,7 @@ webpackJsonp([1],{
 	   */
 	  style: _react.PropTypes.object
 	} : void 0;
-
+	
 	exports.default = ClearFix;
 
 /***/ },
@@ -6962,45 +6674,45 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
+	
 	var _objectWithoutProperties2 = __webpack_require__(459);
-
+	
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
+	
 	var _getPrototypeOf = __webpack_require__(304);
-
+	
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
+	
 	var _classCallCheck2 = __webpack_require__(309);
-
+	
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
+	
 	var _createClass2 = __webpack_require__(310);
-
+	
 	var _createClass3 = _interopRequireDefault(_createClass2);
-
+	
 	var _possibleConstructorReturn2 = __webpack_require__(314);
-
+	
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
+	
 	var _inherits2 = __webpack_require__(348);
-
+	
 	var _inherits3 = _interopRequireDefault(_inherits2);
-
+	
 	var _simpleAssign = __webpack_require__(460);
-
+	
 	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
+	
 	var _react = __webpack_require__(24);
-
+	
 	var _react2 = _interopRequireDefault(_react);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	/**
 	 *  BeforeAfterWrapper
 	 *    An alternative for the ::before and ::after css pseudo-elements for
@@ -7034,21 +6746,21 @@ webpackJsonp([1],{
 	 *  When using BeforeAfterWrapper, ensure that the parent of the beforeElement
 	 *  and afterElement have a defined style position.
 	 */
-
+	
 	var styles = {
 	  box: {
 	    boxSizing: 'border-box'
 	  }
 	};
-
+	
 	var BeforeAfterWrapper = function (_Component) {
 	  (0, _inherits3.default)(BeforeAfterWrapper, _Component);
-
+	
 	  function BeforeAfterWrapper() {
 	    (0, _classCallCheck3.default)(this, BeforeAfterWrapper);
 	    return (0, _possibleConstructorReturn3.default)(this, (BeforeAfterWrapper.__proto__ || (0, _getPrototypeOf2.default)(BeforeAfterWrapper)).apply(this, arguments));
 	  }
-
+	
 	  (0, _createClass3.default)(BeforeAfterWrapper, [{
 	    key: 'render',
 	    value: function render() {
@@ -7060,36 +6772,36 @@ webpackJsonp([1],{
 	          elementType = _props.elementType,
 	          other = (0, _objectWithoutProperties3.default)(_props, ['beforeStyle', 'afterStyle', 'beforeElementType', 'afterElementType', 'elementType']);
 	      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-
+	
+	
 	      var beforeElement = void 0;
 	      var afterElement = void 0;
-
+	
 	      if (beforeStyle) {
 	        beforeElement = _react2.default.createElement(this.props.beforeElementType, {
 	          style: prepareStyles((0, _simpleAssign2.default)({}, styles.box, beforeStyle)),
 	          key: '::before'
 	        });
 	      }
-
+	
 	      if (afterStyle) {
 	        afterElement = _react2.default.createElement(this.props.afterElementType, {
 	          style: prepareStyles((0, _simpleAssign2.default)({}, styles.box, afterStyle)),
 	          key: '::after'
 	        });
 	      }
-
+	
 	      var children = [beforeElement, this.props.children, afterElement];
-
+	
 	      var props = other;
 	      props.style = prepareStyles((0, _simpleAssign2.default)({}, this.props.style));
-
+	
 	      return _react2.default.createElement(this.props.elementType, props, children);
 	    }
 	  }]);
 	  return BeforeAfterWrapper;
 	}(_react.Component);
-
+	
 	BeforeAfterWrapper.defaultProps = {
 	  beforeElementType: 'div',
 	  afterElementType: 'div',
@@ -7118,60 +6830,60 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
+	
 	var _getPrototypeOf = __webpack_require__(304);
-
+	
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
+	
 	var _classCallCheck2 = __webpack_require__(309);
-
+	
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
+	
 	var _createClass2 = __webpack_require__(310);
-
+	
 	var _createClass3 = _interopRequireDefault(_createClass2);
-
+	
 	var _possibleConstructorReturn2 = __webpack_require__(314);
-
+	
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
+	
 	var _inherits2 = __webpack_require__(348);
-
+	
 	var _inherits3 = _interopRequireDefault(_inherits2);
-
+	
 	var _simpleAssign = __webpack_require__(460);
-
+	
 	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
+	
 	var _react = __webpack_require__(24);
-
+	
 	var _react2 = _interopRequireDefault(_react);
-
+	
 	var _Paper = __webpack_require__(503);
-
+	
 	var _Paper2 = _interopRequireDefault(_Paper);
-
+	
 	var _transitions = __webpack_require__(463);
-
+	
 	var _transitions2 = _interopRequireDefault(_transitions);
-
+	
 	var _propTypes = __webpack_require__(464);
-
+	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	function getStyles(props, context, state) {
 	  var targetOrigin = props.targetOrigin;
 	  var open = state.open;
 	  var muiTheme = context.muiTheme;
-
+	
 	  var horizontal = targetOrigin.horizontal.replace('middle', 'vertical');
-
+	
 	  return {
 	    root: {
 	      position: 'fixed',
@@ -7184,26 +6896,26 @@ webpackJsonp([1],{
 	    }
 	  };
 	}
-
+	
 	var PopoverAnimationVertical = function (_Component) {
 	  (0, _inherits3.default)(PopoverAnimationVertical, _Component);
-
+	
 	  function PopoverAnimationVertical() {
 	    var _ref;
-
+	
 	    var _temp, _this, _ret;
-
+	
 	    (0, _classCallCheck3.default)(this, PopoverAnimationVertical);
-
+	
 	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
 	      args[_key] = arguments[_key];
 	    }
-
+	
 	    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = PopoverAnimationVertical.__proto__ || (0, _getPrototypeOf2.default)(PopoverAnimationVertical)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
 	      open: false
 	    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
 	  }
-
+	
 	  (0, _createClass3.default)(PopoverAnimationVertical, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
@@ -7223,10 +6935,10 @@ webpackJsonp([1],{
 	          className = _props.className,
 	          style = _props.style,
 	          zDepth = _props.zDepth;
-
-
+	
+	
 	      var styles = getStyles(this.props, this.context, this.state);
-
+	
 	      return _react2.default.createElement(
 	        _Paper2.default,
 	        {
@@ -7240,7 +6952,7 @@ webpackJsonp([1],{
 	  }]);
 	  return PopoverAnimationVertical;
 	}(_react.Component);
-
+	
 	PopoverAnimationVertical.defaultProps = {
 	  style: {},
 	  zDepth: 1
@@ -7261,7 +6973,295 @@ webpackJsonp([1],{
 	} : void 0;
 	exports.default = PopoverAnimationVertical;
 
+/***/ },
+
+/***/ 576:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(356);
+	
+	var _apiConfig = __webpack_require__(538);
+	
+	var _apiConfig2 = _interopRequireDefault(_apiConfig);
+	
+	var _accidentInStates = __webpack_require__(577);
+	
+	var _AccidentInStates = __webpack_require__(578);
+	
+	var _AccidentInStates2 = _interopRequireDefault(_AccidentInStates);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapDispatchToProps = {
+	  requestData: function requestData() {
+	    return (0, _accidentInStates.requestData)(_apiConfig2.default.accidentInStates);
+	  },
+	  handleChange: function handleChange(event, index, value) {
+	    return (0, _accidentInStates.changeFilter)(value);
+	  }
+	};
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    accidentInStates: state.accidentInStates
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_AccidentInStates2.default);
+
+/***/ },
+
+/***/ 577:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.actions = exports.changeFilter = exports.requestData = exports.CHANGE_FILTER_ACCIDENT = exports.RECEIVE_DATA_ACCIDENT = undefined;
+	
+	var _defineProperty2 = __webpack_require__(540);
+	
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+	
+	var _extends2 = __webpack_require__(280);
+	
+	var _extends3 = _interopRequireDefault(_extends2);
+	
+	var _ACTION_HANDLERS;
+	
+	exports.default = accidentInStates;
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// ------------------------------------
+	// Constants
+	// ------------------------------------
+	var RECEIVE_DATA_ACCIDENT = exports.RECEIVE_DATA_ACCIDENT = 'RECEIVE_DATA_ACCIDENT';
+	var CHANGE_FILTER_ACCIDENT = exports.CHANGE_FILTER_ACCIDENT = 'CHANGE_FILTER_ACCIDENT';
+	
+	// ------------------------------------
+	// Actions
+	// ------------------------------------
+	
+	var receiveData = function receiveData(json) {
+	  return {
+	    type: RECEIVE_DATA_ACCIDENT,
+	    payload: json
+	  };
+	};
+	var callAPI = function callAPI(APIName) {
+	  return fetch(APIName);
+	};
+	
+	var fetchData = function fetchData(APIName) {
+	  return function (dispatch, getState) {
+	    // dispatch(showLoader(getState))
+	    return callAPI(APIName).then(function (response) {
+	      return response.json();
+	    }).then(function (json) {
+	      return dispatch(receiveData(json));
+	    });
+	  };
+	};
+	
+	var requestData = exports.requestData = function requestData(APIName) {
+	  return function (dispatch, getState) {
+	    return dispatch(fetchData(APIName));
+	  };
+	};
+	
+	var changeFilter = exports.changeFilter = function changeFilter(value) {
+	  return {
+	    type: CHANGE_FILTER_ACCIDENT,
+	    payload: value
+	  };
+	};
+	
+	var actions = exports.actions = {
+	  requestData: requestData,
+	  changeFilter: changeFilter
+	};
+	
+	var callReducer = function callReducer(state, action) {
+	  switch (action.type) {
+	    case RECEIVE_DATA_ACCIDENT:
+	      return (0, _extends3.default)({}, state, {
+	        items: action.payload
+	      });
+	    case CHANGE_FILTER_ACCIDENT:
+	      return (0, _extends3.default)({}, state, {
+	        activeFilter: action.payload
+	      });
+	
+	    default:
+	      return state;
+	  }
+	};
+	
+	// ------------------------------------
+	// Action Handlers
+	// ------------------------------------
+	var ACTION_HANDLERS = (_ACTION_HANDLERS = {}, (0, _defineProperty3.default)(_ACTION_HANDLERS, RECEIVE_DATA_ACCIDENT, function (state, action) {
+	  return callReducer(state, action);
+	}), (0, _defineProperty3.default)(_ACTION_HANDLERS, CHANGE_FILTER_ACCIDENT, function (state, action) {
+	  return callReducer(state, action);
+	}), _ACTION_HANDLERS);
+	
+	// ------------------------------------
+	// Reducer
+	// ------------------------------------
+	var initialBaseState = {
+	  isFetching: false,
+	  items: [],
+	  activeFilter: '',
+	  defaultFilter: 'Truck/Lorry (Total)'
+	};
+	function accidentInStates() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialBaseState;
+	  var action = arguments[1];
+	
+	  var handler = ACTION_HANDLERS[action.type];
+	
+	  return handler ? handler(state, action) : state;
+	}
+
+/***/ },
+
+/***/ 578:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _getPrototypeOf = __webpack_require__(304);
+	
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+	
+	var _classCallCheck2 = __webpack_require__(309);
+	
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+	
+	var _createClass2 = __webpack_require__(310);
+	
+	var _createClass3 = _interopRequireDefault(_createClass2);
+	
+	var _possibleConstructorReturn2 = __webpack_require__(314);
+	
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+	
+	var _inherits2 = __webpack_require__(348);
+	
+	var _inherits3 = _interopRequireDefault(_inherits2);
+	
+	var _react = __webpack_require__(24);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _CircularProgress = __webpack_require__(542);
+	
+	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
+	
+	var _formatChartData = __webpack_require__(544);
+	
+	var _formatChartData2 = _interopRequireDefault(_formatChartData);
+	
+	var _Chart = __webpack_require__(545);
+	
+	var _Chart2 = _interopRequireDefault(_Chart);
+	
+	var _Filter = __webpack_require__(559);
+	
+	var _Filter2 = _interopRequireDefault(_Filter);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var AccidentInStates = function (_React$Component) {
+	  (0, _inherits3.default)(AccidentInStates, _React$Component);
+	
+	  function AccidentInStates() {
+	    (0, _classCallCheck3.default)(this, AccidentInStates);
+	    return (0, _possibleConstructorReturn3.default)(this, (AccidentInStates.__proto__ || (0, _getPrototypeOf2.default)(AccidentInStates)).apply(this, arguments));
+	  }
+	
+	  (0, _createClass3.default)(AccidentInStates, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.props.requestData();
+	    }
+	  }, {
+	    key: 'renderComponent',
+	    value: function renderComponent(formattedChartData, defaultFilterValue) {
+	      var chartData = {
+	        labels: formattedChartData.itemName,
+	        datasets: [{
+	          responsive: true,
+	          data: formattedChartData.itemValue
+	        }]
+	      };
+	
+	      var activeFilter = this.props.accidentInStates.activeFilter || defaultFilterValue;
+	
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_Filter2.default, {
+	          handleChange: this.props.handleChange,
+	          value: activeFilter,
+	          options: 'accidentsFilterMapping'
+	        }),
+	        _react2.default.createElement(_Chart2.default, { chartData: chartData })
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var defaultFilter = this.props.accidentInStates.defaultFilter;
+	      var activeFilter = this.props.accidentInStates.activeFilter;
+	      var filterValue = activeFilter || defaultFilter;
+	      var filterLocation = '2';
+	      var chartData = this.props.accidentInStates.items.data || [];
+	
+	      var inputToFormatData = {
+	        'chartData': chartData,
+	        'filterValue': filterValue,
+	        'filterLocation': filterLocation
+	      };
+	
+	      var formattedChartData = chartData.length && (0, _formatChartData2.default)(inputToFormatData);
+	
+	      var content = formattedChartData ? this.renderComponent(formattedChartData, defaultFilter) : _react2.default.createElement(_CircularProgress2.default, null);
+	
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        content
+	      );
+	    }
+	  }]);
+	  return AccidentInStates;
+	}(_react2.default.Component);
+	
+	exports.default = AccidentInStates;
+	
+	
+	AccidentInStates.propTypes = {
+	  requestData: _react2.default.PropTypes.func.isRequired,
+	  accidentInStates: _react2.default.PropTypes.object.isRequired,
+	  handleChange: _react2.default.PropTypes.func.isRequired
+	};
+
 /***/ }
 
 });
-//# sourceMappingURL=My-India-Redux/1.crimeInStates.871246e26d65a3b4655d.js.map
+//# sourceMappingURL=2.accidentInStates.c17ace50e6b32168fce7.js.map
