@@ -37905,7 +37905,7 @@ webpackJsonp([0],[
 	  };
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, "?path=/__webpack_hmr", __webpack_require__(216)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, "?path=/My-India-Redux/__webpack_hmr", __webpack_require__(216)(module)))
 
 /***/ },
 /* 585 */
@@ -39022,4 +39022,4 @@ webpackJsonp([0],[
 
 /***/ }
 ]);
-//# sourceMappingURL=app.60f4052d0d43f74aaecc.js.map
+//# sourceMappingURL=app.09609d1d419e8e5eaa21.js.map

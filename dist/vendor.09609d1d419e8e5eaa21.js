@@ -86,7 +86,7 @@
 /******/ 	}
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "60f4052d0d43f74aaecc"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "09609d1d419e8e5eaa21"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/
@@ -621,7 +621,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/";
+/******/ 	__webpack_require__.p = "/My-India-Redux/";
 /******/
 /******/ 	// __webpack_hash__
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
@@ -12193,4 +12193,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=vendor.60f4052d0d43f74aaecc.js.map
+//# sourceMappingURL=vendor.09609d1d419e8e5eaa21.js.map
