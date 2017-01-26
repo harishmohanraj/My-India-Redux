@@ -9,7 +9,6 @@ function sortList (a, b) {
 
 function filterListByDropDownSelection (list, inputToFormatData) {
   const { filterValue, filterLocation } = inputToFormatData
-
   return list.filter(
     (item) => !(item[0].match(/total/i)) && item[filterLocation] === filterValue
   ).slice(0, 10)
@@ -25,7 +24,7 @@ export default function formatChartData (inputToFormatData) {
   filteredList.forEach((list) => nameArray.push(list[0]))
 
   return {
-    	itemName: nameArray,
-    	itemValue: valueArray
+    itemName: nameArray,
+    itemValue: valueArray
   }
 }

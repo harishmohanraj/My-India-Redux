@@ -64,5 +64,7 @@ export default class AccidentInStates extends React.Component {
 }
 
 AccidentInStates.propTypes = {
-  requestData   : React.PropTypes.func.isRequired
+  requestData   : React.PropTypes.func.isRequired,
+  accidentInStates: React.PropTypes.object.isRequired,
+  handleChange: React.PropTypes.func.isRequired
 }

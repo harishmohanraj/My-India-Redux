@@ -64,5 +64,7 @@ export default class CrimeInStates extends React.Component {
 }
 
 CrimeInStates.propTypes = {
-  requestData   : React.PropTypes.func.isRequired
+  requestData: React.PropTypes.func.isRequired,
+  crimeInStates: React.PropTypes.object.isRequired,
+  handleChange: React.PropTypes.func.isRequired
 }

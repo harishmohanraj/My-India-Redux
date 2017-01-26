@@ -6,4 +6,8 @@ export const Chart = ({ chartData }) => (
   <Bar data={chartData} height='300' />
 )
 
+Chart.propTypes = {
+  chartData : React.PropTypes.object.isRequired
+}
+
 export default Chart
