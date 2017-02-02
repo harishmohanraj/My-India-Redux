@@ -1,6 +1,6 @@
 // We only need to import the modules necessary for initial render
 import CoreLayout from '../layouts/CoreLayout'
-import CrimeInStates from './CrimeInStates'
+import CrimeAgainstWomen from './CrimeAgainstWomen'
 import AccidentInStates from './AccidentInStates'
 // import HomeView from './Home/components/HomeView'
 
@@ -10,10 +10,10 @@ import AccidentInStates from './AccidentInStates'
 export const createRoutes = (store) => ({
   path        : '/',
   component   : CoreLayout,
-  indexRoute  : CrimeInStates(store),
+  indexRoute  : CrimeAgainstWomen(store),
   childRoutes : [
     // { path: 'home', component: HomeView },
-    CrimeInStates(store),
+    CrimeAgainstWomen(store),
     AccidentInStates(store)
   ]
 })

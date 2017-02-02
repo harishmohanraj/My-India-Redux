@@ -4,7 +4,7 @@ import formatChartData from '../../../utils/formatChartData.js'
 import Chart from '../../../components/Chart'
 import Filter from '../../../components/Filter'
 
-export default class CrimeInStates extends React.Component {
+export default class CrimeAgainstWomen extends React.Component {
 
   componentDidMount () {
     this.props.requestData()
@@ -21,14 +21,18 @@ export default class CrimeInStates extends React.Component {
       ]
     }
 
-    const activeFilter = this.props.crimeInStates.activeFilter || defaultFilterValue
+    const activeFilter = this.props.crimeAgainstWomen.activeFilter || defaultFilterValue
 
     return (
       <div>
+        <p>
+          This Illustration shows the top 10 states that have highest crime rate against women.
+          Please use the below select box to filter the results based on crime category.
+        </p>
         <Filter
           handleChange={this.props.handleChange}
           value={activeFilter}
-          options='crimeInStatesFilterMapping'
+          options='crimeAgainstWomenFilterMapping'
         />
         <Chart chartData={chartData} />
       </div>
@@ -37,11 +41,11 @@ export default class CrimeInStates extends React.Component {
   }
 
   render () {
-    const defaultFilter = this.props.crimeInStates.defaultFilter
-    const activeFilter = this.props.crimeInStates.activeFilter
+    const defaultFilter = this.props.crimeAgainstWomen.defaultFilter
+    const activeFilter = this.props.crimeAgainstWomen.activeFilter
     const filterValue = activeFilter || defaultFilter
     const filterLocation = '1'
-    let chartData = this.props.crimeInStates.items.data || []
+    let chartData = this.props.crimeAgainstWomen.items.data || []
 
     const inputToFormatData = {
       'chartData': chartData,
@@ -63,8 +67,8 @@ export default class CrimeInStates extends React.Component {
   }
 }
 
-CrimeInStates.propTypes = {
+CrimeAgainstWomen.propTypes = {
   requestData: React.PropTypes.func.isRequired,
-  crimeInStates: React.PropTypes.object.isRequired,
+  crimeAgainstWomen: React.PropTypes.object.isRequired,
   handleChange: React.PropTypes.func.isRequired
 }

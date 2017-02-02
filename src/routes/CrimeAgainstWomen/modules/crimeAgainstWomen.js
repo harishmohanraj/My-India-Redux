@@ -73,9 +73,9 @@ const initialBaseState = {
   isFetching: false,
   items: [],
   activeFilter: '',
-  defaultFilter: 'RAPE (SECTION 376 IPC)'
+  defaultFilter: 'TOTAL CRIMES AGAINST WOMEN'
 }
-export default function crimeInStates (state = initialBaseState, action) {
+export default function crimeAgainstWomen (state = initialBaseState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state
