@@ -25,6 +25,10 @@ export default class AccidentInStates extends React.Component {
 
     return (
       <div>
+        <p>
+          This Illustration shows the top 10 states that have highest accident rate.
+          Please use the below select box to filter the results based on accident category.
+        </p>
         <Filter
           handleChange={this.props.handleChange}
           value={activeFilter}
